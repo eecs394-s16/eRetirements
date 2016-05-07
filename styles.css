@@ -14,6 +14,8 @@
 
 .category:hover {
     border-color: #5FAC9D;
+    cursor: pointer; 
+    cursor: hand;
 }
 
 h1 {
