@@ -45,6 +45,9 @@ h2 {
     border-radius: 100%;
     width:80px;
     height:80px;
+    left:100px;
+    bottom: 60px;
+    visibility: hidden;
 }
 
 

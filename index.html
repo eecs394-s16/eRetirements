@@ -6,22 +6,79 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <link href='https://fonts.googleapis.com/css?family=Hind:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+        <script>
+        $(document).ready(function() {
+
+            var $completed = $('completed');
+
+            $('.category').click(function(e) {
+                var $clickedItem = $(e.target);
+
+                $(this).find(".completed").css({'visibility': 'visible'});
+                $(this).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+                $(this).hover(function() {
+                    $(this).css('border-color', '#6C9B74');
+                    }, function () {
+                    $(this).css('border-color', '#DCFDE1');                    
+                });
+
+
+            });
+        });
+        </script>
         
     </head>
     <body>
         <center>
         <div class="row">
-                <div id="location" class="category"><br><h2>Location &amp; Weather</h2><h1><i class="fa fa-sun-o" aria-hidden="true"></i></h1></div>
-                <div id="community" class="category"><br><h2>Community &amp; Demographics</h2><h1><i class="fa fa-users" aria-hidden="true"></i></h1></div>
-                <div id="activities" class="category"><br><h2>Activities &amp; Work Potential</h2><h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1></div>
-             </div>
-            <div class="row">
-                <div id="health" class="category"><br><h2>Health Care</h2><h1><i class="fa fa-medkit" aria-hidden="true"></i></h1></div>
-                <div id="costs" class="category"><br><h2>Cost of Living</h2><h1><i class="fa fa-usd" aria-hidden="true"></i></h1></div>
+            <div id="location" class="category">
+                <br>
+                <h2>Location &amp; Weather</h2>
+                <h1><i class="fa fa-sun-o" aria-hidden="true"></i></h1>
+                <div class="completed">
+                    <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
                 </div>
-                </center>
+            </div>
+
+            <div id="community" class="category">
+                <br>
+                <h2>Community &amp; Demographics</h2>
+                <h1><i class="fa fa-users" aria-hidden="true"></i></h1>
+                <div class="completed">
+                    <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+                </div>
+            </div>
+            <div id="activities" class="category">
+                <br>
+                <h2>Activities &amp; Work Potential</h2>
+                <h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1>
+                <div class="completed">
+                    <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+                </div>
+            </div>
+         </div>
+        <div class="row">
+            <div id="health" class="category">
+                <br><h2>Health Care</h2>
+                <h1><i class="fa fa-medkit" aria-hidden="true"></i></h1>
+                <div class="completed">
+                    <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+                </div>
+            </div>
+            <div id="costs" class="category">
+                <br>
+                <h2>Cost of Living</h2>
+                <h1><i class="fa fa-usd" aria-hidden="true"></i></h1>
+                <div class="completed">
+                    <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+                </div>
+            </div>
+        </div>
+        </center>
         
-        <div class="completed"><p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p></div>
+       
        
     </body>
         
