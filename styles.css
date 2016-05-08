@@ -51,6 +51,57 @@ h2 {
     bottom: 60px;
     visibility: hidden;
 }
+.Quiz {
+    background-color: lightblue;
+    width:600px;
+    height:400px;
+    position:absolute;
+    margin-left:26%;
+    margin-top: 5%;
+    margin-bottom: -100px; 
+    z-index: 10;
+
+}
+#category_title {
+    font-size: 37px;
+    font-family: 'Hind', sans-serif;
+}
+#question_number {
+    font-size: 30px;
+
+
+}
+#question_area {
+    height: 76%;
+    width: 100%;
+}
+#question_content {
+    list-style-type: none;
+}
+ul {
+    list-style-type: none;
+
+}
+li {
+    margin-left : -10%;
+}
+/*#prev {
+    margin-left:-10%;
+}*/
+#next {
+    margin-left:50%;
+}
+.answer {
+    width : 80%;
+}
+.answer:focus {
+    border-width :5px;
+    background-color: #9DD9ED;
+}
+/*body {
+    position: relative;
+    z-index: 
+}*/
 
 
 /*

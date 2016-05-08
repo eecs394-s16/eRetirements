@@ -1,21 +1,25 @@
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <link href='https://fonts.googleapis.com/css?family=Hind:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+        
+        <script src="./questionScript.js" type="text/javascript"></script>
         <script>
         $(document).ready(function() {
-
+            $('.Quiz').hide();
             var $completed = $('completed');
 
             $('.category').click(function(e) {
                 var $clickedItem = $(e.target);
+                // console.log(this);
 
+                var idName = jQuery(this).attr("id");
+                showQuestion(idName);
                 $(this).find(".completed").css({'visibility': 'visible'});
                 $(this).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
                 $(this).hover(function() {
@@ -23,17 +27,124 @@
                     }, function () {
                     $(this).css('border-color', '#DCFDE1');                    
                 });
-
+            // $('#location').click(function(){
+            //     alert("iii");
+            // })
 
             });
         });
+        // var showLocationQuiz = function(){
+        //     alert("hello!");
+        // }
+        var current = 1;
+        var category;
+
+        var showQuestion = function(idName){
+            $('.row').css("opacity","0.5");
+            $('.Quiz').show();
+            category = idName;
+            current = 1;
+            changeQuestion(category);
+
+            // current = 1;
+            // var total = 5;
+            // category=idName;
+            // var questionAndAnswers = categories[idName];
+            // document.getElementById("category_title").innerHTML = idName;
+            // total = questionAndAnswers.length;
+            // var currentQuestionAndAnswers = questionAndAnswers[current-1];
+            // $('#question_number').text( "Q" + current +" out of Q" + total);
+            // $('#question_content').text(currentQuestionAndAnswers["question"]);
+            // // for(var i = 0; )
+            // var answers = currentQuestionAndAnswers["answers"];
+            // var len = answers.length;
+            // var str = "";
+            // console.log();
+            // for(var i = 0; i < len; i++)
+            // {
+            //     str += "<li><button class='answer'>  " + answers[i] + 
+            //     "</button></li>";
+            // }
+            // $('#quesiton_option').html(str);
+        }
+        var changeQuestionPrev = function() {
+            current -= 1;
+            var questionAndAnswers = categories[category];
+            var total = questionAndAnswers.length;
+            if(current < 1)
+            {
+                $('.Quiz').hide();
+                $('.row').css("opacity","1");
+            }
+            else
+            {
+                console.log("here");
+                changeQuestion(category);
+            }
+            
+        }
+        var changeQuestionNext = function(){
+            current += 1;
+            var questionAndAnswers = categories[category];
+            var total = questionAndAnswers.length;
+            if(current > total )
+            {
+                $('.Quiz').hide();
+                $('.row').css("opacity","1");
+            }
+            else
+            changeQuestion(category);
+        }
+        var changeQuestion = function(category){
+
+            var questionAndAnswers = categories[category];
+            document.getElementById("category_title").innerHTML = category;
+            var total = questionAndAnswers.length;
+            var currentQuestionAndAnswers = questionAndAnswers[current-1];
+            $('#question_number').text( "Q" + current +" out of Q" + total);
+            $('#question_content').text(currentQuestionAndAnswers["question"]);
+            // for(var i = 0; )
+            var answers = currentQuestionAndAnswers["answers"];
+            var len = answers.length;
+            var str = "";
+            console.log();
+            for(var i = 0; i < len; i++)
+            {
+                str += "<li><button class='answer'>  " + answers[i] + 
+                "</button></li>";
+            }
+            $('#quesiton_option').html(str);
+        }
         </script>
         
     </head>
     <body>
         <center>
+            <div id="question" class="Quiz"> 
+                <div id="category_title">
+                    Location Quiz
+                </div>
+                <div id="question_area">
+                    <p id="question_number">
+                    </p>
+                    <p id="question_content">
+                    </p>
+                    <ul id="quesiton_option">
+                    </ul>
+
+                    <!-- <div id="Q1">
+                    </div>
+                    <div id -->
+                </div>
+                <div id="button_area">
+                    <button id="prev" onclick="changeQuestionPrev()">prev</button>
+                    <button id="next" onclick="changeQuestionNext()">next</button>
+                </div>
+
+            </div> 
+       
         <div class="row">
-            <div id="location" class="category">
+            <div id="location" class="category" >
                 <br>
                 <h2>Location &amp; Weather</h2>
                 <h1><i class="fa fa-sun-o" aria-hidden="true"></i></h1>
@@ -79,9 +190,9 @@
         </center>
         
        
-       
     </body>
-        
+    
+            
                 
     
     
