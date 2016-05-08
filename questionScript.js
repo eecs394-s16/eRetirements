@@ -38,7 +38,7 @@ var categories = {
 			"question": "My living costs during retirement...",
 			"answers": ["are not a concern","are somewhat important","are something I need to keep a close eye on","are a top priority - I'm on a tight budget"]
 		}
-	],	
+	],
 	"health": [
 		{
 			"question": "The quality of the clinical care...",

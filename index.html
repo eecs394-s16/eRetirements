@@ -7,7 +7,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <link href='https://fonts.googleapis.com/css?family=Hind:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="styles.css">
-        
+
         <script src="./questionScript.js" type="text/javascript"></script>
         <script>
         $(document).ready(function() {
@@ -25,7 +25,7 @@
                 $(this).hover(function() {
                     $(this).css('border-color', '#6C9B74');
                     }, function () {
-                    $(this).css('border-color', '#DCFDE1');                    
+                    $(this).css('border-color', '#DCFDE1');
                 });
             // $('#location').click(function(){
             //     alert("iii");
@@ -62,7 +62,7 @@
             // console.log();
             // for(var i = 0; i < len; i++)
             // {
-            //     str += "<li><button class='answer'>  " + answers[i] + 
+            //     str += "<li><button class='answer'>  " + answers[i] +
             //     "</button></li>";
             // }
             // $('#quesiton_option').html(str);
@@ -81,7 +81,7 @@
                 console.log("here");
                 changeQuestion(category);
             }
-            
+
         }
         var changeQuestionNext = function(){
             current += 1;
@@ -98,7 +98,19 @@
         var changeQuestion = function(category){
 
             var questionAndAnswers = categories[category];
-            document.getElementById("category_title").innerHTML = category;
+            var title;
+            if (category == "location"){
+              title = "Location & Weather"
+            } else if (category == "community"){
+              title = "Community & Demographics"
+            } else if (category == "activities") {
+              title = "Activities & Work Potential"
+            } else if (category == "health") {
+              title = "Health Care"
+            } else if (category == "costs") {
+              title = "Cost of Living"
+            }
+            document.getElementById("category_title").innerHTML = title;
             var total = questionAndAnswers.length;
             var currentQuestionAndAnswers = questionAndAnswers[current-1];
             $('#question_number').text( "Q" + current +" out of Q" + total);
@@ -110,17 +122,17 @@
             console.log();
             for(var i = 0; i < len; i++)
             {
-                str += "<li><button class='answer'>  " + answers[i] + 
+                str += "<li><button class='answer'>  " + answers[i] +
                 "</button></li>";
             }
             $('#quesiton_option').html(str);
         }
         </script>
-        
+
     </head>
     <body>
         <center>
-            <div id="question" class="Quiz"> 
+            <div id="question" class="Quiz">
                 <div id="category_title">
                     Location Quiz
                 </div>
@@ -141,8 +153,8 @@
                     <button id="next" onclick="changeQuestionNext()">next</button>
                 </div>
 
-            </div> 
-       
+            </div>
+
         <div class="row">
             <div id="location" class="category" >
                 <br>
@@ -188,12 +200,12 @@
             </div>
         </div>
         </center>
-        
-       
+
+
     </body>
-    
-            
-                
-    
-    
+
+
+
+
+
 </html>
