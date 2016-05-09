@@ -17,16 +17,31 @@
             $('.category').click(function(e) {
                 var $clickedItem = $(e.target);
                 // console.log(this);
-
+                // var $completed = $('completed');
                 var idName = jQuery(this).attr("id");
                 showQuestion(idName);
-                $(this).find(".completed").css({'visibility': 'visible'});
-                $(this).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
-                $(this).hover(function() {
-                    $(this).css('border-color', '#6C9B74');
-                    }, function () {
-                    $(this).css('border-color', '#DCFDE1');
-                });
+                // if((idName == "location" && location_finish) ||
+                //     (idName == "community" && community_finish) ||
+                //     (idName == "activities" && activities_finish) ||
+                //     (idName == "health" && health_finish) ||
+                //     (idName == "costs" && costs_finish))
+                // {
+                //     // var $completed = $('completed');
+                //     $(this).find(".completed").css({'visibility': 'visible'});
+                //     $(this).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+                //     $(this).hover(function() {
+                //         $(this).css('border-color', '#6C9B74');
+                //         }, function () {
+                //         $(this).css('border-color', '#DCFDE1');
+                //     });
+                // } 
+                // $(this).find(".completed").css({'visibility': 'visible'});
+                // $(this).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+                // $(this).hover(function() {
+                //     $(this).css('border-color', '#6C9B74');
+                //     }, function () {
+                //     $(this).css('border-color', '#DCFDE1');
+                // });
             // $('#location').click(function(){
             //     alert("iii");
             // })
@@ -38,7 +53,12 @@
         // }
         var current = 1;
         var category;
-
+        // var location_finish = false;
+        // var community_finish = false;
+        // var activities_finish = false;
+        // var health_finish = false;
+        // var costs_finish = false;
+        var clickItem;
         var showQuestion = function(idName){
             $('.row').css("opacity","0.5");
             $('.Quiz').show();
@@ -89,6 +109,25 @@
             var total = questionAndAnswers.length;
             if(current > total )
             {
+                
+                 $("#" +category).find(".completed").css({'visibility': 'visible'});
+                 $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+                 $("#" +category).hover(function() {
+                         $("#" +category).css('border-color', '#6C9B74');
+                        }, function () {
+                         $("#" +category).css('border-color', '#DCFDE1');
+                    });
+                // if (category == "location"){
+                //   location_finish = true;
+                // } else if (category == "community"){
+                //   community_finish = true;
+                // } else if (category == "activities") {
+                //   activities_finish = true;
+                // } else if (category == "health") {
+                //   health_finish = true;
+                // } else if (category == "costs") {
+                //   costs_finish = true;
+                // }
                 $('.Quiz').hide();
                 $('.row').css("opacity","1");
             }
