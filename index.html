@@ -16,48 +16,13 @@
 
             $('.category').click(function(e) {
                 var $clickedItem = $(e.target);
-                // console.log(this);
-                // var $completed = $('completed');
                 var idName = jQuery(this).attr("id");
                 showQuestion(idName);
-                // if((idName == "location" && location_finish) ||
-                //     (idName == "community" && community_finish) ||
-                //     (idName == "activities" && activities_finish) ||
-                //     (idName == "health" && health_finish) ||
-                //     (idName == "costs" && costs_finish))
-                // {
-                //     // var $completed = $('completed');
-                //     $(this).find(".completed").css({'visibility': 'visible'});
-                //     $(this).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
-                //     $(this).hover(function() {
-                //         $(this).css('border-color', '#6C9B74');
-                //         }, function () {
-                //         $(this).css('border-color', '#DCFDE1');
-                //     });
-                // } 
-                // $(this).find(".completed").css({'visibility': 'visible'});
-                // $(this).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
-                // $(this).hover(function() {
-                //     $(this).css('border-color', '#6C9B74');
-                //     }, function () {
-                //     $(this).css('border-color', '#DCFDE1');
-                // });
-            // $('#location').click(function(){
-            //     alert("iii");
-            // })
-
+                
             });
         });
-        // var showLocationQuiz = function(){
-        //     alert("hello!");
-        // }
         var current = 1;
         var category;
-        // var location_finish = false;
-        // var community_finish = false;
-        // var activities_finish = false;
-        // var health_finish = false;
-        // var costs_finish = false;
         var clickItem;
         var showQuestion = function(idName){
             $('.row').css("opacity","0.5");
@@ -66,26 +31,7 @@
             current = 1;
             changeQuestion(category);
 
-            // current = 1;
-            // var total = 5;
-            // category=idName;
-            // var questionAndAnswers = categories[idName];
-            // document.getElementById("category_title").innerHTML = idName;
-            // total = questionAndAnswers.length;
-            // var currentQuestionAndAnswers = questionAndAnswers[current-1];
-            // $('#question_number').text( "Q" + current +" out of Q" + total);
-            // $('#question_content').text(currentQuestionAndAnswers["question"]);
-            // // for(var i = 0; )
-            // var answers = currentQuestionAndAnswers["answers"];
-            // var len = answers.length;
-            // var str = "";
-            // console.log();
-            // for(var i = 0; i < len; i++)
-            // {
-            //     str += "<li><button class='answer'>  " + answers[i] +
-            //     "</button></li>";
-            // }
-            // $('#quesiton_option').html(str);
+            
         }
         var changeQuestionPrev = function() {
             current -= 1;
@@ -117,17 +63,7 @@
                         }, function () {
                          $("#" +category).css('border-color', '#DCFDE1');
                     });
-                // if (category == "location"){
-                //   location_finish = true;
-                // } else if (category == "community"){
-                //   community_finish = true;
-                // } else if (category == "activities") {
-                //   activities_finish = true;
-                // } else if (category == "health") {
-                //   health_finish = true;
-                // } else if (category == "costs") {
-                //   costs_finish = true;
-                // }
+                
                 $('.Quiz').hide();
                 $('.row').css("opacity","1");
             }
@@ -154,17 +90,17 @@
             var currentQuestionAndAnswers = questionAndAnswers[current-1];
             $('#question_number').text( "Q" + current +" out of Q" + total);
             $('#question_content').text(currentQuestionAndAnswers["question"]);
-            // for(var i = 0; )
+
             var answers = currentQuestionAndAnswers["answers"];
             var len = answers.length;
             var str = "";
             console.log();
             for(var i = 0; i < len; i++)
             {
-                str += "<li><button class='answer' style='border-radius:10px'>  " + answers[i] +
+                str += "<li><button class='list-group-item answer' style='border-radius:10px; text-align:center'>  " + answers[i] +
                 "</button></li>";
             }
-            $('#quesiton_option').html(str);
+            $('#question_option').html(str);
         }
         </script>
 
@@ -182,12 +118,9 @@
                     <br>
                     <p id="question_content">
                     </p>
-                    <ul id="quesiton_option">
+                    <ul class="list-group" id="question_option">
                     </ul>
 
-                    <!-- <div id="Q1">
-                    </div>
-                    <div id -->
                 </div>
                 <div id="button_area">
                     <button id="prev" onclick="changeQuestionPrev()" style="border-radius:5px">prev</button>
@@ -196,6 +129,7 @@
 
             </div>
 
+        <img src="navbar.png" alt="navbar">
         <div class="row">
             <div id="location" class="category" >
                 <br>
