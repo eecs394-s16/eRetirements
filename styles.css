@@ -52,7 +52,7 @@ h2 {
     visibility: hidden;
 }
 .Quiz {
-    background-color: lightblue;
+    background-color: #c0fbc9;
     width:600px;
     height:400px;
     position:absolute;
@@ -60,11 +60,13 @@ h2 {
     margin-top: 5%;
     margin-bottom: -100px; 
     z-index: 10;
+	border-radius: 5%;
 
 }
 #category_title {
     font-size: 37px;
     font-family: 'Hind', sans-serif;
+	padding-top: 20px;
 }
 #question_number {
     font-size: 30px;
@@ -74,6 +76,7 @@ h2 {
 #question_area {
     height: 76%;
     width: 100%;
+	margin-bottom:-5%;
 }
 #question_content {
     list-style-type: none;
@@ -84,7 +87,10 @@ ul {
 }
 li {
     margin-left : -10%;
+	margin-bottom: 2%;
+	border-radius: 20px;
 }
+
 /*#prev {
     margin-left:-10%;
 }*/
@@ -95,8 +101,8 @@ li {
     width : 80%;
 }
 .answer:focus {
-    border-width :5px;
-    background-color: #9DD9ED;
+    border-width :2px;
+    background-color: #27f146;
 }
 /*body {
     position: relative;

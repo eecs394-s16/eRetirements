@@ -122,7 +122,7 @@
             console.log();
             for(var i = 0; i < len; i++)
             {
-                str += "<li><button class='answer'>  " + answers[i] +
+                str += "<li><button class='answer' style='border-radius:10px'>  " + answers[i] +
                 "</button></li>";
             }
             $('#quesiton_option').html(str);
@@ -139,6 +139,8 @@
                 <div id="question_area">
                     <p id="question_number">
                     </p>
+                    
+                    <br>
                     <p id="question_content">
                     </p>
                     <ul id="quesiton_option">
@@ -149,8 +151,8 @@
                     <div id -->
                 </div>
                 <div id="button_area">
-                    <button id="prev" onclick="changeQuestionPrev()">prev</button>
-                    <button id="next" onclick="changeQuestionNext()">next</button>
+                    <button id="prev" onclick="changeQuestionPrev()" style="border-radius:5px">prev</button>
+                    <button id="next" onclick="changeQuestionNext()" style="border-radius:5px">next</button>
                 </div>
 
             </div>
