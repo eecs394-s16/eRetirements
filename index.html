@@ -49,6 +49,28 @@
             }
 
         }
+        var changeQuestionSkip = function(){
+            current += 1;
+            var questionAndAnswers = categories[category];
+            var total = questionAndAnswers.length;
+            if(current > total )
+            {
+                
+//                 $("#" +category).find(".completed").css({'visibility': 'visible'});
+//                 $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+//                 $("#" +category).hover(function() {
+//                         $("#" +category).css('border-color', '#6C9B74');
+//                        }, function () {
+//                         $("#" +category).css('border-color', '#DCFDE1');
+//                    });
+//                
+                $('.Quiz').hide();
+                $('.row').css("opacity","1");
+            }
+            else
+            changeQuestion(category);
+        }
+        
         var changeQuestionNext = function(){
             current += 1;
             var questionAndAnswers = categories[category];
@@ -125,7 +147,7 @@
                 <div id="progress"></div>
                 <div id="button_area">
                     <button id="prev" onclick="changeQuestionPrev()" style="border-radius:5px">prev</button>
-                    <button id="skip" onclick="changeQuestionNext()" style="border-radius:5px">skip</button>
+                    <button id="skip" onclick="changeQuestionSkip()" style="border-radius:5px">skip</button>
                     <button id="next" onclick="changeQuestionNext()" style="border-radius:5px">next</button>
                 </div>
 
