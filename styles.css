@@ -97,3 +97,10 @@ li {
 .answer:focus {
     border-width :2px; 
 }
+#progress{
+    margin-bottom:10px;
+    margin-left:20px;
+    margin-right:20px;
+    height:20px;
+    border: black 1px solid;
+}
