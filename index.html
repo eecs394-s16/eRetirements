@@ -91,6 +91,7 @@
             }
             else
             changeQuestion(category);
+            document.getElementById("next").disabled = true;
         }
         var changeQuestion = function(category){
 
@@ -119,10 +120,15 @@
             console.log();
             for(var i = 0; i < len; i++)
             {
-                str += "<li><button class='list-group-item answer' style='border-radius:10px; text-align:center'>  " + answers[i] +
+                str += "<li><button class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton()'>  " + answers[i] +
                 "</button></li>";
             }
             $('#question_option').html(str);
+        }
+        
+        var focusButton = function(){
+            $("button").css({'background-color': '#DCDCDC'});
+            document.getElementById("next").disabled = false;
         }
         </script>
 
@@ -148,7 +154,7 @@
                 <div id="button_area">
                     <button id="prev" onclick="changeQuestionPrev()" style="border-radius:5px">prev</button>
                     <button id="skip" onclick="changeQuestionSkip()" style="border-radius:5px">skip</button>
-                    <button id="next" onclick="changeQuestionNext()" style="border-radius:5px">next</button>
+                    <button id="next" onclick="changeQuestionNext()" style="border-radius:5px" disabled>next</button>
                 </div>
 
             </div>

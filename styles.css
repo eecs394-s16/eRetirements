@@ -104,3 +104,8 @@ li {
     height:20px;
     border: black 1px solid;
 }
+
+.list-group-item answer {
+     border-radius:10px; 
+     text-align:center;
+}
