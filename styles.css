@@ -53,7 +53,7 @@ h2 {
     background-color: white;
     box-shadow: 5px 5px 5px #888888;
     width:600px;
-    height:450px;
+    height:550px;
     position:absolute;
     margin-left:26%;
     margin-top: 5%;
@@ -77,7 +77,7 @@ h2 {
 #question_area {
     height: 76%;
     width: 100%;
-	margin-bottom:-5%;
+	margin-bottom:-15%;
 }
 #question_content {
     list-style-type: none;
@@ -97,12 +97,23 @@ li {
 .answer:focus {
     border-width :2px; 
 }
+
 #progress{
-    margin-bottom:10px;
+    margin-bottom:50px;
     margin-left:20px;
     margin-right:20px;
-    height:20px;
-    border: black 1px solid;
+	margin-top:-20px;
+    height:5px;
+    border: black 0px solid;
+}
+
+.progressdiv{
+	width:20%;
+	display:inline-block;
+	border: 1px solid black;
+	margin: 10px;
+	margin-top: 5px;
+	
 }
 
 .list-group-item answer {

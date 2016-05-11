@@ -23,6 +23,8 @@
         });
         var current = 1;
         var category;
+		
+		
         var clickItem;
         var showQuestion = function(idName){
             $('.row').css("opacity","0.5");
@@ -30,6 +32,18 @@
             category = idName;
             current = 1;
             changeQuestion(category);
+			var questionAndAnswers = categories[category];
+            var total = questionAndAnswers.length;
+			
+			
+			var strb ="";
+			for(var i=0; i<total; i++)
+			{
+				var j =i+1;
+				strb += "<div id='progressdiv"+j+"' class='progressdiv'>Q"+j+"</div>";
+        	}
+
+			$('#progress').html(strb);
 
             
         }
@@ -50,6 +64,8 @@
 
         }
         var changeQuestionSkip = function(){
+			var str = "#progressdiv"+current;
+            $(str).css({'background-color': 'yellow'});
             current += 1;
             var questionAndAnswers = categories[category];
             var total = questionAndAnswers.length;
@@ -68,7 +84,9 @@
                 $('.row').css("opacity","1");
             }
             else
-            changeQuestion(category);
+			{
+            	changeQuestion(category);
+			}
         }
         
         var changeQuestionNext = function(){
@@ -120,14 +138,27 @@
             console.log();
             for(var i = 0; i < len; i++)
             {
-                str += "<li><button class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton()'>  " + answers[i] +
+				var j = i+1;
+                str += "<li><button id='button"+j+"' class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton("+j+","+len+")'>  " + answers[i] +
                 "</button></li>";
             }
             $('#question_option').html(str);
-        }
+			
+			
+			
+			
+		}
         
-        var focusButton = function(){
-            $("button").css({'background-color': '#DCDCDC'});
+        var focusButton = function(j,len){
+			var str = "#progressdiv"+current;
+            $(str).css({'background-color': 'lightgreen'});
+			for (i=1; i<=len; i++)
+			{
+				var str = "#button"+i;
+				$(str).css({'background-color': 'white'});
+			}
+			var str = "#button"+j;
+			$(str).css({'background-color': 'lightgreen'});
             document.getElementById("next").disabled = false;
         }
         </script>
