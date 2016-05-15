@@ -27,17 +27,8 @@
                     // Get the modal
 modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-
-btn.onclick = function() {
-    modal.style.display = "block";
-}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -280,7 +271,6 @@ window.onclick = function(event) {
 <a href="results.html"><button class="btn btn-lg btn-primary" disabled id="results">Results
 <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
         
-        <button id="myBtn">Open Modal</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
