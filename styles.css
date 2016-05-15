@@ -1,12 +1,12 @@
 .category {
     border-radius: 100%;
-    background-color: #F5F5FE;
+    background-color: #EBEBEB;
     width:250px;
     height:250px;
     display:inline-block;
     border-width:5px;
     border-style: solid;
-    border-color: #F5F5FE;
+    border-color: #EBEBEB;
     margin: 1%;
     box-shadow: 5px 5px 5px #888888;
 	
