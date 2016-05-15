@@ -44,14 +44,15 @@ window.onclick = function(event) {
         });
         var current = 1;
         var category;
-		
-        
+		var completed_num = 0;
+        console.log("start: completed_num :" + completed_num);
         var clickItem;
         var showQuestion = function(idName){
             $('.row').css("opacity","0.5");
             $('.Quiz').show();
             category = idName;
             current = 1;
+            completed_num = 0;
             changeQuestion(category);
 			var questionAndAnswers = categories[category];
             var total = questionAndAnswers.length;
@@ -90,8 +91,13 @@ window.onclick = function(event) {
             current += 1;
             var questionAndAnswers = categories[category];
             var total = questionAndAnswers.length;
+
+             percent = (1-completed_num/total) * 100;
             if(current > total )
             {
+                $("#" +category).css({'background-image':
+                    'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
+                $("#" +category + " h3").html(completed_num +"/"+total);
                 
 //                 $("#" +category).find(".completed").css({'visibility': 'visible'});
 //                 $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
@@ -113,6 +119,7 @@ window.onclick = function(event) {
         var changeQuestionNext = function(){
             current += 1;
             completed +=1;
+            completed_num +=1;
             if (completed == 10) {
                 modal.style.display = "block";
                 document.getElementById('results').disabled = false;
@@ -121,9 +128,20 @@ window.onclick = function(event) {
             var total = questionAndAnswers.length;
             if(current > total )
             {
-                
-                 $("#" +category).find(".completed").css({'visibility': 'visible'});
-                 $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+                console.log("completed:" + completed_num);
+                if(completed_num == total)
+                {
+                    // console.log("completed:" + completed);
+                    $("#" +category).find(".completed").css({'visibility': 'visible'});
+                }
+                percent = (1-completed_num/total) * 100;
+                console.log("percent:" +percent);
+                 
+                 // $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+                 $("#" +category).css({'background-image':
+                    'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
+                 $("#" +category + " h3").html(completed_num +"/"+total);
+                 
                  $("#" +category).hover(function() {
                          $("#" +category).css('border-color', '#6C9B74');
                         }, function () {
@@ -225,7 +243,7 @@ window.onclick = function(event) {
             <div id="location" class="category" >
                 <br>
                 <h2 id="titlename">Location &amp; Weather</h2>
-                <h3 id="percentage">70%</h3>
+                <h3 id="percentage">0/3</h3>
                 <h1><i class="fa fa-sun-o" aria-hidden="true"></i></h1>
                 <div class="completed">
                     <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
@@ -235,7 +253,7 @@ window.onclick = function(event) {
             <div id="community" class="category">
                 <br>
                 <h2 id="titlename">Community &amp; Demographics</h2>
-                <h3 id="percentage">20%</h3>
+                <h3 id="percentage">0/5</h3>
                 <h1><i class="fa fa-users" aria-hidden="true"></i></h1>
                 <div class="completed">
                     <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
@@ -244,7 +262,7 @@ window.onclick = function(event) {
             <div id="activities" class="category">
                 <br>
                 <h2 id="titlename">Activities &amp; Work Potential</h2>
-                <h3 id="percentage">60%</h3>
+                <h3 id="percentage">0/4</h3>
                 <h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1>
                 <div class="completed">
                     <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
@@ -254,7 +272,7 @@ window.onclick = function(event) {
         <div class="row">
             <div id="health" class="category">
                 <br><h2 id="titlename">Health Care</h2>
-                <h3 id="percentage">40%</h3>
+                <h3 id="percentage">0/3</h3>
                 <h1><i class="fa fa-medkit" aria-hidden="true"></i></h1>
                 <div class="completed">
                     <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
@@ -263,7 +281,7 @@ window.onclick = function(event) {
             <div id="costs" class="category">
                 <br>
                 <h2 id="titlename">Cost of Living</h2>
-                <h3 id="percentage">80%</h3>
+                <h3 id="percentage">0/3</h3>
                 <h1><i class="fa fa-usd" aria-hidden="true"></i></h1>
                 <div class="completed">
                     <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>

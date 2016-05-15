@@ -14,27 +14,27 @@
 	
 #location{
 	background-image:
-        linear-gradient(to bottom, transparent 30%, #90EE90 0);
+        linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #community{
 	background-image:
-        linear-gradient(to bottom, transparent 80%, #90EE90 0);
+        linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #activities{
 	background-image:
-        linear-gradient(to bottom, transparent 40%, #90EE90 0);
+        linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #health{
 	background-image:
-        linear-gradient(to bottom, transparent 60%, #90EE90 0);
+        linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #costs{
 	background-image:
-        linear-gradient(to bottom, transparent 20%, #90EE90 0);
+        linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 .category:hover {
