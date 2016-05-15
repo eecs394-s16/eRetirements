@@ -9,12 +9,47 @@
     border-color: #F5F5FE;
     margin: 1%;
     box-shadow: 5px 5px 5px #888888;
+	
     }
+	
+#location{
+	background-image:
+        linear-gradient(to bottom, transparent 30%, #90EE90 0);
+}
+
+#community{
+	background-image:
+        linear-gradient(to bottom, transparent 80%, #90EE90 0);
+}
+
+#activities{
+	background-image:
+        linear-gradient(to bottom, transparent 40%, #90EE90 0);
+}
+
+#health{
+	background-image:
+        linear-gradient(to bottom, transparent 60%, #90EE90 0);
+}
+
+#costs{
+	background-image:
+        linear-gradient(to bottom, transparent 20%, #90EE90 0);
+}
 
 .category:hover {
     border-color: #5FAC9D;
     cursor: pointer; 
     cursor: hand;
+}
+
+#titlename{
+	margin-top:-1%;
+}
+
+#percentage{
+	margin-top:-5%;
+	margin-bottom:-5%;
 }
 
 h1 {
