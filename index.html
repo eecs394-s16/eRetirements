@@ -155,7 +155,7 @@ window.onclick = function(event) {
             document.getElementById("category_title").innerHTML = title;
             var total = questionAndAnswers.length;
             var currentQuestionAndAnswers = questionAndAnswers[current-1];
-            $('#question_number').text( "Q" + current +" out of Q" + total);
+            $('#question_number').text( "Question " + current +" out of " + total);
             $('#question_content').text(currentQuestionAndAnswers["question"]);
 
             var answers = currentQuestionAndAnswers["answers"];
