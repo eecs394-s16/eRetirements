@@ -11,14 +11,16 @@
 
   <script src="./questionScript.js" type="text/javascript"></script>
   <script>
-  var completed = 0;
+  var total_completed = 0;
   var modal;
   $(document).ready(function() {
 
     $(document).on('click','.progressdiv',function(event){
       var id = event.target.id;
       var index = parseInt(id.substring(11));
-      var current = index-1;
+      current = index;
+      var current_v = index-1
+      console.log("current:::::" + current)
       var questionAndAnswers = categories[category];
       var total = questionAndAnswers.length;
       var currentQuestionAndAnswers = questionAndAnswers[index-1];
@@ -32,14 +34,14 @@
       for(var i = 0; i < len; i++)
       {
         var j = i+1;
-        str += "<li><button id='button"+j+"' class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton("+j+","+len+","+current+")'>  " + answers[i] +
+        str += "<li><button id='button"+j+"' class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton("+j+","+len+","+current_v+")'>  " + answers[i] +
         "</button></li>";
       }
       $('#question_option').html(str);
     });
 
     $('.Quiz').hide();
-    var $completed = $('completed');
+    // var $completed = $('completed');
 
     $('.category').click(function(e) {
       var $clickedItem = $(e.target);
@@ -134,9 +136,11 @@
 
   var changeQuestionNext = function(){
     current += 1;
-    completed +=1;
-    completed_num +=1;
-    if (completed == 10) {
+    // total_completed +=1;
+    // 
+
+    // completed_num +=1;
+    if (total_completed == 10) {
       modal.style.display = "block";
       document.getElementById('results').disabled = false;
     }
@@ -210,6 +214,8 @@
   }
 
   var focusButton = function(j,len,index){
+    completed_num+=1;
+    total_completed += 1;
     var str = "#progressdiv"+(index+1);
     $(str).css({'background-color': 'lightgreen'});
     for (i=1; i<=len; i++)
