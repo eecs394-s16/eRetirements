@@ -13,7 +13,7 @@ var categories = {
 		{
 			"question": "My ideal location is...",
 			"answers": ["A Quaint Town (Think Little House on the Prairie)","A Big Town (Think Myrtle Beach)","A Small City (Think Sarasota)","A Big City (Think Dallas)"],
-			"results":""	
+			"results":""
 		}
 	],
 	"activities": [
@@ -34,7 +34,7 @@ var categories = {
 		},
 		{
 			"question": "In my new location I will,",
-			"answers": ["Work full time – have to pay the bills!","Work part time – got to stay busy","Forget work – I'm ready to relax"],
+			"answers": ["Work full time - have to pay the bills!","Work part time - got to stay busy","Forget work - I'm ready to relax"],
 			"results":""
 		}
 	],
