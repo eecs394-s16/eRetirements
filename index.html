@@ -240,6 +240,7 @@
       else {
         $(progressdivSelector).css({'background-color': 'white'});
       }
+      categories[category][questionIndex]["results"][buttonIndex-1] = !categories[category][questionIndex]["results"][buttonIndex-1];//1-4
     }
     else {
       for (var i=1; i<=len; i++)
@@ -248,8 +249,9 @@
       }
       $(buttonSelector).css({'background-color': 'lightgreen'});
       $(progressdivSelector).css({'background-color': 'lightgreen'});
+      categories[category][questionIndex]["results"] = [false,false,false,false];//1-4
+      categories[category][questionIndex]["results"][buttonIndex-1] = true;//1-4
     }
-    categories[category][questionIndex]["results"] = buttonIndex;//1-4
     document.getElementById("next").disabled = false;
   }
   </script>
