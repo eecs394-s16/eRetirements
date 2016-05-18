@@ -13,7 +13,14 @@
   <script>
   var total_completed = 0;
   var modal;
+  var greenRGB = "rgb(144, 238, 144)";
+  var current = 1;
+  var category;
+  var completed_num = 0;
+  // console.log("start: completed_num :" + completed_num);
+  var clickItem;
   $(document).ready(function() {
+
 
     $(document).on('click','.progressdiv',function(event){
       var id = event.target.id;
@@ -68,11 +75,7 @@
       }
     }
   });
-  var current = 1;
-  var category;
-  var completed_num = 0;
-  console.log("start: completed_num :" + completed_num);
-  var clickItem;
+
   var showQuestion = function(idName){
     $('.row').css("opacity","0.5");
     $('.Quiz').show();
@@ -92,9 +95,8 @@
     }
 
     $('#progress').html(strb);
-
-
   }
+
   var changeQuestionPrev = function() {
     current -= 1;
     var questionAndAnswers = categories[category];
@@ -137,7 +139,7 @@
   var changeQuestionNext = function(){
     current += 1;
     // total_completed +=1;
-    // 
+    //
 
     // completed_num +=1;
     if (total_completed == 10) {
@@ -213,18 +215,41 @@
 
   }
 
-  var focusButton = function(j,len,index){
+  var focusButton = function(buttonIndex,len,questionIndex){
     completed_num+=1;
     total_completed += 1;
-    var str = "#progressdiv"+(index+1);
-    $(str).css({'background-color': 'lightgreen'});
-    for (i=1; i<=len; i++)
-    {
-      var str = "#button"+i;
-      $(str).css({'background-color': 'white'});
+    var progressdivSelector = "#progressdiv"+(questionIndex+1);
+    var buttonSelector = "#button"+buttonIndex;
+    if (category == "community" && questionIndex == 2){
+      if ($(buttonSelector).css("background-color") == greenRGB){
+        $(buttonSelector).css({'background-color': 'white'});
+      }
+      else {
+        $(buttonSelector).css({'background-color': 'lightgreen'});
+      }
+      var areAnyGreen = false
+      for (var i=1;i<=len;i++){
+        if ($("#button"+i).css("background-color") == greenRGB){
+          areAnyGreen = true;
+          break;
+        }
+      }
+      if (areAnyGreen){
+        $(progressdivSelector).css({'background-color': 'lightgreen'});
+      }
+      else {
+        $(progressdivSelector).css({'background-color': 'white'});
+      }
     }
-    var str = "#button"+j;
-    $(str).css({'background-color': 'lightgreen'});
+    else {
+      for (var i=1; i<=len; i++)
+      {
+        $("#button"+i).css({'background-color': 'white'});
+      }
+      $(buttonSelector).css({'background-color': 'lightgreen'});
+      $(progressdivSelector).css({'background-color': 'lightgreen'});
+    }
+    categories[category][questionIndex]["results"] = buttonIndex;//1-4
     document.getElementById("next").disabled = false;
   }
   </script>
