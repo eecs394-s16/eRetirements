@@ -120,6 +120,7 @@ h2 {
 }
 #question_content {
     list-style-type: none;
+    font-weight: bold;
 }
 ul {
     list-style-type: none;
