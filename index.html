@@ -301,10 +301,12 @@
           if($clickedItem.css("color") == "rgb(211, 211, 211)"){
               console.log("1");
               $clickedItem.css({'color':'orange'});
+              $clickedItem.prevAll().css({'color':'orange'});
           }
           else {
               console.log($clickedItem.css("color") );
               $clickedItem.css({'color':'lightgray'});
+              $clickedItem.nextAll().css({'color':'lightgray'});
           }
     });
   }
