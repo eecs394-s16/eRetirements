@@ -145,7 +145,10 @@
     var total = questionAndAnswers.length;
 
     percent = (1-completed_num/total) * 100;
-    if(current > total )
+      if(current > total){
+        showRating(category);
+    }
+    else if(current > total )
     {
       $("#" +category).css({'background-image':
       'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
@@ -172,7 +175,10 @@
     }
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
-    if(current > total )
+    if(current > total){
+        showRating(category);
+    }
+    else if(current > total + 1)
     {
       console.log("completed:" + completed_num);
       if(completed_num == total)
@@ -215,7 +221,7 @@
       title = "Health Care"
     } else if (category == "costs") {
       title = "Cost of Living"
-    }
+    } 
     document.getElementById("category_title").innerHTML = title;
     var total = questionAndAnswers.length;
     var currentQuestionAndAnswers = questionAndAnswers[current-1];
@@ -238,6 +244,52 @@
 
 
   }
+  var showRating = function(category){
+
+    var questionAndAnswers = categories[category];
+    var title;
+    if (category == "location"){
+      title = "Location & Weather"
+    } else if (category == "community"){
+      title = "Community & Demographics"
+    } else if (category == "activities") {
+      title = "Activities & Work Potential"
+    } else if (category == "health") {
+      title = "Health Care"
+    } else if (category == "costs") {
+      title = "Cost of Living"
+    } 
+    document.getElementById("category_title").innerHTML = title;
+    
+    
+    var str = "";
+      str += "<span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()' >&#9733</span><span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()'>&#9733</span>"
+    $('#question_area').html(str);
+
+
+
+
+  }
+  
+  var numClicks = 0
+  var rate = function() {
+      $('.star').click(function(e) {
+      var $clickedItem = $(e.target);
+           console.info("ggg");
+          numClicks+=1;
+//          if (numClicks%2 == 0) {
+          if($clickedItem.css("color") == "orange"){
+              console.log("1");
+              $clickedItem.css({'color':'lightgray'});
+          }
+          else {
+              console.log($clickedItem.css("color") );
+              $clickedItem.css({'color':'orange'});
+          }
+    });
+  }
+  
+ 
 
   var focusButton = function(buttonIndex,len,questionIndex){
     completed_num+=1;
@@ -324,6 +376,38 @@
       </div>
 
     </div>
+      
+      <!--        Rating-->
+      
+<!--
+          <div id="question" class="Quiz">
+      <div id="category_title">
+        Location Quiz
+      </div>
+      <div id="question_area">
+        <p id="question_number">
+        </p>
+
+        <br>
+        <p id="question_content">
+        </p>
+        <ul class="list-group" id="question_option">
+        </ul>
+
+      </div>
+      <div id="progress"></div>
+      <div id="button_area">
+
+
+        <button id="prev" onclick="changeQuestionPrev()" class="btn">prev</button>
+        <button id="skip" onclick="changeQuestionSkip()" class="btn">skip</button>
+        <button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>next</button>
+
+
+      </div>
+
+    </div>
+-->
 
     <img src="navbar.png" alt="navbar" width=100%>
     <div class="row">
