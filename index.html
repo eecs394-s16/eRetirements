@@ -161,10 +161,12 @@
     var total = questionAndAnswers.length;
 
     percent = (1-completed_num/total) * 100;
-
-    if(current > total)
-    {
+    if(current > total){
         showRating(category);
+    }
+    else if(current > total + 1)
+    {
+        // showRating(category);
       $("#" +category).css({'background-image':
       'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
       $("#" +category + " h3").html(completed_num +"/"+total);
@@ -296,13 +298,13 @@
            console.info("ggg");
           numClicks+=1;
 //          if (numClicks%2 == 0) {
-          if($clickedItem.css("color") == "orange"){
+          if($clickedItem.css("color") == "rgb(211, 211, 211)"){
               console.log("1");
-              $clickedItem.css({'color':'lightgray'});
+              $clickedItem.css({'color':'orange'});
           }
           else {
               console.log($clickedItem.css("color") );
-              $clickedItem.css({'color':'orange'});
+              $clickedItem.css({'color':'lightgray'});
           }
     });
   }
