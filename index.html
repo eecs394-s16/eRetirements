@@ -13,8 +13,13 @@
   <script>
   var total_completed = 0;
   var modal;
-    var openModal;
-      
+  var openModal;
+  var star_num = 0;
+  var location_rating = 0;
+  var community_rating = 0;
+  var activities_rating = 0;
+  var health_rating = 0;
+  var costs_rating = 0;
   var greenRGB = "rgb(144, 238, 144)";
   var current = 1;
   var category;
@@ -113,8 +118,16 @@
   var showQuestion = function(idName){
     $('.row').css("opacity","0.5");
     $('.Quiz').show();
+    $("#submitRating").hide();
+    $("#prev").show();
+    $("#next").show();
+    $("#skip").show();
+    $("#finish").show();
+    
+    $("#progress").show();
     category = idName;
     current = 1;
+    console.log("current:"+current)
     completed_num = category_num_completed[category]; //num_completed
     changeQuestion(category);
     var questionAndAnswers = categories[category];
@@ -162,18 +175,18 @@
 
     percent = (1-completed_num/total) * 100;
     if(current > total){
-        showRating(category);
+        showRating();
     }
-    else if(current > total + 1)
-    {
-        // showRating(category);
-      $("#" +category).css({'background-image':
-      'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
-      $("#" +category + " h3").html(completed_num +"/"+total);
+    // else if(current > total + 1)
+    // {
+    //     // showRating(category);
+    //   $("#" +category).css({'background-image':
+    //   'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
+    //   $("#" +category + " h3").html(completed_num +"/"+total);
 
-      $('.Quiz').hide();
-      $('.row').css("opacity","1");
-    }
+    //   $('.Quiz').hide();
+    //   $('.row').css("opacity","1");
+    // }
     else
     {
       changeQuestion(category);
@@ -189,33 +202,33 @@
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
     if(current > total){
-        showRating(category);
+        showRating();
     }
-    else if(current > total + 1)
-    {
-      console.log("completed:" + completed_num);
-      if(completed_num == total)
-      {
-        // console.log("completed:" + completed);
-        $("#" +category).find(".completed").css({'visibility': 'visible'});
-      }
-      percent = (1-completed_num/total) * 100;
-      console.log("percent:" +percent);
+    // else if(current > total + 1)
+    // {
+    //   console.log("completed:" + completed_num);
+    //   if(completed_num == total)
+    //   {
+    //     // console.log("completed:" + completed);
+    //     $("#" +category).find(".completed").css({'visibility': 'visible'});
+    //   }
+    //   percent = (1-completed_num/total) * 100;
+    //   console.log("percent:" +percent);
 
-      // $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
-      $("#" +category).css({'background-image':
-      'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
-      $("#" +category + " h3").html(completed_num +"/"+total);
+    //   // $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+    //   $("#" +category).css({'background-image':
+    //   'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
+    //   $("#" +category + " h3").html(completed_num +"/"+total);
 
-      $("#" +category).hover(function() {
-        $("#" +category).css('border-color', '#6C9B74');
-      }, function () {
-        $("#" +category).css('border-color', '#DCFDE1');
-      });
+    //   $("#" +category).hover(function() {
+    //     $("#" +category).css('border-color', '#6C9B74');
+    //   }, function () {
+    //     $("#" +category).css('border-color', '#DCFDE1');
+    //   });
 
-      $('.Quiz').hide();
-      $('.row').css("opacity","1");
-    }
+    //   $('.Quiz').hide();
+    //   $('.row').css("opacity","1");
+    // }
     else
     changeQuestion(category);
     // document.getElementById("next").disabled = true;
@@ -240,7 +253,7 @@
     var currentQuestionAndAnswers = questionAndAnswers[current-1];
     $('#question_number').text( "Question " + current +" out of " + total);
     $('#question_content').text(currentQuestionAndAnswers["question"]+"");
-
+    // debugger;
     var answers = currentQuestionAndAnswers["answers"];
     var len = answers.length;
     var str = "";
@@ -264,7 +277,7 @@
 
 
   }
-  var showRating = function(category){
+  var showRating = function(){
 
     var questionAndAnswers = categories[category];
     var title;
@@ -284,34 +297,89 @@
     
     var str = "";
       str += "<span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()' >&#9733</span><span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()'>&#9733</span>"
-    $('#question_area').html(str);
+    $('#question_option').html(str);
 
-
+  $("#prev").hide();
+  $("#next").hide();
+  $("#skip").hide();
+  $("#finish").hide();
+  $("#submitRating").show();
+  $("#progress").hide();
 
 
   }
   
-  var numClicks = 0
+  
+  // var numClicks = 0
   var rate = function() {
       $('.star').click(function(e) {
+
       var $clickedItem = $(e.target);
            console.info("ggg");
-          numClicks+=1;
+          // numClicks+=1;
 //          if (numClicks%2 == 0) {
           if($clickedItem.css("color") == "rgb(211, 211, 211)"){
               console.log("1");
               $clickedItem.css({'color':'orange'});
+              star_num = $clickedItem.index() + 1;
               $clickedItem.prevAll().css({'color':'orange'});
+              console.log("star_num :" +star_num);
           }
           else {
               console.log($clickedItem.css("color") );
               $clickedItem.css({'color':'lightgray'});
               $clickedItem.nextAll().css({'color':'lightgray'});
+              star_num = $clickedItem.index();
+              console.log("star_num :" +star_num);
           }
     });
   }
   
- 
+ var submitRate = function() {
+  if (category == "location"){
+        location_rating = star_num;
+      } else if (category == "community"){
+        community_rating = star_num;
+      } else if (category == "activities") {
+        activities_rating = star_num;
+      } else if (category == "health") {
+        health_rating = star_num;
+      } else if (category == "costs") {
+        costs_rating = star_num;
+      }
+
+    // else if(current > total + 1)
+    var questionAndAnswers = categories[category];
+    var total = questionAndAnswers.length;
+    console.log("completed:" + completed_num);
+    if(completed_num == total)
+    {
+      // console.log("completed:" + completed);
+      $("#" +category).find(".completed").css({'visibility': 'visible'});
+    }
+    percent = (1-completed_num/total) * 100;
+    console.log("percent:" +percent);
+
+    // $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
+    $("#" +category).css({'background-image':
+    'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
+    $("#" +category + " h3").html(completed_num +"/"+total);
+
+    $("#" +category).hover(function() {
+      $("#" +category).css('border-color', '#6C9B74');
+    }, function () {
+      $("#" +category).css('border-color', '#DCFDE1');
+    });
+
+    $('.Quiz').hide();
+    $('.row').css("opacity","1");
+    console.log("location_rating :"+location_rating);
+    console.log("community_rating:" +community_rating);
+    console.log("activities_rating" + activities_rating);
+    console.log("costs_rating:" + costs_rating);
+    console.log("health_rating :" + health_rating);
+    
+ }
 
   var focusButton = function(buttonIndex,len,questionIndex){
     if (categories[category][questionIndex]["results"].indexOf(true) == -1) 
@@ -398,7 +466,9 @@
 
         <button id="prev" onclick="changeQuestionPrev()" class="btn">prev</button>
         <button id="skip" onclick="changeQuestionSkip()" class="btn">skip</button>
+        <button id="finish" onclick="showRating()" class="btn btn-success" >finish</button>
         <button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>next</button>
+         <button id="submitRating" onclick="submitRate()" class="btn btn-success" >submit the rating</button>
 
 
       </div>
