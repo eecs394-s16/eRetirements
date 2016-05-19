@@ -43,8 +43,18 @@
       for(var i = 0; i < len; i++)
       {
         var j = i+1;
-        str += "<li><button id='button"+j+"' class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton("+j+","+len+","+current_v+")'>  " + answers[i] +
+        var styles = "style='border-radius:10px; text-align:center;";
+        if(categories[category][current_v]["results"][i]){
+            styles += " background-color:lightgreen;";
+            document.getElementById("next").disabled = false;
+        }
+        styles+="'";
+        str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current_v)+")'>  " + answers[i] +
         "</button></li>";
+
+
+        // str += "<li><button id='button"+j+"' class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton("+j+","+len+","+current_v+")'>  " + answers[i] +
+        // "</button></li>";
       }
       $('#question_option').html(str);
     });
@@ -105,7 +115,7 @@
     $('.Quiz').show();
     category = idName;
     current = 1;
-    completed_num = 0;
+    completed_num = category_num_completed[category]; //num_completed
     changeQuestion(category);
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
@@ -115,7 +125,13 @@
     for(var i=0; i<total; i++)
     {
       var j =i+1;
-      strb += "<div id='progressdiv"+j+"' class='progressdiv'>Q"+j+"</div>";
+      var styles = "";
+      if (categories[category][i]["results"].indexOf(true) > -1) 
+      {
+        styles = "style='background-color:lightgreen'";
+      }
+
+      strb += "<div id='progressdiv"+j+"' class='progressdiv'"+styles+">Q"+j+"</div>";
     }
 
     $('#progress').html(strb);
@@ -145,7 +161,7 @@
     var total = questionAndAnswers.length;
 
     percent = (1-completed_num/total) * 100;
-    if(current > total )
+    if(current > total)
     {
       $("#" +category).css({'background-image':
       'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
@@ -162,10 +178,6 @@
 
   var changeQuestionNext = function(){
     current += 1;
-    // total_completed +=1;
-    //
-
-    // completed_num +=1;
     if (total_completed == 10) {
       modal.style.display = "block";
       document.getElementById('results').disabled = false;
@@ -199,7 +211,7 @@
     }
     else
     changeQuestion(category);
-    document.getElementById("next").disabled = true;
+    // document.getElementById("next").disabled = true;
   }
   var changeQuestion = function(category){
 
@@ -220,27 +232,38 @@
     var total = questionAndAnswers.length;
     var currentQuestionAndAnswers = questionAndAnswers[current-1];
     $('#question_number').text( "Question " + current +" out of " + total);
-    $('#question_content').text(currentQuestionAndAnswers["question"]);
+    $('#question_content').text(currentQuestionAndAnswers["question"]+"");
 
     var answers = currentQuestionAndAnswers["answers"];
     var len = answers.length;
     var str = "";
     console.log();
+    document.getElementById("next").disabled = true;
     for(var i = 0; i < len; i++)
     {
       var j = i+1;
-      str += "<li><button id='button"+j+"' class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton("+j+","+len+","+(current-1)+")'>  " + answers[i] +
+      var styles = "style='border-radius:10px; text-align:center;";
+      if(categories[category][current-1]["results"][i]){
+        styles += " background-color:lightgreen;";
+        document.getElementById("next").disabled = false;
+      }
+      styles+="'";
+      str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current-1)+")'>  " + answers[i] +
       "</button></li>";
+
     }
     $('#question_option').html(str);
-
 
 
 
   }
 
   var focusButton = function(buttonIndex,len,questionIndex){
-    completed_num+=1;
+    if (categories[category][questionIndex]["results"].indexOf(true) == -1) 
+    {
+        completed_num+=1;
+    }
+    category_num_completed[category] = completed_num;
     total_completed += 1;
     var progressdivSelector = "#progressdiv"+(questionIndex+1);
     var buttonSelector = "#button"+buttonIndex;
