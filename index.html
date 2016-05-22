@@ -138,7 +138,7 @@
 
   var removeOpenModal = function() {
     $(openModal).remove();
-    console.log("hello");
+    // console.log("hello");
   }
 
   var showQuestion = function(idName){
@@ -168,29 +168,9 @@
       }
     }
 
-
     // console.log("current:"+current);
 
     changeQuestion(category);
-
-
-
-    if (completed_num > 0){
-      for(var k = 0; k < total; k++){
-        // debugger;
-        if (String(questionAndAnswers[k]["results"]) == String([false, false, false, false])){
-          current = k;
-          break;
-        }
-      }
-      current = 1;
-    }
-    else {
-      current = 1;
-    }
-
-
-
 
     var strb ="";
     for(var i=0; i<total; i++)
@@ -214,6 +194,7 @@
         $("#progressdiv"+(n+1)).css("border-width","1px");
       }
     }
+
   }
 
   var changeQuestionPrev = function() {
@@ -282,8 +263,9 @@
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
 
-    console.log("current is "+current);
-    console.log(total);
+    // console.log("current is "+current);
+    // console.log(total);
+
     for (var n = 0; n < total; n++){
       if (n == current - 1) {
         $("#progressdiv"+(n+1)).css("border-width","2px");
