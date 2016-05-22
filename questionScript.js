@@ -4,7 +4,6 @@ var category_num_completed = {
 	"community":0,
 	"costs":0,
 	"health":0
-
 };
 
 var ratings = {

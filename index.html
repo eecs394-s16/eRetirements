@@ -21,7 +21,7 @@
   var openModal;
   var star_num = 0;
   
-  var greenRGB = "rgb(144, 238, 144)";
+  var lightgreenRGB = "rgb(144, 238, 144)";
   var current = 1;
   var category;
   var completed_num = 0;
@@ -35,19 +35,23 @@
    
   $(document).ready(function() {
 
+    $(".category").hover(function() {
+      $(this).css('border-color', '#6C9B74'); //teal/blue
+    }, function () {
+      if (category_num_completed[this.id] > 0){
+        $(this).css('border-color', lightgreenRGB); //lightgreen
+      } else {
+        $(this).css('border-color', '#EBEBEB'); //gray
+      }
+      
+    });
 
-
-  // $( document ).tooltip();
-   
-    // $( "<button>" )
-    //   .text( "Show help" )
-    //   .button()
-    //   .click(function() {
-    //     console.info("jjj");
-        
-      // });
-      // .insertAfter( ".test" );
     $(document).on('click','.progressdiv',function(event){
+
+
+
+
+
       var id = event.target.id;
       var index = parseInt(id.substring(11));
       current = index;
@@ -75,9 +79,6 @@
         str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current_v)+")'>  " + answers[i] +
         "</button></li>";
 
-
-        // str += "<li><button id='button"+j+"' class='list-group-item answer' style='border-radius:10px; text-align:center' onclick='focusButton("+j+","+len+","+current_v+")'>  " + answers[i] +
-        // "</button></li>";
       }
       $('#question_option').html(str);
     });
@@ -195,16 +196,6 @@
     if(current > total){
         showRating();
     }
-    // else if(current > total + 1)
-    // {
-    //     // showRating(category);
-    //   $("#" +category).css({'background-image':
-    //   'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
-    //   $("#" +category + " h3").html(completed_num +"/"+total);
-
-    //   $('.Quiz').hide();
-    //   $('.row').css("opacity","1");
-    // }
     else
     {
       changeQuestion(category);
@@ -218,9 +209,6 @@
           position: {
             my: "left top",
             at: "right+5 top-100"
-          // $( "<div>" )
-          //   .addClass( "arrow" )
-          //   .appendTo( this );
           }
         });
       tooltips.tooltip( "open" );
@@ -285,6 +273,8 @@
   }
   var showRating = function(){
 
+    document.getElementById("submitRating").disabled = true;
+
     var questionAndAnswers = categories[category];
     var title;
     if (category == "location"){
@@ -317,6 +307,10 @@
 
     var stars = $('#question_option').children();
 
+    if (ratings[category] > 0) {
+      document.getElementById("submitRating").disabled = false;
+    }
+
     for (var r = 0; r < ratings[category]; r++){
       stars[r].style.color = "orange";
     }
@@ -340,6 +334,8 @@
   var rate = function(e) {
       // $('.star').click(function(e) {
 
+        document.getElementById("submitRating").disabled = false;
+
         var $clickedItem = $(e.target);
 
         $clickedItem.css({'color':'orange'});
@@ -347,19 +343,6 @@
         $clickedItem.prevAll().css({'color':'orange'});
         $clickedItem.nextAll().css({'color':'lightgray'});
 
-
-      // if($clickedItem.css("color") == "rgb(211, 211, 211)"){
-      //     $clickedItem.css({'color':'orange'});
-      //     star_num = $clickedItem.index() + 1;
-      //     $clickedItem.prevAll().css({'color':'orange'});
-      // }
-      // else {
-      //     console.log($clickedItem.css("color") );
-      //     $clickedItem.css({'color':'lightgray'});
-      //     $clickedItem.nextAll().css({'color':'lightgray'});
-      //     star_num = $clickedItem.index();
-      // }
-    // });
   }
   
  var submitRate = function() {
@@ -387,16 +370,20 @@
     percent = (1-completed_num/total) * 100;
     console.log("percent:" +percent);
 
+    console.log("Percent =" + percent);
+
     // $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
     $("#" +category).css({'background-image':
     'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
     $("#" +category + " h3").html(completed_num +"/"+total);
 
-    $("#" +category).hover(function() {
-      $("#" +category).css('border-color', '#6C9B74');
-    }, function () {
-      $("#" +category).css('border-color', '#DCFDE1');
-    });
+    if (percent < 100){
+      $("#" +category).css('border-color', '#90EE90');
+    }
+    else {
+      $("#" +category).css('border-color', '#EBEBEB');
+    }
+
 
     $('.Quiz').hide();
     $('.row').css("opacity","1");
@@ -417,7 +404,7 @@
         total_completed+=1;
       }
       community_2nd_completed = true;
-      if ($(buttonSelector).css("background-color") == greenRGB){
+      if ($(buttonSelector).css("background-color") == lightgreenRGB){
         $(buttonSelector).css({'background-color': 'white'});
       }
       else {
@@ -425,7 +412,7 @@
       }
       var areAnyGreen = false
       for (var i=1;i<=len;i++){
-        if ($("#button"+i).css("background-color") == greenRGB){
+        if ($("#button"+i).css("background-color") == lightgreenRGB){
           areAnyGreen = true;
           break;
         }
@@ -495,7 +482,7 @@
         <button id="skip" onclick="changeQuestionSkip()" class="btn">skip</button>
         <button id="finish" onclick="showRating()" class="btn btn-success" >finish</button>
         <button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>next</button>
-         <button id="submitRating" onclick="submitRate()" class="btn btn-success" >Submit Rating</button>
+         <button id="submitRating" onclick="submitRate()" class="btn btn-success" disabled>Submit Rating</button>
 
 
       </div>
