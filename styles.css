@@ -226,33 +226,31 @@ li {
 .ui-tooltip: {
   z-index:999;
 }
- .ui-tooltip:before {
+ .ui-tooltip:after {
    border: solid;
    border-color: #111 transparent;
-   border-color: rgba(255,255,255,1) transparent;
-   border-width: 1.5em 1.5em 0 1.5em;
+   border-color: lightblue transparent;
+   border-width: 1.5em 1em 0 1em;
    bottom: -1.5em;
    content: "";
    display: block;
-   left: 10em;
+   left: 12em;
    position: absolute;
    z-index: -10;
+   /*background: lightgray;*/
 
 }
 /*.ui-tooltip, .arrow:after {
     background: black;
     border: 2px solid white;
-  }
-  .ui-tooltip {
-    padding: 10px 20px;
-    color: white;
-    border-radius: 20px;
-    font: bold 14px "Helvetica Neue", Sans-Serif;
-    
-    box-shadow: 0 0 7px black;
-  }
+  }*/
 
-  .arrow {
+.ui-tooltip {
+  border : none ! important;
+  box-shadow: none ! important;
+  background: lightblue ! important;
+}
+ /* .arrow {
     width: 70px;
     height: 16px;
     overflow: hidden;
