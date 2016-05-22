@@ -9,7 +9,12 @@
   <link href='https://fonts.googleapis.com/css?family=Hind:400,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="styles.css">
 
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script src="./questionScript.js" type="text/javascript"></script>
+  <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+  
   <script>
   var total_completed = 0;
   var modal;
@@ -26,9 +31,19 @@
   var completed_num = 0;
   // console.log("start: completed_num :" + completed_num);
   var clickItem;
+   
   $(document).ready(function() {
 
-
+  // $( document ).tooltip();
+   
+    // $( "<button>" )
+    //   .text( "Show help" )
+    //   .button()
+    //   .click(function() {
+    //     console.info("jjj");
+        
+      // });
+      // .insertAfter( ".test" );
     $(document).on('click','.progressdiv',function(event){
       var id = event.target.id;
       var index = parseInt(id.substring(11));
@@ -195,9 +210,18 @@
 
   var changeQuestionNext = function(){
     current += 1;
-    if (total_completed == 10) {
+    if (total_completed == 1) {
+      var tooltips = $( "[title]" ).tooltip({
+          position: {
+            my: "left top",
+            at: "right+5 top-100"
+          }
+        });
+      tooltips.tooltip( "open" );
       modal.style.display = "block";
       document.getElementById('results').disabled = false;
+
+      
     }
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
@@ -296,9 +320,12 @@
     
     
     var str = "";
-      str += "<span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()' >&#9733</span><span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()'>&#9733</span>"
+      str += "<span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()' >&#9733</span><span class='star' onclick='rate()'>&#9733</span><span class='star' onclick='rate()'>&#9733</span>"
     $('#question_option').html(str);
-
+    str = "Please rank how important this category is to you"
+    $('#question_content').html(str);
+    str = ""
+    $('#question_number').html(str);
   $("#prev").hide();
   $("#next").hide();
   $("#skip").hide();
@@ -560,10 +587,12 @@
     </div>
 
   </center>
+  
+    <p title = "you can click the results button below at any time to see your results"></p> 
 
   <a href="results.html"><button class="btn btn-lg btn-primary" disabled id="results">Results
     <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
-
+    
 
 
     <div id="myModal" class="modal">
