@@ -129,10 +129,10 @@
 
   });
       
-     var removeOpenModal = function() {
-          $(openModal).remove();
-         console.log("hello");
-      }
+   var removeOpenModal = function() {
+        $(openModal).remove();
+       console.log("hello");
+    }
 
   var showQuestion = function(idName){
     $('.row').css("opacity","0.5");
@@ -146,11 +146,43 @@
     $("#progress").show();
     category = idName;
     current = 1;
-    console.log("current:"+current)
+
     completed_num = category_num_completed[category]; //num_completed
-    changeQuestion(category);
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
+
+    if (completed_num > 0){
+      for(var k = 0; k < total; k++){
+        debugger;
+        if (String(questionAndAnswers[k]["results"]) == String([false, false, false, false])){
+          current = k+1;
+          break;
+        }
+      }
+    }
+
+
+    // console.log("current:"+current);
+    
+    changeQuestion(category);
+    
+    
+
+    if (completed_num > 0){
+      for(var k = 0; k < total; k++){
+        debugger;
+        if (String(questionAndAnswers[k]["results"]) == String([false, false, false, false])){
+          current = k;
+          break;
+        }
+      }
+      current = 1;
+    }
+    else {
+      current = 1;
+    }
+
+    
 
 
     var strb ="";
@@ -187,7 +219,10 @@
   }
   var changeQuestionSkip = function(){
     var str = "#progressdiv"+(current);
-    $(str).css({'background-color': 'yellow'});
+    if ($(str).css('background-color') != lightgreenRGB){
+      $(str).css({'background-color': 'yellow'});
+    }
+    
     current += 1;
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
