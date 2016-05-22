@@ -6,6 +6,14 @@ var category_num_completed = {
 	"health":0
 
 };
+
+var ratings = {
+	"location":0,
+  	"community":0,
+  	"activities":0,
+  	"health":0,
+  	"costs":0
+};
 var categories = {
 	"location": [
 		{
