@@ -79,8 +79,8 @@
         var j = i+1;
         var styles = "style='border-radius:10px; text-align:center;";
         if(categories[category][current_v]["results"][i]){
-            styles += " background-color:lightgreen;";
-            document.getElementById("next").disabled = false;
+          styles += " background-color:lightgreen;";
+          document.getElementById("next").disabled = false;
         }
         styles+="'";
         str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current_v)+")'>  " + answers[i] +
@@ -100,30 +100,30 @@
 
     });
 
-          openModal = document.getElementById('openModal');
+    openModal = document.getElementById('openModal');
 
-       $(window).load(function(){
-           openModal.style.display = "block";
+    $(window).load(function(){
+      openModal.style.display = "block";
     });
 
 
     // Get the modal
     modal = document.getElementById('myModal');
 
-      allModal = document.getElementsByClassName('modal');
+    allModal = document.getElementsByClassName('modal');
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
-      var oSpan = document.getElementsByClassName("close")[0];
-//      var oSpan = document.getElementsByClassName("oClose")[0];
+    var oSpan = document.getElementsByClassName("close")[0];
+    //      var oSpan = document.getElementsByClassName("oClose")[0];
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function(event) {
-        modal.style.display = "none";
+      modal.style.display = "none";
     }
 
     oSpan.onclick = function(event) {
-    openModal.style.display = "none";
+      openModal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -136,10 +136,10 @@
 
   });
 
-   var removeOpenModal = function() {
-        $(openModal).remove();
-       console.log("hello");
-    }
+  var removeOpenModal = function() {
+    $(openModal).remove();
+    console.log("hello");
+  }
 
   var showQuestion = function(idName){
     $('.row').css("opacity","0.5");
@@ -244,7 +244,7 @@
 
     percent = (1-completed_num/total) * 100;
     if(current > total){
-        showRating();
+      showRating();
     }
     else
     {
@@ -254,23 +254,23 @@
 
   var changeQuestionNext = function(){
     current += 1;
-    if (total_completed == 10) {
-      var tooltips = $( "[title]" ).tooltip({
-          position: {
-            my: "left top",
-            at: "right+5 top-100"
-          }
-        });
-      tooltips.tooltip( "open" );
-      modal.style.display = "block";
-      document.getElementById('results').disabled = false;
-
-
-    }
+    // if (total_completed >= 10) {
+    //   var tooltips = $( "[title]" ).tooltip({
+    //       position: {
+    //         my: "left top",
+    //         at: "right+5 top-100"
+    //       }
+    //     });
+    //   tooltips.tooltip( "open" );
+    //   modal.style.display = "block";
+    //   document.getElementById('results').disabled = false;
+    //
+    //
+    // }
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
     if(current > total){
-        showRating();
+      showRating();
     }
     else{
       changeQuestion(category);
@@ -331,10 +331,34 @@
     }
     $('#question_option').html(str);
 
+    if (total_completed >= 10) {
+      var tooltips = $( "[title]" ).tooltip({
+        position: {
+          my: "left top",
+          at: "right+5 top-100"
+        }
+      });
+      tooltips.tooltip( "open" );
+      modal.style.display = "block";
+      document.getElementById('results').disabled = false;
 
+
+    }
 
   }
   var showRating = function(){
+
+    if (total_completed >= 10) {
+      var tooltips = $( "[title]" ).tooltip({
+        position: {
+          my: "left top",
+          at: "right+5 top-100"
+        }
+      });
+      tooltips.tooltip( "open" );
+      modal.style.display = "block";
+      document.getElementById('results').disabled = false;
+    }
 
     document.getElementById("submitRating").disabled = true;
 
@@ -395,31 +419,31 @@
 
 
   var rate = function(e) {
-      // $('.star').click(function(e) {
+    // $('.star').click(function(e) {
 
-        document.getElementById("submitRating").disabled = false;
+    document.getElementById("submitRating").disabled = false;
 
-        var $clickedItem = $(e.target);
+    var $clickedItem = $(e.target);
 
-        $clickedItem.css({'color':'orange'});
-        star_num = $clickedItem.index() + 1;
-        $clickedItem.prevAll().css({'color':'orange'});
-        $clickedItem.nextAll().css({'color':'lightgray'});
+    $clickedItem.css({'color':'orange'});
+    star_num = $clickedItem.index() + 1;
+    $clickedItem.prevAll().css({'color':'orange'});
+    $clickedItem.nextAll().css({'color':'lightgray'});
 
   }
 
- var submitRate = function() {
-  if (category == "location"){
-        ratings["location"] = star_num;
-      } else if (category == "community"){
-        ratings["community"] = star_num;
-      } else if (category == "activities") {
-        ratings["activities"] = star_num;
-      } else if (category == "health") {
-        ratings["health"] = star_num;
-      } else if (category == "costs") {
-        ratings["costs"] = star_num;
-      }
+  var submitRate = function() {
+    if (category == "location"){
+      ratings["location"] = star_num;
+    } else if (category == "community"){
+      ratings["community"] = star_num;
+    } else if (category == "activities") {
+      ratings["activities"] = star_num;
+    } else if (category == "health") {
+      ratings["health"] = star_num;
+    } else if (category == "costs") {
+      ratings["costs"] = star_num;
+    }
 
     // else if(current > total + 1)
     var questionAndAnswers = categories[category];
@@ -451,12 +475,12 @@
     $('.Quiz').hide();
     $('.row').css("opacity","1");
 
- }
+  }
 
   var focusButton = function(buttonIndex,len,questionIndex){
     if (categories[category][questionIndex]["results"].indexOf(true) == -1)
     {
-        completed_num+=1;
+      completed_num+=1;
     }
     category_num_completed[category] = completed_num;
 
@@ -505,21 +529,21 @@
 
 </head>
 <body>
-    <div id="openModal" class="modal">
+  <div id="openModal" class="modal">
 
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">x</span>
-        <center>
-          <h2 style="font-weight:bold">Welcome to eRetirements!</h2>
-            <p style="font-size:20px">Our free questionnaire will help us learn about your interests and preferences. After that we'll tell you what area we think would be a perfect fit for you.</p>
-            <p style="font-size:20px">You only need to fill out 10 questions, but the more you answer, the more accurate your result.</p>
-            <button class="btn btn-success btn-lg" onclick="removeOpenModal();">Let's get started!</button>
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">x</span>
+      <center>
+        <h2 style="font-weight:bold">Welcome to eRetirements!</h2>
+        <p style="font-size:20px">Our free questionnaire will help us learn about your interests and preferences. After that we'll tell you what area we think would be a perfect fit for you.</p>
+        <p style="font-size:20px">You only need to fill out 10 questions, but the more you answer, the more accurate your result.</p>
+        <button class="btn btn-success btn-lg" onclick="removeOpenModal();">Let's get started!</button>
 
-        </center>
-      </div>
-
+      </center>
     </div>
+
+  </div>
 
   <center>
     <div id="question" class="Quiz">
@@ -545,124 +569,124 @@
         <button id="skip" onclick="changeQuestionSkip()" class="btn">skip</button>
         <button id="finish" onclick="showRating()" class="btn btn-success" >finish</button>
         <button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>next</button>
-         <button id="submitRating" onclick="submitRate()" class="btn btn-success" disabled>Submit Rating</button>
+        <button id="submitRating" onclick="submitRate()" class="btn btn-success" disabled>Submit Rating</button>
 
 
       </div>
 
     </div>
 
-      <!--        Rating-->
+    <!--        Rating-->
 
-<!--
-          <div id="question" class="Quiz">
-      <div id="category_title">
-        Location Quiz
-      </div>
-      <div id="question_area">
-        <p id="question_number">
-        </p>
+    <!--
+    <div id="question" class="Quiz">
+    <div id="category_title">
+    Location Quiz
+  </div>
+  <div id="question_area">
+  <p id="question_number">
+</p>
 
-        <br>
-        <p id="question_content">
-        </p>
-        <ul class="list-group" id="question_option">
-        </ul>
+<br>
+<p id="question_content">
+</p>
+<ul class="list-group" id="question_option">
+</ul>
 
-      </div>
-      <div id="progress"></div>
-      <div id="button_area">
-
-
-        <button id="prev" onclick="changeQuestionPrev()" class="btn">prev</button>
-        <button id="skip" onclick="changeQuestionSkip()" class="btn">skip</button>
-        <button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>next</button>
+</div>
+<div id="progress"></div>
+<div id="button_area">
 
 
-      </div>
+<button id="prev" onclick="changeQuestionPrev()" class="btn">prev</button>
+<button id="skip" onclick="changeQuestionSkip()" class="btn">skip</button>
+<button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>next</button>
 
-    </div>
+
+</div>
+
+</div>
 -->
 
-    <img src="navbar.png" alt="navbar" width=100%>
-    <div class="row">
-      <div id="location" class="category" >
-        <br>
-        <h2 id="titlename">Location &amp; Weather</h2>
-        <h3 id="percentage">0/3</h3>
-        <h1><i class="fa fa-sun-o" aria-hidden="true"></i></h1>
-        <div class="completed">
-          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-        </div>
-      </div>
-
-      <div id="community" class="category">
-        <br>
-        <h2 id="titlename">Community &amp; Demographics</h2>
-        <h3 id="percentage">0/5</h3>
-        <h1><i class="fa fa-users" aria-hidden="true"></i></h1>
-        <div class="completed">
-          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-        </div>
-      </div>
-      <div id="activities" class="category">
-        <br>
-        <h2 id="titlename">Activities &amp; Work Potential</h2>
-        <h3 id="percentage">0/4</h3>
-        <h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1>
-        <div class="completed">
-          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-        </div>
-      </div>
+<img src="navbar.png" alt="navbar" width=100%>
+<div class="row">
+  <div id="location" class="category" >
+    <br>
+    <h2 id="titlename">Location &amp; Weather</h2>
+    <h3 id="percentage">0/3</h3>
+    <h1><i class="fa fa-sun-o" aria-hidden="true"></i></h1>
+    <div class="completed">
+      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
     </div>
-    <div class="row">
-      <div id="health" class="category">
-        <br><h2 id="titlename">Health Care</h2>
-        <h3 id="percentage">0/3</h3>
-        <h1><i class="fa fa-medkit" aria-hidden="true"></i></h1>
-        <div class="completed">
-          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-        </div>
-      </div>
-      <div id="costs" class="category">
-        <br>
-        <h2 id="titlename">Cost of Living</h2>
-        <h3 id="percentage">0/3</h3>
-        <h1><i class="fa fa-usd" aria-hidden="true"></i></h1>
-        <div class="completed">
-          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-        </div>
-      </div>
+  </div>
 
+  <div id="community" class="category">
+    <br>
+    <h2 id="titlename">Community &amp; Demographics</h2>
+    <h3 id="percentage">0/5</h3>
+    <h1><i class="fa fa-users" aria-hidden="true"></i></h1>
+    <div class="completed">
+      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
     </div>
+  </div>
+  <div id="activities" class="category">
+    <br>
+    <h2 id="titlename">Activities &amp; Work Potential</h2>
+    <h3 id="percentage">0/4</h3>
+    <h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1>
+    <div class="completed">
+      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div id="health" class="category">
+    <br><h2 id="titlename">Health Care</h2>
+    <h3 id="percentage">0/3</h3>
+    <h1><i class="fa fa-medkit" aria-hidden="true"></i></h1>
+    <div class="completed">
+      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+    </div>
+  </div>
+  <div id="costs" class="category">
+    <br>
+    <h2 id="titlename">Cost of Living</h2>
+    <h3 id="percentage">0/3</h3>
+    <h1><i class="fa fa-usd" aria-hidden="true"></i></h1>
+    <div class="completed">
+      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+    </div>
+  </div>
 
-  </center>
+</div>
 
-    <p title = "you can click the results button below at any time to see your results"></p>
+</center>
 
-  <a href="results.html"><button class="btn btn-lg btn-primary" disabled id="results">Results
-    <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
+<p title = "you can click the results button below at any time to see your results"></p>
+
+<a href="results.html"><button class="btn btn-lg btn-primary" disabled id="results">Results
+  <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
 
 
 
-    <div id="myModal" class="modal">
+  <div id="myModal" class="modal">
 
-      <div class="modal-content">
-        <span class="close">x</span>
-        <p>We think we have an idea of what you might be looking for.  If you want more accurate results, you can answer more questions.</p> <p>Would you like to continue the questionnaire?</p>
-        <center>
-          <button class="btn btn-success" onclick="modal.style.display = 'none'";>Yes, I'd like to get more accurate results.</button>
-          <a href="results.html"><button class="btn btn-info">No, show me my results now.</button></a>
-        </center>
-      </div>
-
+    <div class="modal-content">
+      <span class="close">x</span>
+      <p>We think we have an idea of what you might be looking for.  If you want more accurate results, you can answer more questions.</p> <p>Would you like to continue the questionnaire?</p>
+      <center>
+        <button class="btn btn-success" onclick="modal.style.display = 'none'";>Yes, I'd like to get more accurate results.</button>
+        <a href="results.html"><button class="btn btn-info">No, show me my results now.</button></a>
+      </center>
     </div>
 
-
-  </body>
-
+  </div>
 
 
+</body>
 
 
-  </html>
+
+
+
+</html>
