@@ -20,7 +20,7 @@
   var modal;
   var openModal;
   var star_num = 0;
-  var pop_up = false;
+
   var lightgreenRGB = "rgb(144, 238, 144)";
   var current = 1;
   var category;
@@ -313,8 +313,7 @@
     }
     $('#question_option').html(str);
 
-    if (total_completed == 10 && !pop_up) {
-      pop_up = true;
+    if (total_completed >= 10) {
       var tooltips = $( "[title]" ).tooltip({
         position: {
           my: "left top",
@@ -331,7 +330,7 @@
   }
   var showRating = function(){
 
-    if (total_completed == 10) {
+    if (total_completed >= 10) {
       var tooltips = $( "[title]" ).tooltip({
         position: {
           my: "left top",
