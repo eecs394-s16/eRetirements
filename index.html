@@ -313,7 +313,7 @@
     }
     $('#question_option').html(str);
 
-    if (total_completed >= 10) {
+    if (total_completed == 10) {
       var tooltips = $( "[title]" ).tooltip({
         position: {
           my: "left top",
@@ -330,7 +330,7 @@
   }
   var showRating = function(){
 
-    if (total_completed >= 10) {
+    if (total_completed == 10) {
       var tooltips = $( "[title]" ).tooltip({
         position: {
           my: "left top",
