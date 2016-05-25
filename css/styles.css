@@ -5,19 +5,16 @@ body {
 }
 
 .instructions {
-  margin-top: 20px;
 /*
   border-style: solid;
   border-width: 3px;
 */
-  border-radius: 10px;
   background-color: lightblue;
 /*  border-color: blue;*/
-  width: 35%;
 }
 
 .instructions p {
-  font-size: 18px;
+  font-size: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 25px;
