@@ -1,38 +1,46 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
 .category {
     border-radius: 100%;
     background-color: #EBEBEB;
-    width:250px;
-    height:250px;
+    width:275px;
+    height:275px;
     display:inline-block;
     border-width:5px;
     border-style: solid;
     border-color: #EBEBEB;
     margin: 1%;
-    box-shadow: 5px 5px 5px #888888;
 
     }
 
 #location{
+    background-color:gold;
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #community{
+    background-color: plum;
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #activities{
+    background-color: lightblue;
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #health{
+    background-color: lightcoral;
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #costs{
+    background-color: darkseagreen;
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
@@ -45,6 +53,7 @@
 
 #titlename{
 	margin-top:-1%;
+    font-weight:300;
 }
 
 #percentage{
@@ -58,12 +67,12 @@
 
 h1 {
     font-size: 85px;
-    font-family: 'Hind', sans-serif;
+
 }
 
 h2 {
     padding:10px;
-    font-family: 'Hind', sans-serif;
+    font-size:35px;
 }
 
 .completed p {
@@ -103,7 +112,6 @@ h2 {
 }
 #category_title {
     font-size: 37px;
-    font-family: 'Hind', sans-serif;
 	padding-top: 20px;
 }
 #question_number {
