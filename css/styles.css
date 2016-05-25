@@ -30,7 +30,10 @@ body {
     border-width:4px;
     border-style: solid;
     border-color: #EBEBEB;
-    margin: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
     box-shadow: 5px 5px 5px #888888;
 }
 
