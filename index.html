@@ -234,10 +234,26 @@
   }
 
   var changeQuestionNext = function(){
-    current += 1;
+    // current += 1;
+    completed_num = category_num_completed[category];
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
-    if(current > total){
+    var k;
+    // if (completed_num > 0){
+      for(k = current; k < total; k++){
+        // debugger;
+        if (String(questionAndAnswers[k]["results"]) == String([false, false, false, false])){
+          console.info("k:" + k);
+          console.info("current:" + current);
+          current = k + 1;
+          break;
+        }
+      }
+    // }
+   
+    
+    // var total = questionAndAnswers.length;
+    if(k == total || current > total){
       showRating();
     }
     else{
