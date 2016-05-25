@@ -26,6 +26,13 @@
   var category;
   var completed_num = 0;
 
+  var border_colors = {
+    "location": "rgba(255,215,0,0.5)",
+    "community": " rgba(221,160,221,0.5)",
+    "activities": "rgba(173,216,230,0.5)",
+    "health": "rgba(240,128,128,0.5)",
+    "costs": "rgba(144,238,144,0.5)"
+  }
 
   var community_2nd_completed = false;
 
@@ -36,12 +43,13 @@
   $(document).ready(function() {
 
     $(".category").hover(function() {
-      $(this).css('border-color', '#6C9B74'); //teal/blue
+      id = this.id
+      $(this).css('border-color', 'magenta');//'#6C9B74'); //teal/blue
     }, function () {
       if (category_num_completed[this.id] > 0){
         $(this).css('border-color', lightgreenRGB); //lightgreen
       } else {
-        $(this).css('border-color', '#EBEBEB'); //gray
+        $(this).css('border-color', border_colors[id]); //custom color
       }
 
     });
@@ -633,13 +641,12 @@
   </div>
 
 </div>
-
+<a href="results.html"><button class="btn btn-lg btn-primary" disabled id="results">I'm done and ready to move on!
+  <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
 </center>
 
 <p title = "You can click the results button at any time to see your results."></p>
 
-<a href="results.html"><button class="btn btn-lg btn-primary" disabled id="results">I'm done and ready to move on!
-  <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
 
 
 
