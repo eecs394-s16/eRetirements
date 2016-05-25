@@ -1,7 +1,15 @@
 body {
     font-family: 'Lato', sans-serif;
-    background-color: aliceblue;
+    background-color: white;
 /*    background-image: url("../asanoha-400px.png");*/
+}
+
+.clearbox {
+    background-color: white;
+    opacity:0.75;
+    width:245px;
+    height:245px;
+    margin:1%;
 }
 
 .instructions {
@@ -22,11 +30,11 @@ body {
 }
 
 .category {
-    border-radius: 100%;
+/*    border-radius: 15%;*/
     /*background-color: #EBEBEB;*/
     /*background-color: #D7EFF7;*/
-    width:275px;
-    height:275px;
+    width:300px;
+    height:300px;
     display:inline-block;
     border-width:4px;
     border-style: solid;
@@ -37,14 +45,15 @@ body {
 /*    box-shadow: 5px 5px 5px #888888;*/
 }
 h3 {
-    color:aliceblue;
+    color:black;
 }
 
 
 #location{
 /*    border-color:gold;*/
 /*    background-color: rgba(255,215,0,0.5);*/
-	background-image:
+    background-image: url(../images/weather.jpg);
+	background-color:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
@@ -57,28 +66,32 @@ h3 {
 #community{
 /*    border-color: plum;*/
 /*    background-color: rgba(221,160,221,0.5);*/
-	background-image:
+    background-image: url(../images/community.jpg);
+	background-color:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #activities{
 /*    border-color: lightblue;*/
 /*    background-color: rgba(173,216,230,0.5);*/
-	background-image:
+    background-image: url(../images/activity.jpg);
+	background-color:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #health{
 /*  background-color: rgba(240,128,128,0.5);*/
 /*    border-color: lightcoral;*/
-	background-image:
+    background-image: url(../images/health.jpg);
+	background-color:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #costs{
 /*    border-color: darkseagreen;*/
 /*    background-color: rgba(144,238,144,0.5);*/
-	background-image:
+    background-image: url(../images/cost.jpg);
+	background-color:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
@@ -104,14 +117,14 @@ h3 {
 
 h1 {
     font-size: 85px;
-    color:aliceblue;
+    color:black;
 
 }
 
 h2 {
-    padding:10px;
+    padding:8px;
     font-size:35px;
-    color:aliceblue;
+    color:black;
     font-weight: bold;
 }
 
