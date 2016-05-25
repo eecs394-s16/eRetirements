@@ -1,15 +1,17 @@
 body {
     font-family: 'Lato', sans-serif;
-    background-image: url("../asanoha-400px.png");
+/*    background-image: url("../asanoha-400px.png");*/
 }
 
 .instructions {
   margin-top: 20px;
+/*
   border-style: solid;
   border-width: 3px;
-  border-radius: 20px;
+*/
+  border-radius: 10px;
   background-color: lightblue;
-  border-color: blue;
+/*  border-color: blue;*/
   width: 35%;
 }
 
@@ -31,17 +33,22 @@ body {
     border-width:4px;
     border-style: solid;
     border-color: #EBEBEB;
+    background-color: #273E6B;
+    opacity: 0.85;
     margin: 1%;
-    box-shadow: 5px 5px 5px #888888;
+/*    box-shadow: 5px 5px 5px #888888;*/
 }
-
+h3 {
+    color:white;
+}
 h2 {
   font-weight: bold;
+    color:white;
 }
 
 #location{
-    border-color:gold;
-    background-color: rgba(255,215,0,0.5);
+/*    border-color:gold;*/
+/*    background-color: rgba(255,215,0,0.5);*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
@@ -53,29 +60,29 @@ h2 {
 }
 
 #community{
-    border-color: plum;
-    background-color: rgba(221,160,221,0.5);
+/*    border-color: plum;*/
+/*    background-color: rgba(221,160,221,0.5);*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #activities{
-    border-color: lightblue;
-    background-color: rgba(173,216,230,0.5);
+/*    border-color: lightblue;*/
+/*    background-color: rgba(173,216,230,0.5);*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #health{
-  background-color: rgba(240,128,128,0.5);
-    border-color: lightcoral;
+/*  background-color: rgba(240,128,128,0.5);*/
+/*    border-color: lightcoral;*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #costs{
-    border-color: darkseagreen;
-    background-color: rgba(144,238,144,0.5);
+/*    border-color: darkseagreen;*/
+/*    background-color: rgba(144,238,144,0.5);*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
@@ -102,12 +109,14 @@ h2 {
 
 h1 {
     font-size: 85px;
+    color:white;
 
 }
 
 h2 {
     padding:10px;
     font-size:35px;
+    color:white;
 }
 
 .completed p {
