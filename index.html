@@ -82,7 +82,7 @@
           styles += " background-color:lightgreen;";
           document.getElementById("next").disabled = false;
         }
-        styles+="'";
+        styles+="width:90%'";
         str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current_v)+")'>  " + answers[i] +
         "</button></li>";
 
@@ -314,7 +314,7 @@
         styles += " background-color:lightgreen;";
         document.getElementById("next").disabled = false;
       }
-      styles+="'";
+      styles+=" width:90%'";
       str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current-1)+")'>  " + answers[i] +
       "</button></li>";
 
@@ -527,7 +527,7 @@
       <center>
         <h2 style="font-weight:bold">Welcome to eRetirements!</h2>
         <p style="font-size:20px">Our free questionnaire will help us learn about your interests and preferences. After that we'll tell you what area we think would be a perfect fit for you.</p>
-        <p style="font-size:20px">You only need to answer 10 questions, but the more you answer, the more accurate your result.</p>
+        <p style="font-size:20px">You only need to answer 10 questions, but the more you answer, the more accurate your result will be.</p>
         <button class="btn btn-success btn-lg" onclick="removeOpenModal();">Let's get started!</button>
 
       </center>
