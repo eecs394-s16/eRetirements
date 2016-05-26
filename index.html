@@ -179,8 +179,12 @@
       var styles = "";
       if (categories[category][i]["results"].indexOf(true) > -1)
       {
-        styles = "style='background-color:lightgreen'";
+        styles = "style = 'background-color:lightgreen; border-radius: 5px'";
       }
+	  else
+	  {
+		styles = "style = 'border-radius: 5px'";
+	  }
 
       strb += "<div id='progressdiv"+j+"' class='progressdiv'"+styles+">Q"+j+"</div>";
     }
@@ -523,7 +527,7 @@
       <center>
         <h2 style="font-weight:bold">Welcome to eRetirements!</h2>
         <p style="font-size:20px">Our free questionnaire will help us learn about your interests and preferences. After that we'll tell you what area we think would be a perfect fit for you.</p>
-        <p style="font-size:20px">You only need to fill out 10 questions, but the more you answer, the more accurate your result.</p>
+        <p style="font-size:20px">You only need to answer 10 questions, but the more you answer, the more accurate your result.</p>
         <button class="btn btn-success btn-lg" onclick="removeOpenModal();">Let's get started!</button>
 
       </center>
@@ -551,11 +555,11 @@
       <div id="button_area">
 
 
-        <button id="prev" onclick="changeQuestionPrev()" class="btn btn-info">prev</button>
-        <button id="skip" onclick="changeQuestionSkip()" class="btn btn-info">skip</button>
-        <button id="finish" onclick="showRating()" class="btn btn-success" >finish</button>
-        <button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>next</button>
-        <button id="submitRating" onclick="submitRate()" class="btn btn-success" disabled>Submit Rating</button>
+        <button id="prev" onclick="changeQuestionPrev()" class="btn btn-info">Prev</button>
+        <button id="skip" onclick="changeQuestionSkip()" class="btn btn-info">Skip</button>
+        <button id="finish" onclick="showRating()" class="btn btn-success" >Finish</button>
+        <button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>Next</button>
+        <button id="submitRating" onclick="submitRate()" class="btn btn-success" disabled>Next</button>
 
 
       </div>

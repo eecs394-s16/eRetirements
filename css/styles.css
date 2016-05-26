@@ -147,6 +147,9 @@ li {
 #next {
     float:right;
     margin-right:5%;
+	height:8%;
+	width: 12%;
+	font-size:22px;
 }
 .answer:focus {
     border-width :2px;
