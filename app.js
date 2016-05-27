@@ -1,64 +1,11 @@
 var express = require('express'),
   app = express(),
-  Twitter = require('twitter'),
-  config = require('./config.js'),
-  OAuth = require('oauth'),
-  t = {test:'hi'};
+  OAuth = require('oauth');
 
   var port = process.env.PORT || 8000;
 
   app.get('/',function(req,res){
-    res.json({msg:'hi!'});
-  });
-
-  app.get('/search/tweets',function(req,res){
-
-    var oauth = new OAuth.OAuth(
-      'https://api.twitter.com/oauth/request_token',
-      'https://api.twitter.com/oauth/access_token',
-      config.consumerKey,
-      config.consumerSecret,
-      '1.0A',
-      null,
-      'HMAC-SHA1'
-    );
-
-    oauth.get(
-      'https://api.twitter.com/1.1/search/tweets.json?q='+req.query.q,
-      config.accessToken, //test user token
-      config.accessTokenSecret, //test user secret
-      function (e, data, result){
-        if (e) console.error(e);
-        res.json(JSON.parse(data));
-        console.log(data);
-        // console.log(require('util').inspect(data));
-      }
-    );
-  });
-
-  app.get('/geo/reverse_geocode',function(req,res){
-
-    var oauth = new OAuth.OAuth(
-      'https://api.twitter.com/oauth/request_token',
-      'https://api.twitter.com/oauth/access_token',
-      config.consumerKey,
-      config.consumerSecret,
-      '1.0A',
-      null,
-      'HMAC-SHA1'
-    );
-
-    oauth.get(
-      'https://api.twitter.com/1.1/geo/reverse_geocode.json?lat='+req.query.lat+'&long='+req.query.long,
-      config.accessToken, //test user token
-      config.accessTokenSecret, //test user secret
-      function (e, data, result){
-        if (e) console.error(e);
-        res.json(JSON.parse(data));
-        console.log(data);
-        // console.log(require('util').inspect(data));
-      }
-    );
+    res.sendFile(path.join(__dirname + '/index.html'));
   });
 
   app.listen(port);
