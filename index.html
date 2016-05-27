@@ -26,6 +26,7 @@
   var current = 1;
   var category;
   var completed_num = 0;
+  var temp_completed = 0;
 
 
   var community_2nd_completed = false;
@@ -59,17 +60,17 @@
       var index = parseInt(id.substring(11));
       current = index;
       var current_v = index-1
-      console.log("current:::::" + current)
+      // console.log("current:::::" + current)
       var questionAndAnswers = categories[category];
       var total = questionAndAnswers.length;
 
       for (var n = 0; n < total; n++){
         if (n == current - 1) {
           $("#progressdiv"+(n+1)).css("border-width","2px");
-          console.log(n+1);
+          // console.log(n+1);
         } else {
           $("#progressdiv"+(n+1)).css("border-width","1px");
-          console.log(n+1);
+          // console.log(n+1);
         }
       }
 
@@ -80,7 +81,7 @@
       var answers = currentQuestionAndAnswers["answers"];
       var len = answers.length;
       var str = "";
-      console.log();
+      // console.log();
       for(var i = 0; i < len; i++)
       {
         var j = i+1;
@@ -175,14 +176,14 @@
             dataForApi[s_name] = temp_value; 
           }
         }
-        console.log("temp_value");
-        console.log(temp_value);
+        // console.log("temp_value");
+        // console.log(temp_value);
         
       }
     }
-    debugger;
-    console.log("DATA FOR API!");
-    console.log(dataForApi);
+    // debugger;
+    // console.log("DATA FOR API!");
+    // console.log(dataForApi);
   }
 
   var removeOpenModal = function() {
@@ -202,7 +203,7 @@
     $("#progress").show();
     category = idName;
     current = 1;
-
+    temp_completed = 0;
     completed_num = category_num_completed[category]; //num_completed
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
@@ -239,7 +240,7 @@
     }
 
     $('#progress').html(strb);
-    console.log("current is "+current);
+    // console.log("current is "+current);
     for (var n = 0; n < total; n++){
       if (n == current - 1) {
         $("#progressdiv"+(n+1)).css("border-width","2px");
@@ -261,7 +262,7 @@
     }
     else
     {
-      console.log("here");
+      // console.log("here");
       changeQuestion(category);
     }
 
@@ -326,10 +327,10 @@
     for (var n = 0; n < total; n++){
       if (n == current - 1) {
         $("#progressdiv"+(n+1)).css("border-width","2px");
-        console.log(n+1);
+        // console.log(n+1);
       } else {
         $("#progressdiv"+(n+1)).css("border-width","1px");
-        console.log(n+1);
+        // console.log(n+1);
       }
     }
 
@@ -353,7 +354,7 @@
     var answers = currentQuestionAndAnswers["answers"];
     var len = answers.length;
     var str = "";
-    console.log();
+    // console.log();
     document.getElementById("next").disabled = true;
     for(var i = 0; i < len; i++)
     {
@@ -370,7 +371,7 @@
     }
     $('#question_option').html(str);
 
-    if (total_completed == 1) {
+    if (total_completed + temp_completed== 1) {
       var tooltips = $( "[title]" ).tooltip({
         position: {
           my: "left top",
@@ -387,7 +388,7 @@
   }
   var showRating = function(){
 
-    if (total_completed == 1) {
+    if (total_completed + temp_completed== 1) {
       var tooltips = $( "[title]" ).tooltip({
         position: {
           my: "left top",
@@ -495,16 +496,19 @@
     // else if(current > total + 1)
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
-    console.log("completed:" + completed_num);
+    
+    completed_num += temp_completed;
+    category_num_completed[category] = completed_num;
+    // console.log("completed:" + completed_num);
     if(completed_num == total)
     {
       // console.log("completed:" + completed);
       $("#" +category).find(".completed").css({'visibility': 'visible'});
     }
     percent = (1-completed_num/total) * 100;
-    console.log("percent:" +percent);
+    // console.log("percent:" +percent);
 
-    console.log("Percent =" + percent);
+    // console.log("Percent =" + percent);
 
     // $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
     $("#" +category).css({'background-image':
@@ -520,6 +524,8 @@
 
 
     $('.Quiz').hide();
+    total_completed += temp_completed;
+    console.log("total_completed_saved:" + total_completed);
     $('.row').css("opacity","1");
 
   }
@@ -527,15 +533,16 @@
   var focusButton = function(buttonIndex,len,questionIndex){
     if (categories[category][questionIndex]["results"].indexOf(true) == -1)
     {
-      completed_num+=1;
+      temp_completed += 1;
+      // completed_num+=1;
     }
-    category_num_completed[category] = completed_num;
+    // category_num_completed[category] = completed_num;
 
     var progressdivSelector = "#progressdiv"+(questionIndex+1);
     var buttonSelector = "#button"+buttonIndex;
     if (category == "community" && questionIndex == 2){
       if (community_2nd_completed == false) {
-        total_completed+=1;
+        // total_completed+=1;
       }
       community_2nd_completed = true;
       if ($(buttonSelector).css("background-color") == lightgreenRGB){
@@ -560,7 +567,7 @@
       categories[category][questionIndex]["results"][buttonIndex-1] = !categories[category][questionIndex]["results"][buttonIndex-1];//1-4
     }
     else {
-      total_completed += 1;
+      // total_completed += 1;
       for (var i=1; i<=len; i++)
       {
         $("#button"+i).css({'background-color': 'white'});
@@ -580,17 +587,18 @@
   var closewithoutSave = function(){
 	 var questionAndAnswers = categories[category];
      var total = questionAndAnswers.length; 
-	  
+	  // total_completed -= completed_num;
 	 for (var i=0; i<categories[category].length; i++)
 	 {
 		categories[category][i]["results"] = [false,false,false,false];
-		console.log(categories[category][i]["results"]);
+		// console.log(categories[category][i]["results"]);
 	 }
 	$(".Quiz").hide();
+  console.log("total_completed:" + total_completed);
 	$('.row').css("opacity","1");
-	$("#" +category).css({'background-image':
-    'linear-gradient(to bottom, transparent 100%, #90EE90 0)'});
-    $("#" +category + " h3").html(0 +"/"+total);
+	// $("#" +category).css({'background-image':
+ //    'linear-gradient(to bottom, transparent 100%, #90EE90 0)'});
+ //    $("#" +category + " h3").html(0 +"/"+total);
   }
   
   
@@ -750,7 +758,7 @@
       <p>We think we have an idea of what you might be looking for.  If you want more accurate results, you can answer more questions.</p> <p>Would you like to continue the questionnaire?</p>
       <center>
         <button class="btn btn-success" onclick="modal.style.display = 'none'";>Yes, I'd like to get more accurate results.</button>
-        <a href="results.html"><button class="btn btn-info">No, show me my results now.</button></a>
+        <a href="results.html"><button class="btn btn-info" onclick=" getResultsFromApi()">No, show me my results now.</button></a>
       </center>
     </div>
 
