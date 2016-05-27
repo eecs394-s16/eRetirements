@@ -194,14 +194,17 @@ li {
 }
 
 /* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 45%; /* Could be more or less, depending on screen size */
-	height: 55%;
-}
+  .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; 
+      padding: 20px;
+      border: 1px solid #888;
+      width: 45%; 
+      height: 55%;
+  }
+
+
+
 
 /* The Close Button */
 .close, .oClose {
