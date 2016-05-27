@@ -147,6 +147,9 @@ li {
 #next {
     float:right;
     margin-right:5%;
+	height:8%;
+	width: 12%;
+	font-size:22px;
 }
 .answer:focus {
     border-width :2px;
@@ -197,6 +200,7 @@ li {
     padding: 20px;
     border: 1px solid #888;
     width: 45%; /* Could be more or less, depending on screen size */
+	height: 55%;
 }
 
 /* The Close Button */
