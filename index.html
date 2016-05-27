@@ -47,6 +47,12 @@
 
     });
 
+    $(document).on('click', '#results', function(event){
+      // alert("hi");
+
+      getResultsFromApi();
+    });
+
     $(document).on('click','.progressdiv',function(event){
 
       var id = event.target.id;
@@ -138,6 +144,46 @@
 
 
   });
+
+  function getResultsFromApi(){
+    var keys = Object.keys(categories);
+    for (var i = 0; i < keys.length; i++){
+      // debugger;
+      var c = categories[keys[i]];
+      for (var j = 0; j < c.length; j++){
+        var section = c[j];
+        var s_name = section["name"];
+        var s_results = section["results"];
+        var s_values = section["values"];
+        var temp_list = [];
+        var temp_value = "";
+
+        for(var k = 0; k < s_results.length; k++){
+          if(s_results[k]) {
+            if (s_name == "idealCommunity"){
+              temp_list.append(s_values[k]);
+            }
+            else {
+              temp_value = s_values[k];
+              break;
+            }
+          }
+        }
+        if(s_name == "idealCommunity") { dataForApi[s_name] = temp_list;}
+        else { 
+          if (temp_value != "") {
+            dataForApi[s_name] = temp_value; 
+          }
+        }
+        console.log("temp_value");
+        console.log(temp_value);
+        
+      }
+    }
+    debugger;
+    console.log("DATA FOR API!");
+    console.log(dataForApi);
+  }
 
   var removeOpenModal = function() {
     $(openModal).remove();
@@ -324,7 +370,7 @@
     }
     $('#question_option').html(str);
 
-    if (total_completed == 10) {
+    if (total_completed == 1) {
       var tooltips = $( "[title]" ).tooltip({
         position: {
           my: "left top",
@@ -341,7 +387,7 @@
   }
   var showRating = function(){
 
-    if (total_completed == 10) {
+    if (total_completed == 1) {
       var tooltips = $( "[title]" ).tooltip({
         position: {
           my: "left top",
