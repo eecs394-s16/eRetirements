@@ -19,6 +19,7 @@
   var total_completed = 0;
   var modal;
   var openModal;
+  var closepageDiv;
   var star_num = 0;
 
   var lightgreenRGB = "rgb(144, 238, 144)";
@@ -111,6 +112,8 @@
     modal = document.getElementById('myModal');
 
     allModal = document.getElementsByClassName('modal');
+	
+	closepageDiv = document.getElementById('closepage');
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
@@ -393,10 +396,18 @@
     }
 
 
+
+
+
     str = "Please rank how important this category is to you."
     $('#question_content').html(str);
+	
+	
+	
+	
     str = ""
     $('#question_number').html(str);
+	
     $("#prev").hide();
     $("#next").hide();
     $("#skip").hide();
@@ -515,6 +526,29 @@
     }
     document.getElementById("next").disabled = false;
   }
+  
+  var closePageEvent = function(){
+  	  closepageDiv.style.display = "block";
+  }
+  
+  var closewithoutSave = function(){
+	 var questionAndAnswers = categories[category];
+     var total = questionAndAnswers.length; 
+	  
+	 for (var i=0; i<categories[category].length; i++)
+	 {
+		categories[category][i]["results"] = [false,false,false,false];
+		console.log(categories[category][i]["results"]);
+	 }
+	$(".Quiz").hide();
+	$('.row').css("opacity","1");
+	$("#" +category).css({'background-image':
+    'linear-gradient(to bottom, transparent 100%, #90EE90 0)'});
+    $("#" +category + " h3").html(0 +"/"+total);
+  }
+  
+  
+  
   </script>
 
 </head>
@@ -538,9 +572,11 @@
 
   <center>
     <div id="question" class="Quiz">
+      <button id="finish" onclick="closePageEvent()" class="btn btn-success" >x</button>
       <div id="category_title">
         Location Quiz
       </div>
+
       <div id="question_area">
         <p id="question_number">
         </p>
@@ -558,7 +594,7 @@
 
         <button id="prev" onclick="changeQuestionPrev()" class="btn btn-info">Prev</button>
         <button id="skip" onclick="changeQuestionSkip()" class="btn btn-info">Skip</button>
-        <button id="finish" onclick="showRating()" class="btn btn-success" >Finish</button>
+
         <button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>Next</button>
         <button id="submitRating" onclick="submitRate()" class="btn btn-success" disabled>Next</button>
 
@@ -673,6 +709,18 @@
     </div>
 
   </div>
+  
+  <div id="closepage" class="modal">
+  	<div class="modal-content-t">
+        <center>
+    		<p style="font-weight:bold">Would you like to save your results? </p>
+
+        	<button class="btn btn-success" onclick="closepageDiv.style.display = 'none'; showRating()">Yes</button>
+            <button class="btn btn-info" onclick="closepageDiv.style.display = 'none'; closewithoutSave()">No</button>
+        </center>
+    </div>
+  </div>
+  
 
 
 </body>
