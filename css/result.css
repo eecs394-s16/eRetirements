@@ -32,11 +32,12 @@ a {
 }
 a:hover{
 	text-decoration: underline;
-	color : black;
+	
 
 }
 h3 span {
 	color: #1696A4;
+	/*text-decoration: none;*/
 }
 .more-options{
 	font-size: 15px;
