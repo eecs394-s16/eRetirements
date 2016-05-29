@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -23,14 +23,14 @@
   var star_num = 0;
   var popup = false;
   var lightgreenRGB = "rgb(144, 238, 144)";
+  var tealHex = '#6C9B74';
+  var grayHex = '#EBEBEB';
   var current = 1;
   var category;
   var completed_num = 0;
   var temp_completed = 0;
 
-
   var community_2nd_completed = false;
-
 
   // console.log("start: completed_num :" + completed_num);
   var clickItem;
@@ -38,29 +38,24 @@
   $(document).ready(function() {
 
     $(".category").hover(function() {
-      $(this).css('border-color', '#6C9B74'); //teal/blue
+      $(this).css('border-color', tealHex); //teal/blue
     }, function () {
       if (category_num_completed[this.id] > 0){
         $(this).css('border-color', lightgreenRGB); //lightgreen
       } else {
-        $(this).css('border-color', '#EBEBEB'); //gray
+        $(this).css('border-color', grayHex); //gray
       }
-
     });
 
-    $(document).on('click', '#results', function(event){
-      // alert("hi");
-
+    $('#results').click(function(event){
       getResultsFromApi();
     });
 
-    $(document).on('click','.progressdiv',function(event){
-
+    $(".progressdiv").click(function(event){
       var id = event.target.id;
-      var index = parseInt(id.substring(11));
+      var index = parseInt(id.substring(11));//gets index of div from its id
       current = index;
-      var current_v = index-1
-      // console.log("current:::::" + current)
+      var current_v = index-1;
       var questionAndAnswers = categories[category];
       var total = questionAndAnswers.length;
 
@@ -119,8 +114,8 @@
     modal = document.getElementById('myModal');
 
     allModal = document.getElementsByClassName('modal');
-	
-	closepageDiv = document.getElementById('closepage');
+
+    closepageDiv = document.getElementById('closepage');
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
@@ -171,14 +166,14 @@
           }
         }
         if(s_name == "idealCommunity") { dataForApi[s_name] = temp_list;}
-        else { 
+        else {
           if (temp_value != "") {
-            dataForApi[s_name] = temp_value; 
+            dataForApi[s_name] = temp_value;
           }
         }
         // console.log("temp_value");
         // console.log(temp_value);
-        
+
       }
     }
     // debugger;
@@ -231,10 +226,10 @@
       {
         styles = "style = 'background-color:lightgreen; border-radius: 5px'";
       }
-	  else
-	  {
-		styles = "style = 'border-radius: 5px'";
-	  }
+      else
+      {
+        styles = "style = 'border-radius: 5px'";
+      }
 
       strb += "<div id='progressdiv"+j+"' class='progressdiv'"+styles+">Q"+j+"</div>";
     }
@@ -435,13 +430,13 @@
 
     str = "Please rank how important this category is to you."
     $('#question_content').html(str);
-	
-	
-	
-	
+
+
+
+
     str = ""
     $('#question_number').html(str);
-	
+
     $("#prev").hide();
     $("#next").hide();
     $("#skip").hide();
@@ -483,7 +478,7 @@
     // else if(current > total + 1)
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
-    
+
     completed_num += temp_completed;
     category_num_completed[category] = completed_num;
     // console.log("completed:" + completed_num);
@@ -566,30 +561,30 @@
     }
     document.getElementById("next").disabled = false;
   }
-  
+
   var closePageEvent = function(){
-  	  closepageDiv.style.display = "block";
+    closepageDiv.style.display = "block";
   }
-  
+
   var closewithoutSave = function(){
-	 var questionAndAnswers = categories[category];
-     var total = questionAndAnswers.length; 
-	  // total_completed -= completed_num;
-	 for (var i=0; i<categories[category].length; i++)
-	 {
-		categories[category][i]["results"] = [false,false,false,false];
-		// console.log(categories[category][i]["results"]);
-	 }
-	$(".Quiz").hide();
-  console.log("total_completed:" + total_completed);
-	$('.row').css("opacity","1");
-	// $("#" +category).css({'background-image':
- //    'linear-gradient(to bottom, transparent 100%, #90EE90 0)'});
- //    $("#" +category + " h3").html(0 +"/"+total);
+    var questionAndAnswers = categories[category];
+    var total = questionAndAnswers.length;
+    // total_completed -= completed_num;
+    for (var i=0; i<categories[category].length; i++)
+    {
+      categories[category][i]["results"] = [false,false,false,false];
+      // console.log(categories[category][i]["results"]);
+    }
+    $(".Quiz").hide();
+    console.log("total_completed:" + total_completed);
+    $('.row').css("opacity","1");
+    // $("#" +category).css({'background-image':
+    //    'linear-gradient(to bottom, transparent 100%, #90EE90 0)'});
+    //    $("#" +category + " h3").html(0 +"/"+total);
   }
-  
-  
-  
+
+
+
   </script>
 
 </head>
@@ -699,7 +694,7 @@
   </div>
   <div id="activities" class="category">
     <br>
-      <br>
+    <br>
     <h2 id="titlename">Activities &amp; Work Potential  </h2>
     <h3 id="percentage">0/4</h3>
     <h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1>
@@ -750,18 +745,18 @@
     </div>
 
   </div>
-  
-  <div id="closepage" class="modal">
-  	<div class="modal-content-t">
-        <center>
-    		<p style="font-weight:bold">Would you like to save your results? </p>
 
-        	<button class="btn btn-success" onclick="closepageDiv.style.display = 'none'; showRating()">Yes</button>
-            <button class="btn btn-info" onclick="closepageDiv.style.display = 'none'; closewithoutSave()">No</button>
-        </center>
+  <div id="closepage" class="modal">
+    <div class="modal-content-t">
+      <center>
+        <p style="font-weight:bold">Would you like to save your results? </p>
+
+        <button class="btn btn-success" onclick="closepageDiv.style.display = 'none'; showRating()">Yes</button>
+        <button class="btn btn-info" onclick="closepageDiv.style.display = 'none'; closewithoutSave()">No</button>
+      </center>
     </div>
   </div>
-  
+
 
 
 </body>
