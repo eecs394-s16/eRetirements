@@ -1,18 +1,17 @@
-var apiResult = {};
-
-function loadData() {
-   var apiResult = localStorage.getItem('_results');
-   if (!apiResult) return false;
-   localStorage.removeItem('_results');
-   //decodes a string data encoded using base-64
-   apiResult = atob(apiResult);
-   //parses to Object the JSON string
-   apiResult = JSON.parse(apiResult);
-   //do what you need with the Object
-}
-
 $(document).ready(function() {
-	loadData();
+	console.log("checking1");
+	var apiResult = {};
+	apiResult = localStorage.getItem('_results');
+	if (!apiResult) return false;
+	localStorage.removeItem('_results');
+	//decodes a string data encoded using base-64
+	apiResult = atob(apiResult);
+	//parses to Object the JSON string
+	apiResult = JSON.parse(apiResult);
+	//do what you need with the Object
+	console.log("checking2");
+	console.log(apiResult);
+
 	loadResult();
 });
 
@@ -1526,12 +1525,12 @@ function loadResult() {
 	city2_name = apiResult["city2"]["name"];
 	city2_img = apiResult["city2"]["images"][0]["url"];
 	city2_link ="http://www.eretirements.com/best-places-to-retire/"+ textConvert(city2_state_name) + "/" + textConvert(city2_name);
-	
+
 	city3_state_name = apiResult["city3"]["state"]["name"];
 	city3_name = apiResult["city3"]["name"];
 	city3_img = apiResult["city3"]["images"][0]["url"];
 	city3_link ="http://www.eretirements.com/best-places-to-retire/"+ textConvert(city3_state_name) + "/" + textConvert(city3_name);
-	
+
 	str = "";
 	str = "<li><a href = " + city1_link + ">" +
 			"<div class='image-height-fixer' >" +
