@@ -10,7 +10,8 @@ var grayHex = '#EBEBEB';
 var current = 1;
 var category;
 var num_completed = 0;
-var temp_completed = 0
+var temp_completed = 0;
+var num_required_completed = 1;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
@@ -161,7 +162,6 @@ function initPage() {
         }
       }
     }
-    console.log(dataForApi)
     createSurvey();
   }
 
@@ -170,7 +170,7 @@ function initPage() {
       ({
         type: "POST",
         beforeSend: function (xhr) {
-          xhr.setRequestHeader ("Content-Type", "application/json"));
+          xhr.setRequestHeader ("Content-Type", "application/json");
           xhr.setRequestHeader ("Authorization", "Basic " + btoa("elitecohen@gmail.com" + ":" + "Stanselms3"));
         },
         // crossDomain: true,
@@ -215,7 +215,7 @@ function initPage() {
 
   var showRating = function(){
 
-    if (total_completed + temp_completed== 10 && !popup) {
+    if (total_completed + temp_completed == num_required_completed && !popup) {
       popup = true;
       var tooltips = $( "[title]" ).tooltip({
         position: {

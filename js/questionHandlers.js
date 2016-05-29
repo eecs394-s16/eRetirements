@@ -109,7 +109,7 @@ var changeQuestion = function(category){
   document.getElementById("next").disabled = true;
   displayAnswers(questionAndAnswers, total);
 
-  if (total_completed + temp_completed== 10 && !popup) {
+  if (total_completed + temp_completed == num_required_completed && !popup) {
     popup = true;
     var tooltips = $( "[title]" ).tooltip({
       position: {
