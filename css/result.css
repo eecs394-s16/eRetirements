@@ -1,0 +1,64 @@
+body {
+    font-family: 'Lato', sans-serif;
+    color : black;
+}
+h3 {
+	color : black;
+}
+ul {
+  list-style-type: none;
+  position: relative;
+  margin: 0 0 0 0;
+  width: 100%;
+  margin-left:-4%;
+}
+li{
+	display:inline-block;
+}
+
+.image-height-fixer {
+	 width: 350px;
+    height: 200px;
+}
+.image-height-fixer  img{
+	 width : 100%;
+	height: 100%;
+	border: 1px solid black;
+   
+}
+a {
+	text-decoration: none;
+	color : black;
+}
+h3 span {
+	color: #1696A4;
+}
+.more-options{
+	font-size: 15px;
+	font-style: italic;
+	font-weight: bold;
+}
+.more-options .learn-more{
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+}
+a.compare {
+	font-size : 13px;
+	font-weight: normal;
+	color : gray;
+	font-style: normal;
+	padding-right: 10px;
+	
+}
+a.surveys {
+	font-size : 13px;
+	font-weight: normal;
+	color : gray;
+	font-style: normal;
+	border-left: 0.5px solid gray;
+	padding-left: 10px;
+	
+
+}
+
