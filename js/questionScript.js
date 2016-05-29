@@ -198,17 +198,11 @@ var dataForApi = {
     "taxes": "lowest",
     "weather": -1,
     "location": -1,
-    //////
     "activities": -1,
     "workPotential": -1,
-    //////
     "community": -1,
     "demographics": -1,
-    //////
-    "healthcare": -1,
-    /////
+		"healthcare": -1,
     "costs": -1,
-
     "restrictRegion": false
-
 }
