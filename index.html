@@ -292,22 +292,7 @@
     completed_num = category_num_completed[category];
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
-    // var k;
-    // // if (completed_num > 0){
-    //   for(k = current; k < total; k++){
-    //     // debugger;
-    //     if (String(questionAndAnswers[k]["results"]) == String([false, false, false, false])){
-    //       console.info("k:" + k);
-    //       console.info("current:" + current);
-    //       current = k + 1;
-    //       break;
-    //     }
-    //   }
-    // // }
-   
-    
-    // var total = questionAndAnswers.length;
-    // if(k == total || current > total){
+
     if(current > total) {
       showRating();
     }
@@ -327,10 +312,10 @@
     for (var n = 0; n < total; n++){
       if (n == current - 1) {
         $("#progressdiv"+(n+1)).css("border-width","2px");
-        // console.log(n+1);
+
       } else {
         $("#progressdiv"+(n+1)).css("border-width","1px");
-        // console.log(n+1);
+
       }
     }
 
@@ -689,7 +674,7 @@
 </div>
 -->
 
-<img src="navbar.png" alt="navbar" width=100%>
+<img src="navbar.png" alt="navbar" width='100%'>
 <div class="row">
   <div id="location" class="category" >
     <br><br>
