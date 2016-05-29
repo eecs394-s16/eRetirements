@@ -13,7 +13,6 @@
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script src="./questionScript.js" type="text/javascript"></script>
-  <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
 
   <script>
   var total_completed = 0;
@@ -31,8 +30,6 @@
 
   var community_2nd_completed = false;
 
-
-  // console.log("start: completed_num :" + completed_num);
   var clickItem;
 
   $(document).ready(function() {
@@ -49,8 +46,6 @@
     });
 
     $(document).on('click', '#results', function(event){
-      // alert("hi");
-
       getResultsFromApi();
     });
 
@@ -59,18 +54,15 @@
       var id = event.target.id;
       var index = parseInt(id.substring(11));
       current = index;
-      var current_v = index-1
-      // console.log("current:::::" + current)
+      var current_v = index-1;
       var questionAndAnswers = categories[category];
       var total = questionAndAnswers.length;
 
       for (var n = 0; n < total; n++){
         if (n == current - 1) {
           $("#progressdiv"+(n+1)).css("border-width","2px");
-          // console.log(n+1);
         } else {
           $("#progressdiv"+(n+1)).css("border-width","1px");
-          // console.log(n+1);
         }
       }
 
@@ -81,7 +73,6 @@
       var answers = currentQuestionAndAnswers["answers"];
       var len = answers.length;
       var str = "";
-      // console.log();
       for(var i = 0; i < len; i++)
       {
         var j = i+1;
@@ -99,7 +90,6 @@
     });
 
     $('.Quiz').hide();
-    // var $completed = $('completed');
 
     $('.category').click(function(e) {
       var $clickedItem = $(e.target);
@@ -120,12 +110,11 @@
 
     allModal = document.getElementsByClassName('modal');
 	
-	closepageDiv = document.getElementById('closepage');
+	  closepageDiv = document.getElementById('closepage');
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
     var oSpan = document.getElementsByClassName("close")[0];
-    //      var oSpan = document.getElementsByClassName("oClose")[0];
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function(event) {
@@ -149,7 +138,6 @@
   function getResultsFromApi(){
     var keys = Object.keys(categories);
     for (var i = 0; i < keys.length; i++){
-      // debugger;
       var c = categories[keys[i]];
       for (var j = 0; j < c.length; j++){
         var section = c[j];
@@ -176,19 +164,13 @@
             dataForApi[s_name] = temp_value; 
           }
         }
-        // console.log("temp_value");
-        // console.log(temp_value);
         
       }
     }
-    // debugger;
-    // console.log("DATA FOR API!");
-    // console.log(dataForApi);
   }
 
   var removeOpenModal = function() {
     $(openModal).remove();
-    // console.log("hello");
   }
 
   var showQuestion = function(idName){
@@ -210,15 +192,12 @@
 
     if (completed_num > 0){
       for(var k = 0; k < total; k++){
-        // debugger;
         if (String(questionAndAnswers[k]["results"]) == String([false, false, false, false])){
           current = k+1;
           break;
         }
       }
     }
-
-    // console.log("current:"+current);
 
     changeQuestion(category);
 
@@ -240,7 +219,6 @@
     }
 
     $('#progress').html(strb);
-    // console.log("current is "+current);
     for (var n = 0; n < total; n++){
       if (n == current - 1) {
         $("#progressdiv"+(n+1)).css("border-width","2px");
@@ -262,7 +240,6 @@
     }
     else
     {
-      // console.log("here");
       changeQuestion(category);
     }
 
@@ -296,7 +273,7 @@
     if(current > total) {
       showRating();
     }
-    else{
+    else {
       changeQuestion(category);
     }
 
@@ -305,10 +282,6 @@
 
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
-
-    // console.log("current is "+current);
-    // console.log(total);
-
     for (var n = 0; n < total; n++){
       if (n == current - 1) {
         $("#progressdiv"+(n+1)).css("border-width","2px");
@@ -339,7 +312,6 @@
     var answers = currentQuestionAndAnswers["answers"];
     var len = answers.length;
     var str = "";
-    // console.log();
     document.getElementById("next").disabled = true;
     for(var i = 0; i < len; i++)
     {
@@ -408,7 +380,6 @@
     var str = "";
     //four stars
     for (var s = 0; s < 4; s++){
-      // str += "<span class='star' onclick='rate()'>&#9733</span>";
       str += "<span class='star'>&#9733</span>";
     }
 
@@ -486,18 +457,11 @@
     
     completed_num += temp_completed;
     category_num_completed[category] = completed_num;
-    // console.log("completed:" + completed_num);
     if(completed_num == total)
     {
-      // console.log("completed:" + completed);
       $("#" +category).find(".completed").css({'visibility': 'visible'});
     }
     percent = (1-completed_num/total) * 100;
-    // console.log("percent:" +percent);
-
-    // console.log("Percent =" + percent);
-
-    // $("#" +category).css({'background-color': '#DCFDE1', 'border-color': '#DCFDE1'});
     $("#" +category).css({'background-image':
     'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
     $("#" +category + " h3").html(completed_num +"/"+total);
@@ -521,16 +485,12 @@
     if (categories[category][questionIndex]["results"].indexOf(true) == -1)
     {
       temp_completed += 1;
-      // completed_num+=1;
     }
-    // category_num_completed[category] = completed_num;
 
     var progressdivSelector = "#progressdiv"+(questionIndex+1);
     var buttonSelector = "#button"+buttonIndex;
     if (category == "community" && questionIndex == 2){
-      if (community_2nd_completed == false) {
-        // total_completed+=1;
-      }
+      
       community_2nd_completed = true;
       if ($(buttonSelector).css("background-color") == lightgreenRGB){
         $(buttonSelector).css({'background-color': 'white'});
@@ -554,7 +514,6 @@
       categories[category][questionIndex]["results"][buttonIndex-1] = !categories[category][questionIndex]["results"][buttonIndex-1];//1-4
     }
     else {
-      // total_completed += 1;
       for (var i=1; i<=len; i++)
       {
         $("#button"+i).css({'background-color': 'white'});
@@ -572,20 +531,14 @@
   }
   
   var closewithoutSave = function(){
-	 var questionAndAnswers = categories[category];
-     var total = questionAndAnswers.length; 
-	  // total_completed -= completed_num;
-	 for (var i=0; i<categories[category].length; i++)
-	 {
+	var questionAndAnswers = categories[category];
+  var total = questionAndAnswers.length; 
+	for (var i=0; i<categories[category].length; i++)
+	{
 		categories[category][i]["results"] = [false,false,false,false];
-		// console.log(categories[category][i]["results"]);
-	 }
+	}
 	$(".Quiz").hide();
-  console.log("total_completed:" + total_completed);
 	$('.row').css("opacity","1");
-	// $("#" +category).css({'background-image':
- //    'linear-gradient(to bottom, transparent 100%, #90EE90 0)'});
- //    $("#" +category + " h3").html(0 +"/"+total);
   }
   
   
