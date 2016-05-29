@@ -10,7 +10,7 @@ ul {
   position: relative;
   margin: 0 0 0 0;
   width: 100%;
-  margin-left:-4%;
+  margin-left:-3.8%;
 }
 li{
 	display:inline-block;
@@ -30,6 +30,11 @@ a {
 	text-decoration: none;
 	color : black;
 }
+a:hover{
+	text-decoration: underline;
+	color : black;
+
+}
 h3 span {
 	color: #1696A4;
 }
@@ -48,8 +53,14 @@ a.compare {
 	font-weight: normal;
 	color : gray;
 	font-style: normal;
-	padding-right: 10px;
+	/*padding-right: 8px;*/
 	
+}
+.text-list {
+
+	margin-left: -3.3%;
+	margin-bottom: 20px;
+
 }
 a.surveys {
 	font-size : 13px;
@@ -58,7 +69,57 @@ a.surveys {
 	font-style: normal;
 	border-left: 0.5px solid gray;
 	padding-left: 10px;
-	
+	margin-left: 10px;
 
+
+
+}
+a.facebook {
+	  background-color: #3b5998;
+
+  color: white;
+  width: 160px;
+  display: block;
+  padding: 0 10px;
+  color: white;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: normal;
+}
+a.facebook i {
+
+  vertical-align: middle;
+  font-size: 18px;
+  margin-right: 12px;
+  /*margin-bottom: 6px;*/
+
+}
+a.facebook span {
+	line-height: 36px;
+	font-size: 13px;
+}
+a.twitter {
+	  background-color: #55acee;
+  color: white;
+  width: 160px;
+  display: block;
+  padding: 0 10px;
+  color: white;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: normal;
+  margin-left: 10px;
+}
+a.twitter i {
+
+  vertical-align: middle;
+  font-size: 18px;
+  margin-right: 12px;
+  /*margin-bottom: 6px;*/
+
+}
+a.twitter span {
+	line-height: 36px;
+	font-size: 13px;
 }
 
