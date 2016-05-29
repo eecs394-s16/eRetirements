@@ -27,14 +27,15 @@
   var current = 1;
   var category;
   var num_completed = 0;
-  var temp_completed = 0;
-
-  var community_2nd_completed = false;
-
+  var temp_completed = 0
+  var isThirdCommunityCompleted = false;
   var clickItem;
 
   $(document).ready(function() {
 
+    initPage();
+
+    //when user hovers over category circle
     $(".category").hover(function() {
       $(this).css('border-color', tealHex); //teal/blue
     }, function () {
@@ -61,25 +62,25 @@
       var total = questionAndAnswers.length;
 
       for (var n = 0; n < total; n++){
-        if (n == current - 1) {
-          $("#progressdiv"+(n+1)).css("border-width","2px");
-        } else {
-          $("#progressdiv"+(n+1)).css("border-width","1px");
-        }
+        boldProgressDiv(n, current);
       }
 
       displayAnswers(questionAndAnswers,total);
 
     });
 
-    $('.Quiz').hide();
-
     $('.category').click(function(e) {
       var $clickedItem = $(e.target);
       var idName = jQuery(this).attr("id");
       showQuestion(idName);
-
     });
+
+  });
+
+  function initPage() {
+
+    //hide quiz modal for landing
+    $('.Quiz').hide();
 
     openModal = document.getElementById('openModal');
 
@@ -87,12 +88,10 @@
       openModal.style.display = "block";
     });
 
-
     // Get the modal
     modal = document.getElementById('myModal');
 
     allModal = document.getElementsByClassName('modal');
-
 
     closepageDiv = document.getElementById('closepage');
 
@@ -116,8 +115,7 @@
       }
     }
 
-
-  });
+  }
 
   //creates html to display answers onto page
   function displayAnswers(questionAndAnswers, total){
@@ -174,8 +172,16 @@
             dataForApi[s_name] = temp_value;
           }
         }
-
       }
+    }
+  }
+
+  function boldProgressDiv(n, current){
+    if (n == current - 1) {
+      $("#progressdiv"+(n+1)).css("border-width","2px");
+
+    } else {
+      $("#progressdiv"+(n+1)).css("border-width","1px");
     }
   }
 
@@ -186,24 +192,24 @@
   function showQuizDivs(){
     $('.row').css("opacity","0.5");
     $('.Quiz').show();
-    $("#submitRating").hide();
     $("#prev").show();
     $("#next").show();
     $("#skip").show();
     $("#finish").show();
-
     $("#progress").show();
+
+    $("#submitRating").hide();
 
   }
 
   var showQuestion = function(idName){
     showQuizDivs();
-    
+
     category = idName;
     //set current question to be first one
     current = 1;
     temp_completed = 0;
-    num_completed = category_num_completed[category]; //num_completed
+    num_completed = category_num_completed[category];
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
 
@@ -243,17 +249,6 @@
 
   }
 
-  function boldProgressDiv(n, current){
-    if (n == current - 1) {
-      $("#progressdiv"+(n+1)).css("border-width","2px");
-
-    } else {
-      $("#progressdiv"+(n+1)).css("border-width","1px");
-
-    }
-
-  }
-
   var changeQuestionPrev = function() {
     current -= 1;
     var questionAndAnswers = categories[category];
@@ -270,9 +265,9 @@
 
   }
   var changeQuestionSkip = function(){
-    var str = "#progressdiv"+(current);
-    if ($(str).css('background-color') != lightgreenRGB){
-      $(str).css({'background-color': 'yellow'});
+    var currentProgressDiv = "#progressdiv"+(current);
+    if ($(currentProgressDiv).css('background-color') != lightgreenRGB){
+      changeBackgroundColor(currentProgressDiv,'yellow');
     }
 
     current += 1;
@@ -304,7 +299,7 @@
 
   }
 
-  
+
 
   var changeQuestion = function(category){
 
@@ -314,23 +309,13 @@
       boldProgressDiv(n, current);
     }
 
-    var title;
-    if (category == "location"){
-      title = "Location & Weather"
-    } else if (category == "community"){
-      title = "Community & Demographics"
-    } else if (category == "activities") {
-      title = "Activities & Work Potential"
-    } else if (category == "health") {
-      title = "Health Care"
-    } else if (category == "costs") {
-      title = "Cost of Living"
-    }
+    var title = categoryNames[category];
+
     document.getElementById("category_title").innerHTML = title;
 
     document.getElementById("next").disabled = true;
     displayAnswers(questionAndAnswers, total);
-    
+
 
     if (total_completed + temp_completed== 10 && !popup) {
       popup = true;
@@ -366,29 +351,16 @@
     document.getElementById("submitRating").disabled = true;
 
     var questionAndAnswers = categories[category];
-    var title;
-    if (category == "location"){
-      title = "Location & Weather"
-    } else if (category == "community"){
-      title = "Community & Demographics"
-    } else if (category == "activities") {
-      title = "Activities & Work Potential"
-    } else if (category == "health") {
-      title = "Health Care"
-    } else if (category == "costs") {
-      title = "Cost of Living"
-    }
+    var title = categoryNames[category];
     document.getElementById("category_title").innerHTML = title;
 
-
-    var str = "";
+    var starsHTML = "";
     //four stars
     for (var s = 0; s < 4; s++){
-      str += "<span class='star'>&#9733</span>";
+      starsHTML += "<span class='star'>&#9733</span>";
     }
 
-
-    $('#question_option').html(str);
+    $('#question_option').html(starsHTML);
 
     $(".star").click(function(e){
       rate(e);
@@ -404,18 +376,10 @@
       stars[r].style.color = "orange";
     }
 
+    $('#question_content').html("Please rank how important this category is to you.");
 
-
-
-
-    str = "Please rank how important this category is to you."
-    $('#question_content').html(str);
-
-
-
-
-    str = ""
-    $('#question_number').html(str);
+    //clears the text displaying current question index
+    $('#question_number').html("");
 
     $("#prev").hide();
     $("#next").hide();
@@ -424,36 +388,25 @@
     $("#submitRating").show();
     $("#progress").hide();
 
-
   }
 
 
   var rate = function(e) {
-    // $('.star').click(function(e) {
 
     document.getElementById("submitRating").disabled = false;
 
     var $clickedItem = $(e.target);
 
-    $clickedItem.css({'color':'orange'});
     star_num = $clickedItem.index() + 1;
+    $clickedItem.css({'color':'orange'});
     $clickedItem.prevAll().css({'color':'orange'});
     $clickedItem.nextAll().css({'color':'lightgray'});
 
   }
 
   var submitRate = function() {
-    if (category == "location"){
-      ratings["location"] = star_num;
-    } else if (category == "community"){
-      ratings["community"] = star_num;
-    } else if (category == "activities") {
-      ratings["activities"] = star_num;
-    } else if (category == "health") {
-      ratings["health"] = star_num;
-    } else if (category == "costs") {
-      ratings["costs"] = star_num;
-    }
+
+    ratings[category] = star_num;
 
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
@@ -465,24 +418,22 @@
       $("#" +category).find(".completed").css({'visibility': 'visible'});
     }
     percent = (1-num_completed/total) * 100;
+
     $("#" +category).css({'background-image':
     'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
     $("#" +category + " h3").html(num_completed +"/"+total);
 
-
-    if (percent < 100){
-      $("#" +category).css('border-color', lightgreenRGB);
-    }
-    else {
-      $("#" +category).css('border-color', grayHex);
-    }
-
+    (percent < 100) ? $("#" +category).css('border-color', lightgreenRGB) : $("#" +category).css('border-color', grayHex);
 
     $('.Quiz').hide();
     total_completed += temp_completed;
     console.log("total_completed_saved:" + total_completed);
     $('.row').css("opacity","1");
 
+  }
+
+  var changeBackgroundColor = function(selector, value) {
+    $(selector).css('background-color',value);
   }
 
   var focusButton = function(buttonIndex,len,questionIndex){
@@ -494,14 +445,13 @@
     var progressdivSelector = "#progressdiv"+(questionIndex+1);
     var buttonSelector = "#button"+buttonIndex;
     if (category == "community" && questionIndex == 2){
-      
-      community_2nd_completed = true;
-      if ($(buttonSelector).css("background-color") == lightgreenRGB){
-        $(buttonSelector).css({'background-color': 'white'});
-      }
-      else {
-        $(buttonSelector).css({'background-color': 'lightgreen'});
-      }
+
+      isThirdCommunityCompleted = true;
+
+      var newBackgroundColor;
+      ($(buttonSelector).css("background-color") == lightgreenRGB) ? newBackgroundColor = 'white' : newBackgroundColor = 'lightgreen';
+      changeBackgroundColor(buttonSelector,newBackgroundColor);
+
       var areAnyGreen = false;
       for (var i=1;i<=len;i++){
         if ($("#button"+i).css("background-color") == lightgreenRGB){
@@ -509,21 +459,18 @@
           break;
         }
       }
-      if (areAnyGreen){
-        $(progressdivSelector).css({'background-color': 'lightgreen'});
-      }
-      else {
-        $(progressdivSelector).css({'background-color': 'white'});
-      }
+
+      (areAnyGreen) ? newBackgroundColor = 'lightgreen' : newBackgroundColor = 'white';
+      changeBackgroundColor(progressdivSelector,newBackgroundColor)
       categories[category][questionIndex]["results"][buttonIndex-1] = !categories[category][questionIndex]["results"][buttonIndex-1];//1-4
     }
     else {
       for (var i=1; i<=len; i++)
       {
-        $("#button"+i).css({'background-color': 'white'});
+        changeBackgroundColor("#button"+i,'white')
       }
-      $(buttonSelector).css({'background-color': 'lightgreen'});
-      $(progressdivSelector).css({'background-color': 'lightgreen'});
+      changeBackgroundColor(buttonSelector,'lightgreen');
+      changeBackgroundColor(progressdivSelector,'lightgreen');
       categories[category][questionIndex]["results"] = [false,false,false,false];//1-4
       categories[category][questionIndex]["results"][buttonIndex-1] = true;//1-4
     }
@@ -536,15 +483,15 @@
 
   var closewithoutSave = function(){
 
-  	var questionAndAnswers = categories[category];
-    var total = questionAndAnswers.length; 
+    var questionAndAnswers = categories[category];
+    var total = questionAndAnswers.length;
     //clear all users results
-  	for (var i=0; i<categories[category].length; i++)
-  	{
-  		categories[category][i]["results"] = [false,false,false,false];
-  	}
-  	$(".Quiz").hide();
-  	$('.row').css("opacity","1");
+    for (var i=0; i<categories[category].length; i++)
+    {
+      categories[category][i]["results"] = [false,false,false,false];
+    }
+    $(".Quiz").hide();
+    $('.row').css("opacity","1");
 
   }
 
@@ -605,98 +552,98 @@
     </div>
 
 
-<img src="navbar.png" alt="navbar" width='100%'>
-<div class="row">
-  <div id="location" class="category" >
-    <br><br>
-    <h2 id="titlename">Location &amp; Weather</h2>
-    <h3 id="percentage">0/3</h3>
-    <h1><i class="fa fa-sun-o" aria-hidden="true"></i></h1>
-    <div class="completed">
-      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+    <img src="navbar.png" alt="navbar" width='100%'>
+    <div class="row">
+      <div id="location" class="category" >
+        <br><br>
+        <h2 id="titlename">Location &amp; Weather</h2>
+        <h3 id="percentage">0/3</h3>
+        <h1><i class="fa fa-sun-o" aria-hidden="true"></i></h1>
+        <div class="completed">
+          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+        </div>
+      </div>
+
+      <div id="community" class="category">
+        <br><br>
+        <h2 id="titlename">Community &amp; Demographics</h2>
+        <h3 id="percentage">0/5</h3>
+        <h1><i class="fa fa-users" aria-hidden="true"></i></h1>
+        <div class="completed">
+          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+        </div>
+      </div>
+      <div id="activities" class="category">
+        <br>
+        <br>
+        <h2 id="titlename">Activities &amp; Work Potential  </h2>
+        <h3 id="percentage">0/4</h3>
+        <h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1>
+        <div class="completed">
+          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="row">
+      <div id="health" class="category">
+        <br><br><h2 id="titlename">Health Care</h2>
+        <h3 id="percentage">0/3</h3>
+        <h1><i class="fa fa-medkit" aria-hidden="true"></i></h1>
+        <div class="completed">
+          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+        </div>
+      </div>
+      <div id="costs" class="category">
+        <br><br>
+        <h2 id="titlename">Cost of Living</h2>
+        <h3 id="percentage">0/3</h3>
+        <h1><i class="fa fa-usd" aria-hidden="true"></i></h1>
+        <div class="completed">
+          <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
+        </div>
+      </div>
 
-  <div id="community" class="category">
-    <br><br>
-    <h2 id="titlename">Community &amp; Demographics</h2>
-    <h3 id="percentage">0/5</h3>
-    <h1><i class="fa fa-users" aria-hidden="true"></i></h1>
-    <div class="completed">
-      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-    </div>
-  </div>
-  <div id="activities" class="category">
-    <br>
-    <br>
-    <h2 id="titlename">Activities &amp; Work Potential  </h2>
-    <h3 id="percentage">0/4</h3>
-    <h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1>
-    <div class="completed">
-      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div id="health" class="category">
-    <br><br><h2 id="titlename">Health Care</h2>
-    <h3 id="percentage">0/3</h3>
-    <h1><i class="fa fa-medkit" aria-hidden="true"></i></h1>
-    <div class="completed">
-      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-    </div>
-  </div>
-  <div id="costs" class="category">
-    <br><br>
-    <h2 id="titlename">Cost of Living</h2>
-    <h3 id="percentage">0/3</h3>
-    <h1><i class="fa fa-usd" aria-hidden="true"></i></h1>
-    <div class="completed">
-      <p><i class="fa fa-check fa-4x" aria-hidden="true"></i></p>
-    </div>
-  </div>
-
-</div>
-
-</center>
-
-<p title = "You can click the results button at any time to see your results."></p>
-
-<a href="results.html"><button class="btn btn-lg btn-primary" disabled id="results">Results
-  <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
-
-
-
-  <div id="myModal" class="modal">
-
-    <div class="modal-content">
-      <span class="close">x</span>
-      <p>We think we have an idea of what you might be looking for.  If you want more accurate results, you can answer more questions.</p> <p>Would you like to continue the questionnaire?</p>
-      <center>
-        <button class="btn btn-success" onclick="modal.style.display = 'none'";>Yes, I'd like to get more accurate results.</button>
-        <a href="results.html"><button class="btn btn-info" onclick=" getResultsFromApi()">No, show me my results now.</button></a>
-      </center>
     </div>
 
-  </div>
+  </center>
 
-  <div id="closepage" class="modal">
-    <div class="modal-content-t">
-      <center>
-        <p style="font-weight:bold">Would you like to save your results? </p>
+  <p title = "You can click the results button at any time to see your results."></p>
 
-        <button class="btn btn-success" onclick="closepageDiv.style.display = 'none'; showRating()">Yes</button>
-        <button class="btn btn-info" onclick="closepageDiv.style.display = 'none'; closewithoutSave()">No</button>
-      </center>
+  <a href="results.html"><button class="btn btn-lg btn-primary" disabled id="results">Results
+    <i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
+
+
+
+    <div id="myModal" class="modal">
+
+      <div class="modal-content">
+        <span class="close">x</span>
+        <p>We think we have an idea of what you might be looking for.  If you want more accurate results, you can answer more questions.</p> <p>Would you like to continue the questionnaire?</p>
+        <center>
+          <button class="btn btn-success" onclick="modal.style.display = 'none'";>Yes, I'd like to get more accurate results.</button>
+          <a href="results.html"><button class="btn btn-info" onclick=" getResultsFromApi()">No, show me my results now.</button></a>
+        </center>
+      </div>
+
     </div>
-  </div>
+
+    <div id="closepage" class="modal">
+      <div class="modal-content-t">
+        <center>
+          <p style="font-weight:bold">Would you like to save your results? </p>
+
+          <button class="btn btn-success" onclick="closepageDiv.style.display = 'none'; showRating()">Yes</button>
+          <button class="btn btn-info" onclick="closepageDiv.style.display = 'none'; closewithoutSave()">No</button>
+        </center>
+      </div>
+    </div>
 
 
 
-</body>
+  </body>
 
 
 
 
 
-</html>
+  </html>
