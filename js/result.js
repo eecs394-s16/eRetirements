@@ -1505,36 +1505,38 @@ function loadResult() {
 	city1_state_name = apiResult["city1"]["state"]["name"];
 	city1_name = apiResult["city1"]["name"];
 	city1_img = apiResult["city1"]["images"][0]["url"];
-	city1_link ="http://www.eretirements.com/best-places-to-retire/ "+ textConvert(city1_state_name) + "/" + textConvert(city1_name);
+	city1_link ="http://www.eretirements.com/best-places-to-retire/"+ textConvert(city1_state_name) + "/" + textConvert(city1_name);
 	console.info(city1_link);
 	city2_state_name = apiResult["city2"]["state"]["name"];
 	city2_name = apiResult["city2"]["name"];
 	city2_img = apiResult["city2"]["images"][0]["url"];
-	city2_link ="";
+	city2_link ="http://www.eretirements.com/best-places-to-retire/"+ textConvert(city2_state_name) + "/" + textConvert(city2_name);
+	
 	city3_state_name = apiResult["city3"]["state"]["name"];
 	city3_name = apiResult["city3"]["name"];
 	city3_img = apiResult["city3"]["images"][0]["url"];
-	city3_link ="";
+	city3_link ="http://www.eretirements.com/best-places-to-retire/"+ textConvert(city3_state_name) + "/" + textConvert(city3_name);
+	
 	str = "";
 	str = "<li><a href = " + city1_link + ">" +
 			"<div class='image-height-fixer' >" +
 				"<img src=" +city1_img +" alt>" +
 			"</div>" +
-			"<h3> City 1:" +
+			"<h3> City 1 : " +
 				"<span>" + city1_name + "," + city1_state_name + "</span>" +
 			"</h3></a></li>";
 	str += "<li><a href = " + city2_link + ">" +
 			"<div class='image-height-fixer' >" +
 				"<img src=" +city2_img +" alt>" +
 			"</div>" +
-			"<h3> City 2:" +
+			"<h3> City 2 : " +
 				"<span>" + city2_name + "," + city2_state_name + "</span>" +
 			"</h3></a></li>";
 	str += "<li><a href = " + city3_link + ">" +
 			"<div class='image-height-fixer' >" +
 				"<img src=" +city3_img +" alt>" +
 			"</div>" +
-			"<h3> City 3:" +
+			"<h3> City 3 : " +
 				"<span>" + city3_name + "," + city3_state_name + "</span>" +
 			"</h3></a></li>";
 
@@ -1543,7 +1545,7 @@ function loadResult() {
 	
 }
 function textConvert(str) {
-	debugger;
+	// debugger;
 	var temp = str.split(" ");
 	var result = "";
 	for(var i = 0; i < temp.length; i++)
