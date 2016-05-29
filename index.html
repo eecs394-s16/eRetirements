@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -22,11 +22,12 @@
   var star_num = 0;
   var popup = false;
   var lightgreenRGB = "rgb(144, 238, 144)";
+  var tealHex = '#6C9B74';
+  var grayHex = '#EBEBEB';
   var current = 1;
   var category;
-  var completed_num = 0;
+  var num_completed = 0;
   var temp_completed = 0;
-
 
   var community_2nd_completed = false;
 
@@ -35,26 +36,27 @@
   $(document).ready(function() {
 
     $(".category").hover(function() {
-      $(this).css('border-color', '#6C9B74'); //teal/blue
+      $(this).css('border-color', tealHex); //teal/blue
     }, function () {
       if (category_num_completed[this.id] > 0){
         $(this).css('border-color', lightgreenRGB); //lightgreen
       } else {
-        $(this).css('border-color', '#EBEBEB'); //gray
+        $(this).css('border-color', grayHex); //gray
       }
-
     });
 
-    $(document).on('click', '#results', function(event){
+    //when user clicks results button
+    $(document).on("click", "#results", function(event){
       getResultsFromApi();
     });
 
-    $(document).on('click','.progressdiv',function(event){
-
+    //when you click on the progress bars below
+    $(document).on("click", ".progressdiv", function(event){
       var id = event.target.id;
-      var index = parseInt(id.substring(11));
+
+      var index = parseInt(id.substring(11));//gets index of div from its id
       current = index;
-      var current_v = index-1;
+
       var questionAndAnswers = categories[category];
       var total = questionAndAnswers.length;
 
@@ -66,27 +68,8 @@
         }
       }
 
-      var currentQuestionAndAnswers = questionAndAnswers[index-1];
-      $('#question_number').text( "Question " + index +" out of " + total);
-      $('#question_content').text(currentQuestionAndAnswers["question"]);
+      displayAnswers(questionAndAnswers,total);
 
-      var answers = currentQuestionAndAnswers["answers"];
-      var len = answers.length;
-      var str = "";
-      for(var i = 0; i < len; i++)
-      {
-        var j = i+1;
-        var styles = "style='border-radius:10px; text-align:center;";
-        if(categories[category][current_v]["results"][i]){
-          styles += " background-color:lightgreen;";
-          document.getElementById("next").disabled = false;
-        }
-        styles+="width:90%'";
-        str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current_v)+")'>  " + answers[i] +
-        "</button></li>";
-
-      }
-      $('#question_option').html(str);
     });
 
     $('.Quiz').hide();
@@ -109,8 +92,9 @@
     modal = document.getElementById('myModal');
 
     allModal = document.getElementsByClassName('modal');
-	
-	  closepageDiv = document.getElementById('closepage');
+
+
+    closepageDiv = document.getElementById('closepage');
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[1];
@@ -134,6 +118,32 @@
 
 
   });
+
+  //creates html to display answers onto page
+  function displayAnswers(questionAndAnswers, total){
+    var currentQuestionAndAnswers = questionAndAnswers[current-1];
+    $('#question_number').text( "Question " + current +" out of " + total);
+    $('#question_content').text(currentQuestionAndAnswers["question"]);
+
+    var answers = currentQuestionAndAnswers["answers"];
+    var len = answers.length;
+    var str = "";
+    for(var i = 0; i < len; i++)
+    {
+      var j = i+1;
+      var styles = "style='border-radius:10px; text-align:center;";
+      if(categories[category][current-1]["results"][i]){
+        styles += " background-color:lightgreen;";
+        document.getElementById("next").disabled = false;
+      }
+      styles+="width:90%'";
+      str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current-1)+")'>  " + answers[i] +
+      "</button></li>";
+
+    }
+    $('#question_option').html(str);
+
+  }
 
   function getResultsFromApi(){
     var keys = Object.keys(categories);
@@ -159,12 +169,12 @@
           }
         }
         if(s_name == "idealCommunity") { dataForApi[s_name] = temp_list;}
-        else { 
+        else {
           if (temp_value != "") {
-            dataForApi[s_name] = temp_value; 
+            dataForApi[s_name] = temp_value;
           }
         }
-        
+
       }
     }
   }
@@ -173,7 +183,7 @@
     $(openModal).remove();
   }
 
-  var showQuestion = function(idName){
+  function showQuizDivs(){
     $('.row').css("opacity","0.5");
     $('.Quiz').show();
     $("#submitRating").hide();
@@ -183,14 +193,22 @@
     $("#finish").show();
 
     $("#progress").show();
+
+  }
+
+  var showQuestion = function(idName){
+    showQuizDivs();
+    
     category = idName;
+    //set current question to be first one
     current = 1;
     temp_completed = 0;
-    completed_num = category_num_completed[category]; //num_completed
+    num_completed = category_num_completed[category]; //num_completed
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
 
-    if (completed_num > 0){
+    //opens question popup to first skipped question
+    if (num_completed > 0){
       for(var k = 0; k < total; k++){
         if (String(questionAndAnswers[k]["results"]) == String([false, false, false, false])){
           current = k+1;
@@ -210,21 +228,28 @@
       {
         styles = "style = 'background-color:lightgreen; border-radius: 5px'";
       }
-	  else
-	  {
-		styles = "style = 'border-radius: 5px'";
-	  }
+      else
+      {
+        styles = "style = 'border-radius: 5px'";
+      }
 
       strb += "<div id='progressdiv"+j+"' class='progressdiv'"+styles+">Q"+j+"</div>";
     }
 
     $('#progress').html(strb);
     for (var n = 0; n < total; n++){
-      if (n == current - 1) {
-        $("#progressdiv"+(n+1)).css("border-width","2px");
-      } else {
-        $("#progressdiv"+(n+1)).css("border-width","1px");
-      }
+      boldProgressDiv(n, current);
+    }
+
+  }
+
+  function boldProgressDiv(n, current){
+    if (n == current - 1) {
+      $("#progressdiv"+(n+1)).css("border-width","2px");
+
+    } else {
+      $("#progressdiv"+(n+1)).css("border-width","1px");
+
     }
 
   }
@@ -254,7 +279,7 @@
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
 
-    percent = (1-completed_num/total) * 100;
+    percent = (1-num_completed/total) * 100;
     if(current > total){
       showRating();
     }
@@ -266,7 +291,7 @@
 
   var changeQuestionNext = function(){
     current += 1;
-    completed_num = category_num_completed[category];
+    num_completed = category_num_completed[category];
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
 
@@ -278,18 +303,15 @@
     }
 
   }
+
+  
+
   var changeQuestion = function(category){
 
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
     for (var n = 0; n < total; n++){
-      if (n == current - 1) {
-        $("#progressdiv"+(n+1)).css("border-width","2px");
-
-      } else {
-        $("#progressdiv"+(n+1)).css("border-width","1px");
-
-      }
+      boldProgressDiv(n, current);
     }
 
     var title;
@@ -305,28 +327,10 @@
       title = "Cost of Living"
     }
     document.getElementById("category_title").innerHTML = title;
-    var currentQuestionAndAnswers = questionAndAnswers[current-1];
-    $('#question_number').text( "Question " + current +" out of " + total);
-    $('#question_content').text(currentQuestionAndAnswers["question"]+"");
 
-    var answers = currentQuestionAndAnswers["answers"];
-    var len = answers.length;
-    var str = "";
     document.getElementById("next").disabled = true;
-    for(var i = 0; i < len; i++)
-    {
-      var j = i+1;
-      var styles = "style='border-radius:10px; text-align:center;";
-      if(categories[category][current-1]["results"][i]){
-        styles += " background-color:lightgreen;";
-        document.getElementById("next").disabled = false;
-      }
-      styles+=" width:90%'";
-      str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current-1)+")'>  " + answers[i] +
-      "</button></li>";
-
-    }
-    $('#question_option').html(str);
+    displayAnswers(questionAndAnswers, total);
+    
 
     if (total_completed + temp_completed== 10 && !popup) {
       popup = true;
@@ -406,13 +410,13 @@
 
     str = "Please rank how important this category is to you."
     $('#question_content').html(str);
-	
-	
-	
-	
+
+
+
+
     str = ""
     $('#question_number').html(str);
-	
+
     $("#prev").hide();
     $("#next").hide();
     $("#skip").hide();
@@ -451,26 +455,26 @@
       ratings["costs"] = star_num;
     }
 
-    // else if(current > total + 1)
     var questionAndAnswers = categories[category];
     var total = questionAndAnswers.length;
-    
-    completed_num += temp_completed;
-    category_num_completed[category] = completed_num;
-    if(completed_num == total)
+
+    num_completed += temp_completed;
+    category_num_completed[category] = num_completed;
+    if(num_completed == total)
     {
       $("#" +category).find(".completed").css({'visibility': 'visible'});
     }
-    percent = (1-completed_num/total) * 100;
+    percent = (1-num_completed/total) * 100;
     $("#" +category).css({'background-image':
     'linear-gradient(to bottom, transparent '+ percent +'%, #90EE90 0)'});
-    $("#" +category + " h3").html(completed_num +"/"+total);
+    $("#" +category + " h3").html(num_completed +"/"+total);
+
 
     if (percent < 100){
-      $("#" +category).css('border-color', '#90EE90');
+      $("#" +category).css('border-color', lightgreenRGB);
     }
     else {
-      $("#" +category).css('border-color', '#EBEBEB');
+      $("#" +category).css('border-color', grayHex);
     }
 
 
@@ -498,7 +502,7 @@
       else {
         $(buttonSelector).css({'background-color': 'lightgreen'});
       }
-      var areAnyGreen = false
+      var areAnyGreen = false;
       for (var i=1;i<=len;i++){
         if ($("#button"+i).css("background-color") == lightgreenRGB){
           areAnyGreen = true;
@@ -525,24 +529,27 @@
     }
     document.getElementById("next").disabled = false;
   }
-  
+
   var closePageEvent = function(){
-  	  closepageDiv.style.display = "block";
+    closepageDiv.style.display = "block";
   }
-  
+
   var closewithoutSave = function(){
-	var questionAndAnswers = categories[category];
-  var total = questionAndAnswers.length; 
-	for (var i=0; i<categories[category].length; i++)
-	{
-		categories[category][i]["results"] = [false,false,false,false];
-	}
-	$(".Quiz").hide();
-	$('.row').css("opacity","1");
+
+  	var questionAndAnswers = categories[category];
+    var total = questionAndAnswers.length; 
+    //clear all users results
+  	for (var i=0; i<categories[category].length; i++)
+  	{
+  		categories[category][i]["results"] = [false,false,false,false];
+  	}
+  	$(".Quiz").hide();
+  	$('.row').css("opacity","1");
+
   }
-  
-  
-  
+
+
+
   </script>
 
 </head>
@@ -597,37 +604,6 @@
 
     </div>
 
-    <!--        Rating-->
-
-    <!--
-    <div id="question" class="Quiz">
-    <div id="category_title">
-    Location Quiz
-  </div>
-  <div id="question_area">
-  <p id="question_number">
-</p>
-
-<br>
-<p id="question_content">
-</p>
-<ul class="list-group" id="question_option">
-</ul>
-
-</div>
-<div id="progress"></div>
-<div id="button_area">
-
-
-<button id="prev" onclick="changeQuestionPrev()" class="btn">prev</button>
-<button id="skip" onclick="changeQuestionSkip()" class="btn">skip</button>
-<button id="next" onclick="changeQuestionNext()" class="btn btn-success" disabled>next</button>
-
-
-</div>
-
-</div>
--->
 
 <img src="navbar.png" alt="navbar" width='100%'>
 <div class="row">
@@ -652,7 +628,7 @@
   </div>
   <div id="activities" class="category">
     <br>
-      <br>
+    <br>
     <h2 id="titlename">Activities &amp; Work Potential  </h2>
     <h3 id="percentage">0/4</h3>
     <h1><i class="fa fa-bicycle" aria-hidden="true"></i></h1>
@@ -703,18 +679,18 @@
     </div>
 
   </div>
-  
-  <div id="closepage" class="modal">
-  	<div class="modal-content-t">
-        <center>
-    		<p style="font-weight:bold">Would you like to save your results? </p>
 
-        	<button class="btn btn-success" onclick="closepageDiv.style.display = 'none'; showRating()">Yes</button>
-            <button class="btn btn-info" onclick="closepageDiv.style.display = 'none'; closewithoutSave()">No</button>
-        </center>
+  <div id="closepage" class="modal">
+    <div class="modal-content-t">
+      <center>
+        <p style="font-weight:bold">Would you like to save your results? </p>
+
+        <button class="btn btn-success" onclick="closepageDiv.style.display = 'none'; showRating()">Yes</button>
+        <button class="btn btn-info" onclick="closepageDiv.style.display = 'none'; closewithoutSave()">No</button>
+      </center>
     </div>
   </div>
-  
+
 
 
 </body>
