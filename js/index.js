@@ -11,7 +11,7 @@ var current = 1;
 var category;
 var num_completed = 0;
 var temp_completed = 0;
-var num_required_completed = 1;
+var num_required_completed = 10;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
