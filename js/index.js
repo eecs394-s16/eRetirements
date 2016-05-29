@@ -13,6 +13,8 @@ var num_completed = 0;
 var temp_completed = 0
 var isThirdCommunityCompleted = false;
 var clickItem;
+var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
+var apiResult = {};
 
 $(document).ready(function() {
 
@@ -124,7 +126,6 @@ function initPage() {
 
     }
     $('#question_option').html(str);
-
   }
 
   function getResultsFromApi(){
@@ -150,14 +151,40 @@ function initPage() {
             }
           }
         }
-        if(s_name == "idealCommunity") { dataForApi[s_name] = temp_list;}
-        else {
+
+        if(s_name == "idealCommunity") {
+          dataForApi[s_name] = temp_list;
+        } else {
           if (temp_value != "") {
             dataForApi[s_name] = temp_value;
           }
         }
       }
     }
+    console.log(dataForApi)
+    createSurvey();
+  }
+
+  function createSurvey() {
+    $.ajax
+      ({
+        type: "POST",
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader ("Content-Type", "application/json"));
+          xhr.setRequestHeader ("Authorization", "Basic " + btoa("elitecohen@gmail.com" + ":" + "Stanselms3"));
+        },
+        // crossDomain: true,
+        // async: false,
+        url: apiURL,
+        // username: "elitecohen@gmail.com",
+        // password: "Stanselms3",
+        data: dataForApi,
+        success: function (res){
+          console.log('api results:')
+          console.log(res);
+          apiResult = res;
+        }
+    });
   }
 
   function boldProgressDiv(n, current){
