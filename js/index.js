@@ -186,10 +186,10 @@ function createSurvey() {
     // password: "Stanselms3",
     data: dataForApi,
     success: function (res){
-      console.log('api results:')
-      console.log(res);
-      apiResult = res;
-      saveData(apiResult);
+      // console.log('api results:')
+      // console.log(res);
+      saveData(res);
+      window.location.href = "file:///C:/Users/Joel/Desktop/eRetirements/survery-results.html";
     }
   });
 }
@@ -388,6 +388,7 @@ var closewithoutSave = function(){
 function saveData(obj) {
   //converts to JSON string the Object
   obj = JSON.stringify(obj);
+  console.log(obj);
   //creates a base-64 encoded ASCII string
   obj = btoa(obj);
   //save the encoded accout to web storage
