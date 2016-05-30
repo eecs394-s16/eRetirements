@@ -11,10 +11,6 @@ function loadData() {
    //do what you need with the Object
 }
 
-$(document).ready(function() {
-	loadData();
-	loadResult();
-});
 
 // var currentResult =  {
 //   "region": [
@@ -1515,7 +1511,15 @@ $(document).ready(function() {
 //   "updatedAt": "2016-05-29T17:49:48.497Z",
 //   "id": "574b2bbc227f050d007a8cd9"
 // };
-
+function wirteFile(){
+   var fh = fopen("js/result-stored.txt", 3);
+   if(fh != -1)
+   {
+      var str = "hello";
+      fwrite(fh, str);
+      fclose(fh);
+   }
+}
 function loadResult() {
 	city1_state_name = apiResult["city1"]["state"]["name"];
 	city1_name = apiResult["city1"]["name"];

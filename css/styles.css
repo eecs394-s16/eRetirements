@@ -12,35 +12,36 @@ body {
     border-style: solid;
     border-color: #EBEBEB;
     margin: 1%;
-
+    background-color: lightgrey;
     }
 
 #location{
-    background-color:gold;
+    /*background-color:gold;*/
+
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #community{
-    background-color: plum;
+    /*background-color: plum;*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #activities{
-    background-color: lightblue;
+    /*background-color: lightblue;*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #health{
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #costs{
-    background-color: darkseagreen;
+    /*background-color: darkseagreen;*/
 	background-image:
         linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }

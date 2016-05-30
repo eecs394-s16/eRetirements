@@ -11,12 +11,12 @@ var current = 1;
 var category;
 var num_completed = 0;
 var temp_completed = 0;
-var num_required_completed = 1;
+var num_required_completed = 10;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
 var apiResult = {};
-
+var temp_result = {};
 $(document).ready(function() {
 
   initPage();
@@ -59,6 +59,12 @@ $(document).ready(function() {
     var $clickedItem = $(e.target);
     var idName = jQuery(this).attr("id");
     showQuestion(idName);
+    for(var i = 0; i < categories[category].length; i++)
+    {
+      temp_result[i] = categories[category][i]["results"];
+    }
+  
+    // console.info(temp_result);
   });
 
 });
@@ -369,7 +375,10 @@ var closewithoutSave = function(){
   //clear all users results
   for (var i=0; i<categories[category].length; i++)
   {
-    categories[category][i]["results"] = [false,false,false,false];
+
+    // categories[category][i]["results"] = [false,false,false,false];
+    categories[category][i]["results"] = temp_result[i];
+    // console.info(temp_result);
   }
   $(".Quiz").hide();
   $('.row').css("opacity","1");
