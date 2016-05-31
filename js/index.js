@@ -11,11 +11,9 @@ var current = 1;
 var category;
 var num_completed = 0;
 var temp_completed = 0;
-var num_required_completed = 10;
+var num_required_completed = 1;
 var isThirdCommunityCompleted = false;
 var clickItem;
-var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
-var apiResult = {};
 var temp_result = {};
 $(document).ready(function() {
 
@@ -34,6 +32,9 @@ $(document).ready(function() {
 
   //when user clicks results button
   $(document).on("click", "#results", function(event){
+    getResultsFromApi();
+  });
+  $(document).on("click", "#modal-results", function(event){
     getResultsFromApi();
   });
 
@@ -63,7 +64,7 @@ $(document).ready(function() {
     {
       temp_result[i] = categories[category][i]["results"];
     }
-  
+
     // console.info(temp_result);
   });
 
@@ -168,30 +169,8 @@ function getResultsFromApi(){
       }
     }
   }
-  createSurvey();
-}
-
-function createSurvey() {
-  $.ajax
-  ({
-    type: "POST",
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader ("Content-Type", "application/json");
-      xhr.setRequestHeader ("Authorization", "Basic " + btoa("elitecohen@gmail.com" + ":" + "Stanselms3"));
-    },
-    // crossDomain: true,
-    // async: false,
-    url: apiURL,
-    // username: "elitecohen@gmail.com",
-    // password: "Stanselms3",
-    data: dataForApi,
-    success: function (res){
-      // console.log('api results:')
-      // console.log(res);
-      saveData(res);
-      window.location.href = "file:///C:/Users/Joel/Desktop/eRetirements/survery-results.html";
-    }
-  });
+  saveData(dataForApi);
+  window.location.href = "file:///C:/Users/Joel/Desktop/eRetirements/survey-results.html";
 }
 
 function boldProgressDiv(n, current){
@@ -244,7 +223,7 @@ var showRating = function(){
   var starsHTML = "";
   //four stars
   for (var s = 0; s < 4; s++){
-    starsHTML += "<span class='star'>&#9733</span>";
+    starsHTML += "<span id=star"+s+" class='star'>&#9733</span>";
   }
 
   $('#question_option').html(starsHTML);
@@ -390,7 +369,7 @@ function saveData(obj) {
   obj = JSON.stringify(obj);
   console.log(obj);
   //creates a base-64 encoded ASCII string
-  obj = btoa(obj);
+  // obj = btoa(obj);
   //save the encoded accout to web storage
-  localStorage.setItem('_results', obj);
+  localStorage.setItem('data', obj);
 }

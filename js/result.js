@@ -1,22 +1,50 @@
+var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
+var dataForApi;
 
 $(document).ready(function() {
 	console.log("checking1");
-	var apiResult = {};
-	apiResult = localStorage.getItem('_results');
-	if (!apiResult) console.log("doesnt exist");
-   else {
-      localStorage.removeItem('_results');
-      //decodes a string data encoded using base-64
-      apiResult = atob(apiResult);
-      //parses to Object the JSON string
-      apiResult = JSON.parse(apiResult);
-      //do what you need with the Object
-      console.log("checking2");
-      console.log(apiResult);
-
-      loadResult(apiResult);     
-   }
+	dataForApi = '';
+	dataForApi = localStorage.getItem('data');
+	if (!dataForApi){
+		console.log("doesnt exist");
+	}
+	else {
+		console.log("checking2");
+		// localStorage.removeItem('_results');
+		//decodes a string data encoded using base-64
+		// apiResult = atob(apiResult);
+		//parses to Object the JSON string
+		dataForApi = JSON.parse(dataForApi);
+		//do what you need with the Object
+		console.log(dataForApi);
+		createSurvey(dataForApi);
+	}
 });
+
+function createSurvey(data) {
+
+  $.ajax
+  ({
+    type: "POST",
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader ("Content-Type", "application/json");
+      xhr.setRequestHeader ("Authorization", "Basic " + btoa("elitecohen@gmail.com" + ":" + "Stanselms3"));
+    },
+    // crossDomain: true,
+    // async: false,
+    url: apiURL,
+    // username: "elitecohen@gmail.com",
+    // password: "Stanselms3",
+    data: data,
+    success: function (res){
+      // console.log('api results:')
+      console.log(res);
+			loadResult(res);
+      // window.location.href = "file:///C:/Users/Joel/Desktop/eRetirements/survery-results.html";
+      // window.location.replace("file:///C:/Users/Joel/Desktop/eRetirements/survery-results.html");
+    }
+  });
+}
 
 // var currentResult =  {
 //   "region": [
@@ -1517,15 +1545,17 @@ $(document).ready(function() {
 //   "updatedAt": "2016-05-29T17:49:48.497Z",
 //   "id": "574b2bbc227f050d007a8cd9"
 // };
-function wirteFile(){
-   var fh = fopen("js/result-stored.txt", 3);
-   if(fh != -1)
-   {
-      var str = "hello";
-      fwrite(fh, str);
-      fclose(fh);
-   }
-}
+//
+// function writeFile(){
+// 	var fh = fopen("js/result-stored.txt", 3);
+// 	if(fh != -1)
+// 	{
+// 		var str = "hello";
+// 		fwrite(fh, str);
+// 		fclose(fh);
+// 	}
+// }
+
 function loadResult(apiResult) {
 	city1_state_name = apiResult["city1"]["state"]["name"];
 	city1_name = apiResult["city1"]["name"];
@@ -1544,31 +1574,31 @@ function loadResult(apiResult) {
 
 	str = "";
 	str = "<li><a href = " + city1_link + ">" +
-			"<div class='image-height-fixer' >" +
-				"<img src=" +city1_img +" alt>" +
-			"</div>" +
-			"<h3> City 1 : " +
-				"<span>" + city1_name + "," + city1_state_name + "</span>" +
-			"</h3></a></li>";
+	"<div class='image-height-fixer' >" +
+	"<img src=" +city1_img +" alt>" +
+	"</div>" +
+	"<h3> City 1 : " +
+	"<span>" + city1_name + ", " + city1_state_name + "</span>" +
+	"</h3></a></li>";
 	str += "<li><a href = " + city2_link + ">" +
-			"<div class='image-height-fixer' >" +
-				"<img src=" +city2_img +" alt>" +
-			"</div>" +
-			"<h3> City 2 : " +
-				"<span>" + city2_name + "," + city2_state_name + "</span>" +
-			"</h3></a></li>";
+	"<div class='image-height-fixer' >" +
+	"<img src=" +city2_img +" alt>" +
+	"</div>" +
+	"<h3> City 2 : " +
+	"<span>" + city2_name + ", " + city2_state_name + "</span>" +
+	"</h3></a></li>";
 	str += "<li><a href = " + city3_link + ">" +
-			"<div class='image-height-fixer' >" +
-				"<img src=" +city3_img +" alt>" +
-			"</div>" +
-			"<h3> City 3 : " +
-				"<span>" + city3_name + "," + city3_state_name + "</span>" +
-			"</h3></a></li>";
+	"<div class='image-height-fixer' >" +
+	"<img src=" +city3_img +" alt>" +
+	"</div>" +
+	"<h3> City 3 : " +
+	"<span>" + city3_name + ", " + city3_state_name + "</span>" +
+	"</h3></a></li>";
 
 	$(".top-cities").html(str);
 
-
 }
+
 function textConvert(str) {
 	// debugger;
 	var temp = str.split(" ");
