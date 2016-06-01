@@ -15,6 +15,7 @@ var num_required_completed = 10;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var temp_result = {};
+var restrictRegion = false;
 
 $(document).ready(function() {
 
@@ -195,14 +196,16 @@ function getResultsFromApi(){
 }
 
 function setWeights(){
-  dataForApi["location"] = ratings["location"]
-  dataForApi["weather"] = ratings["location"]
-  dataForApi["activities"] = ratings["activities"]
-  dataForApi["workPotential"] = ratings["activities"]
-  dataForApi["community"] = ratings["community"]
-  dataForApi["demographics"] = ratings["community"]
-  dataForApi["healthcare"] = ratings["health"]
-  dataForApi["costs"] = ratings["costs"]
+  dataForApi["location"] = ratings["location"];
+  dataForApi["weather"] = ratings["location"];
+  dataForApi["activities"] = ratings["activities"];
+  dataForApi["workPotential"] = ratings["activities"];
+  dataForApi["community"] = ratings["community"];
+  dataForApi["demographics"] = ratings["community"];
+  dataForApi["healthcare"] = ratings["health"];
+  dataForApi["costs"] = ratings["costs"];
+
+  dataForApi["restrictRegion"] = restrictRegion;
 }
 
 function boldProgressDiv(n, current){

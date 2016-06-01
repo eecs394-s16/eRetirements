@@ -26,18 +26,18 @@ var ratings = {
 var categories = {
 	"location": [
 		{
-			"name": "weatherType",
-			"question": "My perfect weather...",
-			"answers": ["is warm year-round, with as little rain as possible","is warm year-round, but I don't mind some showers","includes all 4 seasons, with maybe SOME snow","definitely has some snow"],
-			"values": ["warm", "warm-showers", "all-seasons", "some-snow"],
-			"results": [false,false,false,false]
-		},
-		{
 			"name": "region",
 			"question": "I'd prefer to live in the following regions (select all that apply)",
 			"answers": ["West", "Midwest", "South", "Northeast"],
 			"values" : ["west", "midwest", "south", "northeast"],
 			"results" : [false,false,false,false]
+		},
+		{
+			"name": "weatherType",
+			"question": "My perfect weather...",
+			"answers": ["is warm year-round, with as little rain as possible","is warm year-round, but I don't mind some showers","includes all 4 seasons, with maybe SOME snow","definitely has some snow"],
+			"values": ["warm", "warm-showers", "all-seasons", "some-snow"],
+			"results": [false,false,false,false]
 		},
 		{
 			"name": "vacationDay",
