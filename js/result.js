@@ -44,7 +44,8 @@ function createSurvey(data) {
 			loadResult(res);
     },
     error: function(err, err1) {
-      $(".top-cities").html("<img src='loading.gif'/>");
+      $(".survey-results").html("Please refresh the page.<br><img src='loading.gif'/>");
+     
     }
   });
 }
