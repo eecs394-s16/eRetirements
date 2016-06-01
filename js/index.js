@@ -15,6 +15,7 @@ var num_required_completed = 10;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var temp_result = {};
+
 $(document).ready(function() {
 
   initPage();

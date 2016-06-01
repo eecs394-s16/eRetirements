@@ -8,7 +8,7 @@ var showQuestion = function(idName){
   num_completed = category_num_completed[category];
   var questionAndAnswers = categories[category];
   var total = questionAndAnswers.length;
-
+  
   //opens question popup to first skipped question
   if (num_completed > 0){
     for(var k = 0; k < total; k++){
@@ -90,7 +90,7 @@ var changeQuestionSkip = function(){
     $("#submitRating").hide();
 
   }
-  
+
 }
 
 var changeQuestionNext = function(){
@@ -98,7 +98,7 @@ var changeQuestionNext = function(){
   num_completed = category_num_completed[category];
   var questionAndAnswers = categories[category];
   var total = questionAndAnswers.length;
-  
+
   if(category != "geography")
   {
 
@@ -118,7 +118,7 @@ var changeQuestionNext = function(){
     $("#submitRating").hide();
 
   }
-  
+
 
 
 
