@@ -1,4 +1,5 @@
 var categoryNames = {
+	"geography": "Geography",
 	"location": "Location & Weather",
 	"community": "Community & Demographics",
 	"activities": "Activities & Work Potential",
@@ -23,6 +24,15 @@ var ratings = {
 };
 
 var categories = {
+	"geography": [
+		{
+			"name": "region",
+			"question": "I'd prefer to live in the following regions (select all that apply)",
+			"answers": ["West", "Midwest", "South", "Northeast"],
+			"values" : ["west", "midwest", "south", "northeast"],
+			"results" : [false,false,false,false]
+		}
+	],
 	"location": [
 		{	"name": "weatherType",
 			"question": "My perfect weather...",

@@ -71,13 +71,26 @@ var changeQuestionSkip = function(){
   var total = questionAndAnswers.length;
 
   percent = (1-num_completed/total) * 100;
-  if(current > total){
-    showRating();
-  }
-  else
+  if(category != "geography")
   {
-    changeQuestion(category);
+    if(current > total){
+      showRating();
+    }
+    else
+    {
+      changeQuestion(category);
+    }
   }
+  else {
+    $('.row').css("opacity","1");
+    $('.Quiz').hide();
+
+    hideQuizDivs();
+
+    $("#submitRating").hide();
+
+  }
+  
 }
 
 var changeQuestionNext = function(){
@@ -85,13 +98,29 @@ var changeQuestionNext = function(){
   num_completed = category_num_completed[category];
   var questionAndAnswers = categories[category];
   var total = questionAndAnswers.length;
+  
+  if(category != "geography")
+  {
 
-  if(current > total) {
-    showRating();
+    if(current > total){
+      showRating();
+    }
+    else
+    {
+      changeQuestion(category);
+    }
   }
   else {
-    changeQuestion(category);
+    $('.row').css("opacity","1");
+    $('.Quiz').hide();
+    hideQuizDivs();
+
+    $("#submitRating").hide();
+
   }
+  
+
+
 
 }
 
