@@ -11,7 +11,7 @@ var current = 1;
 var category;
 var num_completed = 0;
 var temp_completed = 0;
-var num_required_completed = 1;
+var num_required_completed = 10;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var temp_result = {};
@@ -242,7 +242,7 @@ var showRating = function(){
     stars[r].style.color = "orange";
   }
 
-  $('#question_content').html("Please rank how important this category is to you.");
+  $('#question_content').html("Please rank how important this category is to you. <br> (1 star = least important, 4 stars = most important)");
 
   //clears the text displaying current question index
   $('#question_number').html("");
