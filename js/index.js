@@ -11,7 +11,7 @@ var current = 1;
 var category;
 var num_completed = 0;
 var temp_completed = 0;
-var num_required_completed = 10;
+var num_required_completed = 4;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var temp_result = {};
@@ -141,6 +141,7 @@ function displayAnswers(questionAndAnswers, total){
 
 function getResultsFromApi(){
   var keys = Object.keys(categories);
+  setWeights();
   for (var i = 0; i < keys.length; i++){
     var c = categories[keys[i]];
     for (var j = 0; j < c.length; j++){
@@ -174,6 +175,17 @@ function getResultsFromApi(){
   }
   saveData(dataForApi);
   window.location.href = "survey-results.html";
+}
+
+function setWeights(){
+  dataForApi["location"] = ratings["location"]
+  dataForApi["weather"] = ratings["location"]
+  dataForApi["activities"] = ratings["activities"]
+  dataForApi["workPotential"] = ratings["activities"]
+  dataForApi["community"] = ratings["community"]
+  dataForApi["demographics"] = ratings["community"]
+  dataForApi["healthcare"] = ratings["health"]
+  dataForApi["costs"] = ratings["costs"]
 }
 
 function boldProgressDiv(n, current){
