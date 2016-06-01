@@ -11,7 +11,7 @@ var current = 1;
 var category;
 var num_completed = 0;
 var temp_completed = 0;
-var num_required_completed = 1;
+var num_required_completed = 10;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var temp_result = {};
@@ -31,10 +31,13 @@ $(document).ready(function() {
   });
 
   //when user clicks results button
-  $(document).on("click", "#results", function(event){
-    getResultsFromApi();
-  });
-  $(document).on("click", "#modal-results", function(event){
+  // $(document).on("click", "#results", function(event){
+  //   getResultsFromApi();
+  // });
+  // $(document).on("click", "#modal-results", function(event){
+  //   getResultsFromApi();
+  // });
+  $(document).on("click", ".results-btn", function(event){
     getResultsFromApi();
   });
 
@@ -151,7 +154,7 @@ function getResultsFromApi(){
       for(var k = 0; k < s_results.length; k++){
         if(s_results[k]) {
           if (s_name == "idealCommunity"){
-            temp_list.append(s_values[k]);
+            temp_list.push(s_values[k]);
           }
           else {
             temp_value = s_values[k];
@@ -170,7 +173,7 @@ function getResultsFromApi(){
     }
   }
   saveData(dataForApi);
-  window.location.href = "file:///C:/Users/Joel/Desktop/eRetirements/survey-results.html";
+  window.location.href = "survey-results.html";
 }
 
 function boldProgressDiv(n, current){
