@@ -24,7 +24,6 @@ var ratings = {
 
 var categories = {
 	"location": [
-		<<<<<<< HEAD
 		{
 			"name": "region",
 			"question": "I'd prefer to live in the following regions (select all that apply)",

@@ -11,7 +11,7 @@ var current = 1;
 var category;
 var num_completed = 0;
 var temp_completed = 0;
-var num_required_completed = 10;
+var num_required_completed = 3;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var temp_result = {};
@@ -34,6 +34,11 @@ $(document).ready(function() {
 
   $(document).on("click", ".results-btn", function(event){
     getResultsFromApi();
+  });
+
+  $(document).on("click", "#restrictRegion", function(event){
+    restrictRegion = !restrictRegion;
+    console.log(restrictRegion);
   });
 
   //when you click on the progress bars below
