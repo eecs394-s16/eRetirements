@@ -1,5 +1,5 @@
-// var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
-var apiURL = "https://eretirements.herokuapp.com";
+var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
+// var apiURL = "https://eretirements.herokuapp.com";
 var dataForApi;
 
 $(document).ready(function() {
@@ -40,9 +40,11 @@ function createSurvey(data) {
     success: function (res){
       // console.log('api results:')
       console.log(res);
+      
 			loadResult(res);
-      // window.location.href = "file:///C:/Users/Joel/Desktop/eRetirements/survery-results.html";
-      // window.location.replace("file:///C:/Users/Joel/Desktop/eRetirements/survery-results.html");
+    },
+    error: function(err, err1) {
+      $(".top-cities").html("<img src='loading.gif'/>");
     }
   });
 }
@@ -1558,6 +1560,7 @@ function createSurvey(data) {
 // }
 
 function loadResult(apiResult) {
+
 	city1_state_name = apiResult["city1"]["state"]["name"];
 	city1_name = apiResult["city1"]["name"];
 	city1_img = apiResult["city1"]["images"][0]["url"];
