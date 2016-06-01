@@ -26,6 +26,7 @@ var categories = {
 	"location": [
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{
 		"name": "region",
 		"question": "I'd prefer to live in the following regions (select all that apply)",
@@ -171,6 +172,8 @@ var categories = {
 =======
 =======
 >>>>>>> afe26d1ded280d56bb37b1e70e325314e0e4c484
+=======
+>>>>>>> afe26d1ded280d56bb37b1e70e325314e0e4c484
 		{
 			"name": "weatherType",
 			"question": "My perfect weather...",
@@ -314,6 +317,9 @@ var categories = {
 		}
 	]
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> afe26d1ded280d56bb37b1e70e325314e0e4c484
+=======
 >>>>>>> afe26d1ded280d56bb37b1e70e325314e0e4c484
 =======
 >>>>>>> afe26d1ded280d56bb37b1e70e325314e0e4c484
