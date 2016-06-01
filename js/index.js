@@ -11,7 +11,7 @@ var current = 1;
 var category;
 var num_completed = 0;
 var temp_completed = 0;
-var num_required_completed = 4;
+var num_required_completed = 10;
 var isThirdCommunityCompleted = false;
 var clickItem;
 var temp_result = {};
@@ -63,7 +63,7 @@ $(document).ready(function() {
     else {
       displayAnswers(questionAndAnswers,total);
     }
-    
+
 
 
 
@@ -214,14 +214,14 @@ function boldProgressDiv(n, current){
 }
 
 var showGeographyQuestion = function() {
-  // 
+  //
   $(openModal).remove();
   showQuestion("geography");
   $("#progress").hide();
   $("#question_number").hide();
   $("#prev").hide();
   $("#skip").hide();
-  
+
 
 }
 
@@ -240,7 +240,7 @@ function showQuizDivs(){
 }
 
 function hideQuizDivs(){
-  
+
   $("#prev").hide();
   $("#next").hide();
   $("#skip").hide();
@@ -361,7 +361,7 @@ var focusButton = function(buttonIndex,len,questionIndex){
     if (category == "community" && questionIndex == 2){
       isThirdCommunityCompleted = true;
     }
-    
+
 
     var newBackgroundColor;
     ($(buttonSelector).css("background-color") == lightgreenRGB) ? newBackgroundColor = 'white' : newBackgroundColor = 'lightgreen';
