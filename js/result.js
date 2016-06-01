@@ -23,30 +23,30 @@ $(document).ready(function() {
 
 function createSurvey(data) {
 
-  $.ajax
-  ({
-    type: "POST",
+	$.ajax
+	({
+		type: "POST",
 		headers: {
 			"Content-Type": "application/json",
 			"Authorization": "Basic " + btoa("elitecohen@gmail.com" + ":" + "Stanselms3")
 		},
-    // crossDomain: true,
-    // async: false,
-    url: apiURL,
-    // username: "elitecohen@gmail.com",
-    // password: "Stanselms3",
-    data: data,
-    success: function (res){
-      // console.log('api results:')
-      console.log(res);
+		// crossDomain: true,
+		// async: false,
+		url: apiURL,
+		// username: "elitecohen@gmail.com",
+		// password: "Stanselms3",
+		data: data,
+		success: function (res){
+			// console.log('api results:')
+			console.log(res);
 
 			loadResult(res);
-    },
-    error: function(err, err1) {
-      $(".survey-results").html("Please refresh the page.<br><img src='loading.gif'/>");
+		},
+		error: function(err, err1) {
+			$(".survey-results").html("Please refresh the page.<br><img src='loading.gif'/>");
 
-    }
-  });
+		}
+	});
 }
 
 function loadResult(apiResult) {

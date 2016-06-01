@@ -1,291 +1,291 @@
 body {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .category {
-    border-radius: 100%;
-    background-color: #EBEBEB;
-    width:275px;
-    height:275px;
-    display:inline-block;
-    border-width:5px;
-    border-style: solid;
-    border-color: #EBEBEB;
-    margin: 1%;
-/*    background-color: lightgrey;*/
+  border-radius: 100%;
+  background-color: #EBEBEB;
+  width:275px;
+  height:275px;
+  display:inline-block;
+  border-width:5px;
+  border-style: solid;
+  border-color: #EBEBEB;
+  margin: 1%;
+  /*    background-color: lightgrey;*/
 }
 
 #location{
-    background-color:gold;
+  background-color:gold;
 
-	background-image:
-        linear-gradient(to bottom, transparent 100%, #90EE90 0);
+  background-image:
+  linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #community{
-    background-color: plum;
-	background-image:
-        linear-gradient(to bottom, transparent 100%, #90EE90 0);
+  background-color: plum;
+  background-image:
+  linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #activities{
-    background-color: lightblue;
-	background-image:
-        linear-gradient(to bottom, transparent 100%, #90EE90 0);
+  background-color: lightblue;
+  background-image:
+  linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #health{
-    background-color: lightcoral;
-	background-image:
-        linear-gradient(to bottom, transparent 100%, #90EE90 0);
+  background-color: lightcoral;
+  background-image:
+  linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 #costs{
-    background-color: darkseagreen;
-	background-image:
-        linear-gradient(to bottom, transparent 100%, #90EE90 0);
+  background-color: darkseagreen;
+  background-image:
+  linear-gradient(to bottom, transparent 100%, #90EE90 0);
 }
 
 .category:hover {
-    border-color: #5FAC9D;
-    cursor: pointer;
-    cursor: hand;
+  border-color: #5FAC9D;
+  cursor: pointer;
+  cursor: hand;
 }
 
 #titlename{
-	margin-top:-1%;
-    font-weight:300;
+  margin-top:-1%;
+  font-weight:300;
 }
 
 #percentage{
-	margin-top:-5%;
-	margin-bottom:-5%;
+  margin-top:-5%;
+  margin-bottom:-5%;
 }
 
 .btn {
-    margin-right:5%;
+  margin-right:5%;
 }
 
 h1 {
-    font-size: 85px;
+  font-size: 85px;
 
 }
 
 h2 {
-    padding:10px;
-    font-size:35px;
+  padding:10px;
+  font-size:35px;
 }
 
 .completed p {
-    color:white;
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+  color:white;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .completed {
-    position:relative;
-    border-width:3px;
-    border-style: solid;
-    border-color: green;
-    background-color: lightgreen;
-    border-radius: 100%;
-    width:80px;
-    height:80px;
-    left:100px;
-    bottom: 60px;
-    visibility: hidden;
+  position:relative;
+  border-width:3px;
+  border-style: solid;
+  border-color: green;
+  background-color: lightgreen;
+  border-radius: 100%;
+  width:80px;
+  height:80px;
+  left:100px;
+  bottom: 60px;
+  visibility: hidden;
 }
 .Quiz {
-    background-color: white;
-    box-shadow: 5px 5px 5px #888888;
-    width:600px;
-    height:550px;
-    position:absolute;
-    margin-left:26%;
-    margin-top: 5%;
-    margin-bottom: -100px;
-    z-index: 10;
-	border-radius: 5%;
+  background-color: white;
+  box-shadow: 5px 5px 5px #888888;
+  width:600px;
+  height:550px;
+  position:absolute;
+  margin-left:26%;
+  margin-top: 5%;
+  margin-bottom: -100px;
+  z-index: 10;
+  border-radius: 5%;
 
 }
 #category_title {
-    font-size: 37px;
-	padding-top: 20px;
+  font-size: 37px;
+  padding-top: 20px;
 }
 #question_number {
-    font-size: 30px;
+  font-size: 30px;
 
 }
 #question_option {
-    margin: 10px;
+  margin: 10px;
 }
 #question_area {
-    height: 76%;
-    width: 100%;
-	margin-bottom:-15%;
+  height: 76%;
+  width: 100%;
+  margin-bottom:-15%;
 }
 #question_content {
-    list-style-type: none;
-    font-weight: bold;
+  list-style-type: none;
+  font-weight: bold;
 }
 ul {
-    list-style-type: none;
+  list-style-type: none;
 
 }
 li {
-	margin-bottom: 2%;
-	border-radius: 20px;
+  margin-bottom: 2%;
+  border-radius: 20px;
 }
 
 #prev {
-    float:left;
-    margin-left:5%;
+  float:left;
+  margin-left:5%;
 }
 
 #next {
-    float:right;
-    margin-right:5%;
-	height:8%;
-	width: 12%;
-	font-size:22px;
+  float:right;
+  margin-right:5%;
+  height:8%;
+  width: 12%;
+  font-size:22px;
 }
 
 #finish {
-	position: absolute;
-	right: -2%;
-	margin-top: 5%;
-	height: 5%;
-	width: 5%;
-	padding: 0px;
+  position: absolute;
+  right: -2%;
+  margin-top: 5%;
+  height: 5%;
+  width: 5%;
+  padding: 0px;
 }
 
 
 .answer:focus {
-    border-width :2px;
+  border-width :2px;
 }
 
 #progress{
-    margin-bottom:80px;
-    margin-left:20px;
-    margin-right:20px;
-	margin-top:-20px;
-    height:5px;
-    border: black 0px solid;
+  margin-bottom:80px;
+  margin-left:20px;
+  margin-right:20px;
+  margin-top:-20px;
+  height:5px;
+  border: black 0px solid;
 }
 
 .progressdiv{
   cursor: pointer;
-	width:15%;
-	display:inline-block;
-	border: 1px solid black;
-	margin: 10px;
-	margin-top: 5px;
+  width:15%;
+  display:inline-block;
+  border: 1px solid black;
+  margin: 10px;
+  margin-top: 5px;
 
 }
 
 .list-group-item answer {
-     border-radius:10px;
-     text-align:center;
+  border-radius:10px;
+  text-align:center;
 }
 
 #instructions {
-    background-color: skyblue;
-    padding:5px;
+  background-color: skyblue;
+  padding:5px;
 }
 
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 9999; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 45%; /* Could be more or less, depending on screen size */
-	/*height: 60%;*/
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 45%; /* Could be more or less, depending on screen size */
+  /*height: 60%;*/
 }
 
 .modal-content-t {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 45%; /* Could be more or less, depending on screen size */
-	height: 15%;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 45%; /* Could be more or less, depending on screen size */
+  height: 15%;
 }
 
 /* The Close Button */
 .close, .oClose {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .oClose:hover,
 .oClose:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #results {
-    float:right;
+  float:right;
 }
 
 .star {
-    display:inline-block;
-    font-size:100px;
-    color:lightgray;
-    cursor: pointer;
-    margin-left: 5px;
-    margin-right: 5px;
+  display:inline-block;
+  font-size:100px;
+  color:lightgray;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .ui-tooltip: {
   z-index:999;
 }
- .ui-tooltip:after {
-   border: solid;
-   border-color: #111 transparent;
-   border-color: lightblue transparent;
-   border-width: 1.5em 1em 0 1em;
-   bottom: -1.5em;
-   content: "";
-   display: block;
-   left: 12em;
-   position: absolute;
-   z-index: -10;
-   /*background: lightgray;*/
+.ui-tooltip:after {
+  border: solid;
+  border-color: #111 transparent;
+  border-color: lightblue transparent;
+  border-width: 1.5em 1em 0 1em;
+  bottom: -1.5em;
+  content: "";
+  display: block;
+  left: 12em;
+  position: absolute;
+  z-index: -10;
+  /*background: lightgray;*/
 
 }
 /*.ui-tooltip, .arrow:after {
-    background: black;
-    border: 2px solid white;
-  }*/
+background: black;
+border: 2px solid white;
+}*/
 
 .ui-tooltip {
   border : none ! important;
