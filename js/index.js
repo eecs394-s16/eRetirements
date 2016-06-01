@@ -82,6 +82,10 @@ $(document).ready(function() {
 
 });
 
+function removeOpenModal() {
+  $(openModal).remove();
+}
+
 function initPage() {
 
   //hide quiz modal for landing
@@ -111,7 +115,8 @@ function initPage() {
 
   oSpan.onclick = function(event) {
     openModal.style.display = "none";
-    showGeographyQuestion();
+    // showGeographyQuestion();
+    $(openModal).remove();
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -145,6 +150,9 @@ function displayAnswers(questionAndAnswers, total){
     str += "<li><button id='button"+j+"' class='list-group-item answer'"+styles+" onclick='focusButton("+j+","+len+","+(current-1)+")'>  " + answers[i] +
     "</button></li>";
 
+  }
+  if (category == "location" && current == 1){
+    str += "<br><br><br><input id='restrictRegion' type='checkbox' value=''> Check this box to restrict results to these regions";
   }
   $('#question_option').html(str);
 }
@@ -213,17 +221,17 @@ function boldProgressDiv(n, current){
   }
 }
 
-var showGeographyQuestion = function() {
-  //
-  $(openModal).remove();
-  showQuestion("geography");
-  $("#progress").hide();
-  $("#question_number").hide();
-  $("#prev").hide();
-  $("#skip").hide();
+// var showGeographyQuestion = function() {
+//   //
+//   $(openModal).remove();
+//   showQuestion("geography");
+//   $("#progress").hide();
+//   $("#question_number").hide();
+//   $("#prev").hide();
+//   $("#skip").hide();
 
 
-}
+// }
 
 function showQuizDivs(){
   $("#question_number").show();
@@ -356,7 +364,7 @@ var focusButton = function(buttonIndex,len,questionIndex){
 
   var progressdivSelector = "#progressdiv"+(questionIndex+1);
   var buttonSelector = "#button"+buttonIndex;
-  var specialQuestions = (category == "community" && questionIndex == 2) || (category == "geography");
+  var specialQuestions = (category == "community" && questionIndex == 2) || (category == "location" && questionIndex == 0);
   if (specialQuestions){
     if (category == "community" && questionIndex == 2){
       isThirdCommunityCompleted = true;
