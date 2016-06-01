@@ -30,13 +30,6 @@ $(document).ready(function() {
     }
   });
 
-  //when user clicks results button
-  // $(document).on("click", "#results", function(event){
-  //   getResultsFromApi();
-  // });
-  // $(document).on("click", "#modal-results", function(event){
-  //   getResultsFromApi();
-  // });
   $(document).on("click", ".results-btn", function(event){
     getResultsFromApi();
   });
@@ -55,7 +48,24 @@ $(document).ready(function() {
       boldProgressDiv(n, current);
     }
 
-    displayAnswers(questionAndAnswers,total);
+    if (total_completed + temp_completed == num_required_completed && !popup) {
+      popup = true;
+      var tooltips = $( "[title]" ).tooltip({
+        position: {
+          my: "left top",
+          at: "right+5 top-100"
+        }
+      });
+      tooltips.tooltip( "open" );
+      modal.style.display = "block";
+      document.getElementById('results').disabled = false;
+    }
+    else {
+      displayAnswers(questionAndAnswers,total);
+    }
+    
+
+
 
   });
 
@@ -68,7 +78,6 @@ $(document).ready(function() {
       temp_result[i] = categories[category][i]["results"];
     }
 
-    // console.info(temp_result);
   });
 
 });
@@ -102,6 +111,7 @@ function initPage() {
 
   oSpan.onclick = function(event) {
     openModal.style.display = "none";
+    showGeographyQuestion();
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -154,7 +164,7 @@ function getResultsFromApi(){
 
       for(var k = 0; k < s_results.length; k++){
         if(s_results[k]) {
-          if (s_name == "idealCommunity"){
+          if (s_name == "idealCommunity" || s_name == "region"){
             temp_list.push(s_values[k]);
           }
           else {
@@ -164,7 +174,7 @@ function getResultsFromApi(){
         }
       }
 
-      if(s_name == "idealCommunity") {
+      if(s_name == "idealCommunity" || s_name == "region") {
         dataForApi[s_name] = temp_list;
       } else {
         if (temp_value != "") {
@@ -173,6 +183,12 @@ function getResultsFromApi(){
       }
     }
   }
+  // dataForApi["activities"] = ratings["activities"];
+  // dataForApi["workPotential"] = ratings["activities"];
+  // dataForApi["community"] = ratings["community"];
+  // dataForApi["demographc"] = ratings["community"];
+  // dataForApi[""]
+
   saveData(dataForApi);
   window.location.href = "survey-results.html";
 }
@@ -197,11 +213,20 @@ function boldProgressDiv(n, current){
   }
 }
 
-var removeOpenModal = function() {
+var showGeographyQuestion = function() {
+  // 
   $(openModal).remove();
+  showQuestion("geography");
+  $("#progress").hide();
+  $("#question_number").hide();
+  $("#prev").hide();
+  $("#skip").hide();
+  
+
 }
 
 function showQuizDivs(){
+  $("#question_number").show();
   $('.row').css("opacity","0.5");
   $('.Quiz').show();
   $("#prev").show();
@@ -211,6 +236,17 @@ function showQuizDivs(){
   $("#progress").show();
 
   $("#submitRating").hide();
+
+}
+
+function hideQuizDivs(){
+  
+  $("#prev").hide();
+  $("#next").hide();
+  $("#skip").hide();
+  $("#finish").hide();
+  $("#progress").hide();
+  $("#submitRating").show();
 
 }
 
@@ -249,7 +285,7 @@ var showRating = function(){
 
   var stars = $('#question_option').children();
 
-  if (ratings[category] > 0) {
+  if (ratings[category] > 0 || category == "geography") {
     document.getElementById("submitRating").disabled = false;
   }
 
@@ -262,12 +298,7 @@ var showRating = function(){
   //clears the text displaying current question index
   $('#question_number').html("");
 
-  $("#prev").hide();
-  $("#next").hide();
-  $("#skip").hide();
-  $("#finish").hide();
-  $("#progress").hide();
-  $("#submitRating").show();
+  hideQuizDivs();
 
 }
 
@@ -325,9 +356,12 @@ var focusButton = function(buttonIndex,len,questionIndex){
 
   var progressdivSelector = "#progressdiv"+(questionIndex+1);
   var buttonSelector = "#button"+buttonIndex;
-  if (category == "community" && questionIndex == 2){
-
-    isThirdCommunityCompleted = true;
+  var specialQuestions = (category == "community" && questionIndex == 2) || (category == "geography");
+  if (specialQuestions){
+    if (category == "community" && questionIndex == 2){
+      isThirdCommunityCompleted = true;
+    }
+    
 
     var newBackgroundColor;
     ($(buttonSelector).css("background-color") == lightgreenRGB) ? newBackgroundColor = 'white' : newBackgroundColor = 'lightgreen';
