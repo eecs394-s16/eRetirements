@@ -63,7 +63,7 @@ var changeQuestionPrev = function() {
 var changeQuestionSkip = function(){
   var currentProgressDiv = "#progressdiv"+(current);
   if ($(currentProgressDiv).css('background-color') != lightgreenRGB){
-    changeBackgroundColor(currentProgressDiv,'yellow');
+    changeBackgroundColor(currentProgressDiv,'white');
   }
 
   current += 1;
