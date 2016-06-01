@@ -30,13 +30,6 @@ $(document).ready(function() {
     }
   });
 
-  //when user clicks results button
-  // $(document).on("click", "#results", function(event){
-  //   getResultsFromApi();
-  // });
-  // $(document).on("click", "#modal-results", function(event){
-  //   getResultsFromApi();
-  // });
   $(document).on("click", ".results-btn", function(event){
     getResultsFromApi();
   });
@@ -55,7 +48,24 @@ $(document).ready(function() {
       boldProgressDiv(n, current);
     }
 
-    displayAnswers(questionAndAnswers,total);
+    if (total_completed + temp_completed == num_required_completed && !popup) {
+      popup = true;
+      var tooltips = $( "[title]" ).tooltip({
+        position: {
+          my: "left top",
+          at: "right+5 top-100"
+        }
+      });
+      tooltips.tooltip( "open" );
+      modal.style.display = "block";
+      document.getElementById('results').disabled = false;
+    }
+    else {
+      displayAnswers(questionAndAnswers,total);
+    }
+    
+
+
 
   });
 
@@ -68,7 +78,6 @@ $(document).ready(function() {
       temp_result[i] = categories[category][i]["results"];
     }
 
-    // console.info(temp_result);
   });
 
 });
