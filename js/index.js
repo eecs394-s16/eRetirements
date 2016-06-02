@@ -189,7 +189,7 @@ function getResultsFromApi(){
         }
       }
 
-      if(s_name == "idealCommunity" || s_name == "region") {
+      if(s_name == "idealCommunity") {
         dataForApi[s_name] = temp_list;
       } else {
         if (temp_value != "") {
