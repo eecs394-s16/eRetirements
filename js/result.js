@@ -1,4 +1,4 @@
-var apiURL = "https://infinite-shelf-93535.herokuapp.com/";
+var apiURL = "https://infinite-shelf-93535.herokuapp.com";
 // var apiURL = "http://www.eretirements.com/api/v1/surveys";
 var dataForApi;
 
@@ -29,8 +29,8 @@ function createSurvey(data) {
 			"Content-Type": "application/json",
 			"Authorization": "Basic " + btoa("elitecohen@gmail.com" + ":" + "Stanselms3")
 		},
-		url: apiURL,
-		data: data,
+		url: apiURL+'?q='+JSON.stringify(data),
+		// data: data,
 		success: function (res){
 			console.log(res);
 			flag = true;
