@@ -1,5 +1,5 @@
-// var apiURL = "https://infinite-shelf-93535.herokuapp.com";
-var apiURL = "http://localhost:8000";
+var apiURL = "https://infinite-shelf-93535.herokuapp.com";
+// var apiURL = "http://localhost:8000";
 // var apiURL = "http://www.eretirements.com/api/v1/surveys";
 var dataForApi;
 
