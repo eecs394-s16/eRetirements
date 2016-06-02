@@ -279,6 +279,7 @@ var showRating = function(){
     });
     tooltips.tooltip( "open" );
     modal.style.display = "block";
+    ratings[category] = 1;
     document.getElementById('results').disabled = false;
   }
 
