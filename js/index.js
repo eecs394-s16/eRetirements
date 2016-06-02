@@ -174,13 +174,15 @@ function getResultsFromApi(){
       var s_name = section["name"];
       var s_results = section["results"];
       var s_values = section["values"];
-      var temp_list = [];
+      var temp_obj = {};
       var temp_value = "";
 
       for(var k = 0; k < s_results.length; k++){
         if(s_results[k]) {
           if (s_name == "idealCommunity" || s_name == "region"){
-            temp_list.push(s_values[k]);
+            for (var i=0;i<s_values.length;i++){
+              temp_obj[String(i)] = s_values[k];
+            }
           }
           else {
             temp_value = s_values[k];
@@ -189,8 +191,8 @@ function getResultsFromApi(){
         }
       }
 
-      if(s_name == "idealCommunity") {
-        dataForApi[s_name] = temp_list;
+      if(s_name == "idealCommunity" || s_name == "region") {
+        dataForApi[s_name] = temp_obj;
       } else {
         if (temp_value != "") {
           dataForApi[s_name] = temp_value;

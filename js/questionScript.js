@@ -200,11 +200,15 @@ var categories = {
 // }
 
 var dataForApi = {
-    "region": ["west", "midwest", "south", "northeast"],
+    "region": {
+			'1':"west", '2':"midwest", '3':"south", '4':"northeast"
+		},
     "communitySize": "quaint-town",
     "vacationDay": "beach",
     "weatherType": "warm",
-    "idealCommunity": ["young", "volunteering", "wealthy", "active"],
+    "idealCommunity": {
+			'1':"young", '2':"volunteering", '3':"wealthy", '4':"active"
+		},
     "livingCosts": "any",
     "golf": "important",
     "averageAge": "55-64",
