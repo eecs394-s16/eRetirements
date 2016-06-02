@@ -22,7 +22,6 @@ $(document).ready(function() {
 });
 
 function createSurvey(data) {
-
 	$.ajax
 	({
 		type: "POST",
@@ -34,11 +33,12 @@ function createSurvey(data) {
 		data: data,
 		success: function (res){
 			console.log(res);
-
+			flag = true;
 			loadResult(res);
 		},
 		error: function(err, err1) {
-			$(".survey-results").html("Please refresh the page.<br><img src='loading.gif'/>");
+			// $(".survey-results").html("Please refresh the page.<br><img src='loading.gif'/>");
+			window.location.href = 'survey-results.html'
 		}
 	});
 }
